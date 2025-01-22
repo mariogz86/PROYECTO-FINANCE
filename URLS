@@ -85,3 +85,106 @@ End Sub
 - Los ciclos de `For` se pueden ajustar según el rango de datos que deseas insertar en el archivo duplicado.
 
 Este proceso crea un duplicado del archivo original y lo llena con datos de forma automatizada a través de VBA.
+
+excel js
+Modificar archivos Excel con JavaScript es posible utilizando bibliotecas como **xlsx** (anteriormente conocida como SheetJS). Esta biblioteca te permite leer, modificar y escribir archivos Excel directamente desde el navegador o Node.js.
+
+A continuación, te muestro un ejemplo básico de cómo puedes usar **xlsx** para modificar un archivo Excel:
+
+### 1. Instalar la biblioteca
+Si estás trabajando con Node.js, instala la biblioteca **xlsx** ejecutando:
+```bash
+npm install xlsx
+```
+
+Si estás trabajando en el navegador, puedes incluir el archivo de la biblioteca desde un CDN:
+```html
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+```
+
+---
+
+### 2. Código para modificar un archivo Excel
+```javascript
+// Importar la biblioteca (solo para Node.js)
+// const XLSX = require('xlsx');
+
+// Leer el archivo Excel
+function modificarExcel(file) {
+  const reader = new FileReader();
+
+  reader.onload = function (event) {
+    const data = event.target.result;
+
+    // Leer el archivo como un libro de trabajo
+    const workbook = XLSX.read(data, { type: 'binary' });
+
+    // Seleccionar la primera hoja
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+
+    // Convertir la hoja a formato JSON
+    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+    console.log("Datos originales:", jsonData);
+
+    // Modificar los datos (ejemplo: cambiar un valor)
+    if (jsonData.length > 0) {
+      jsonData[0].Nombre = "Modificado"; // Cambia "Nombre" por la columna que desees
+    }
+
+    // Convertir los datos modificados a una hoja de Excel
+    const newWorksheet = XLSX.utils.json_to_sheet(jsonData);
+
+    // Reemplazar la hoja en el libro de trabajo
+    workbook.Sheets[sheetName] = newWorksheet;
+
+    // Escribir el archivo modificado
+    const newExcelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+    // Descargar el archivo modificado
+    const blob = new Blob([s2ab(newExcelData)], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = "Archivo_Modificado.xlsx";
+    link.click();
+    console.log("Archivo modificado y descargado.");
+  };
+
+  reader.readAsBinaryString(file);
+}
+
+// Función auxiliar para convertir datos binarios
+function s2ab(s) {
+  const buf = new ArrayBuffer(s.length);
+  const view = new Uint8Array(buf);
+  for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+  return buf;
+}
+
+// Uso: Seleccionar un archivo desde el navegador
+document.getElementById('fileInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  modificarExcel(file);
+});
+```
+
+---
+
+### 3. HTML para cargar el archivo
+```html
+<input type="file" id="fileInput" accept=".xlsx, .xls" />
+```
+
+---
+
+### Explicación del código
+1. **Leer el archivo Excel:** El archivo se lee como binario usando `FileReader`.
+2. **Modificar los datos:** La función convierte los datos a JSON, realiza modificaciones y luego los convierte de vuelta a una hoja de cálculo.
+3. **Descargar el archivo:** El archivo modificado se descarga automáticamente con un nuevo nombre.
+
+### Requisitos
+- Asegúrate de usar un navegador moderno.
+- Si estás en un entorno Node.js, usa `fs` para leer y escribir archivos en lugar de `FileReader`.
+
+¿Te gustaría agregar algo más o necesitas un ejemplo más específico?
