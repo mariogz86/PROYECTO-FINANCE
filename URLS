@@ -5,3 +5,83 @@ ejemplo macro para copiar y pegar informacion de un excel a otro
 https://www.youtube.com/watch?v=v4m-_iUW69U
 
 probando
+Para crear un duplicado de un archivo de Excel y llenarlo con datos utilizando una macro de Excel (VBA), puedes seguir los siguientes pasos:
+
+### 1. Crear un Duplicado del Archivo
+Para duplicar un archivo de Excel y luego llenarlo con datos, puedes usar el siguiente código VBA. Este código copia el archivo original en una nueva ubicación.
+
+### 2. Llenar el Archivo Duplicado con Datos
+Para llenar el archivo duplicado con datos, puedes abrir el archivo duplicado en la macro y luego insertar los datos en las celdas correspondientes.
+
+### Código VBA:
+```vba
+Sub DuplicarYLLenarArchivo()
+    Dim originalFile As String
+    Dim duplicatedFile As String
+    Dim wbOriginal As Workbook
+    Dim wbDuplicado As Workbook
+    Dim wsOriginal As Worksheet
+    Dim wsDuplicado As Worksheet
+    Dim i As Long, j As Long
+
+    ' Ruta del archivo original
+    originalFile = "C:\Ruta\al\archivo\original.xlsx"
+    
+    ' Ruta donde se guardará el archivo duplicado
+    duplicatedFile = "C:\Ruta\al\archivo\duplicado.xlsx"
+    
+    ' Abrir el archivo original
+    Set wbOriginal = Workbooks.Open(originalFile)
+    
+    ' Copiar el archivo a la nueva ubicación (duplicado)
+    wbOriginal.SaveCopyAs duplicatedFile
+    
+    ' Cerrar el archivo original sin guardar cambios
+    wbOriginal.Close SaveChanges:=False
+    
+    ' Abrir el archivo duplicado
+    Set wbDuplicado = Workbooks.Open(duplicatedFile)
+    
+    ' Seleccionar la hoja principal del archivo duplicado
+    Set wsDuplicado = wbDuplicado.Sheets(1)
+    
+    ' Llenar el archivo duplicado con algunos datos de ejemplo
+    For i = 1 To 10 ' Ejemplo: llenar las primeras 10 filas
+        For j = 1 To 5 ' Ejemplo: llenar las primeras 5 columnas
+            wsDuplicado.Cells(i, j).Value = "Dato " & i & "," & j
+        Next j
+    Next i
+    
+    ' Guardar y cerrar el archivo duplicado
+    wbDuplicado.Save
+    wbDuplicado.Close SaveChanges:=False
+
+    MsgBox "El archivo duplicado ha sido creado y llenado con datos."
+End Sub
+```
+
+### Explicación del Código:
+
+1. **Variables:**
+   - `originalFile`: Ruta del archivo original que deseas duplicar.
+   - `duplicatedFile`: Ruta del archivo duplicado.
+   - `wbOriginal` y `wbDuplicado`: Son los objetos de los libros de trabajo (workbooks) original y duplicado, respectivamente.
+   - `wsOriginal` y `wsDuplicado`: Son las hojas de trabajo de los libros correspondientes.
+   
+2. **Duplicado del archivo:**
+   - Se abre el archivo original usando `Workbooks.Open`.
+   - Se guarda una copia del archivo original con `SaveCopyAs` en una nueva ubicación.
+   - Luego, se cierra el archivo original sin guardar cambios.
+
+3. **Llenar el archivo duplicado:**
+   - Se abre el archivo duplicado.
+   - Se utiliza un ciclo para llenar las primeras 10 filas y 5 columnas con datos de ejemplo (`Dato i,j`).
+
+4. **Guardar y cerrar:**
+   - El archivo duplicado se guarda y cierra después de llenar los datos.
+
+### Personalización:
+- Puedes modificar las rutas del archivo (`originalFile` y `duplicatedFile`) a las ubicaciones correctas de tu sistema.
+- Los ciclos de `For` se pueden ajustar según el rango de datos que deseas insertar en el archivo duplicado.
+
+Este proceso crea un duplicado del archivo original y lo llena con datos de forma automatizada a través de VBA.
