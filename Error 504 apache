@@ -94,3 +94,81 @@ Asegúrate de que Apache y los servidores backend estén actualizados a versione
 
 Si después de estas soluciones el problema persiste, es recomendable revisar la arquitectura completa del sistema para identificar cuellos de botella o errores de configuración.
 
+La propiedad ProxyTimeout se configura dentro del archivo de configuración de Apache, dependiendo de cómo tengas configurado tu servidor. Aquí hay una guía para encontrar y establecer esta propiedad:
+
+
+---
+
+Lugares donde puedes configurarlo:
+
+1. Archivo principal de configuración de Apache:
+
+Generalmente es httpd.conf o apache2.conf, dependiendo de tu sistema operativo.
+
+Ubicación típica:
+
+En sistemas basados en Debian/Ubuntu: /etc/apache2/apache2.conf
+
+En sistemas basados en Red Hat/CentOS: /etc/httpd/conf/httpd.conf
+
+
+
+
+2. Archivos de configuración de sitios o virtual hosts:
+
+Si usas Virtual Hosts, puedes definir ProxyTimeout dentro de cada bloque <VirtualHost> para aplicarlo a un sitio específico.
+
+Estos archivos suelen encontrarse en:
+
+/etc/apache2/sites-available/ (Debian/Ubuntu)
+
+/etc/httpd/conf.d/ o /etc/httpd/vhost.d/ (Red Hat/CentOS)
+
+
+
+
+3. Configuraciones específicas dentro de un bloque <Proxy>:
+
+Si tienes configuraciones específicas de proxy, podrías colocarlo dentro de un bloque <Proxy>.
+
+
+
+
+
+---
+
+Ejemplo de configuración:
+
+1. Configuración global en apache2.conf o httpd.conf:
+
+ProxyTimeout 300
+
+Esto aplica el tiempo de espera de proxy a todo el servidor.
+
+2. Configuración en un Virtual Host:
+
+<VirtualHost *:80>
+    ServerName example.com
+    ProxyPass / http://backend-server/
+    ProxyPassReverse / http://backend-server/
+    ProxyTimeout 300
+</VirtualHost>
+
+Esto aplica el tiempo de espera solo al sitio específico configurado en ese Virtual Host.
+
+3. Configuración específica en un bloque <Proxy>:
+
+<Proxy *>
+    ProxyTimeout 300
+</Proxy>
+
+
+---
+
+Nota:
+
+Después de realizar cambios en la configuración, asegúrate de reiniciar Apache para que se apliquen:
+
+sudo systemctl restart apache2    # Para sistemas basados en Debian/Ubuntu
+sudo systemctl restart httpd      # Para sistemas basados en Red Hat/CentOS
+
