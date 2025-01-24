@@ -185,3 +185,43 @@ Asegúrate de que las columnas en el SQL coincidan con los encabezados de tu hoj
 ---
 
 ¿Tienes algún detalle específico que quieras agregar o modificar en este ejemplo?
+
+Sub InsertarDatosSinAbrirLibro()
+    Dim conn As Object
+    Dim cmd As Object
+    Dim strConexion As String
+    Dim rutaLibro As String
+    Dim hojaDestino As String
+    Dim celda As String
+    Dim valor As String
+
+    ' Ruta del archivo de Excel (ajusta esto a tu archivo)
+    rutaLibro = "C:\Ruta\A_Tu_Archivo.xlsx"
+
+    ' Nombre de la hoja y celda donde se insertará el dato
+    hojaDestino = "Hoja1$"  ' Usa el nombre de tu hoja seguido de $
+    celda = "A1"            ' Celda a modificar
+    valor = "Nuevo Valor"   ' Valor que quieres insertar
+
+    ' Cadena de conexión para ADO
+    strConexion = "Provider=Microsoft.ACE.OLEDB.12.0;" & _
+                  "Data Source=" & rutaLibro & ";" & _
+                  "Extended Properties=""Excel 12.0 Xml;HDR=No;"""
+
+    ' Crear el objeto de conexión
+    Set conn = CreateObject("ADODB.Connection")
+    conn.Open strConexion
+
+    ' Crear el comando SQL para insertar el valor en la celda
+    Set cmd = CreateObject("ADODB.Command")
+    cmd.ActiveConnection = conn
+    cmd.CommandText = "UPDATE [" & hojaDestino & "] SET F1 = '" & valor & "' WHERE F1 IS NOT NULL"
+    cmd.Execute
+
+    ' Cerrar la conexión
+    conn.Close
+    Set conn = Nothing
+    Set cmd = Nothing
+
+    MsgBox "Valor insertado correctamente en la celda " & celda, vbInformation
+End Sub
