@@ -309,3 +309,115 @@ Consideraciones:
 
 
 Con este método puedes interactuar con un archivo Excel sin abrirlo visualmente.
+
+Si deseas usar el objeto Excel.Application en VBA para agregar contenido de una base de datos a un libro de Excel (incluso abriendo el libro en segundo plano, pero sin mostrarlo al usuario), el siguiente enfoque sería útil.
+
+Este método utiliza ADO para conectarse a la base de datos y el objeto Excel.Application para manipular el archivo Excel.
+
+Código VBA:
+
+Sub ExportarDatosABaseExcel()
+    Dim cn As Object ' Conexión ADO a la base de datos
+    Dim rs As Object ' Recordset para los datos de la base de datos
+    Dim xlApp As Object ' Objeto Excel.Application
+    Dim xlWorkbook As Object ' Objeto Workbook
+    Dim xlWorksheet As Object ' Objeto Worksheet
+    Dim rutaExcel As String
+    Dim consultaSQL As String
+    Dim filaInicio As Long
+    Dim i As Long
+    
+    ' Ruta del archivo Excel
+    rutaExcel = "C:\Ruta\Archivo.xlsx"
+    
+    ' Consulta SQL para extraer los datos
+    consultaSQL = "SELECT * FROM NombreTabla"
+
+    ' Conexión a la base de datos
+    Set cn = CreateObject("ADODB.Connection")
+    cn.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Ruta\BaseDeDatos.accdb;"
+    
+    ' Ejecutar consulta y obtener los datos
+    Set rs = cn.Execute(consultaSQL)
+    
+    ' Crear instancia de Excel
+    Set xlApp = CreateObject("Excel.Application")
+    xlApp.Visible = False ' Mantener Excel oculto
+    xlApp.DisplayAlerts = False ' Deshabilitar alertas
+
+    ' Abrir el archivo Excel
+    Set xlWorkbook = xlApp.Workbooks.Open(rutaExcel)
+    Set xlWorksheet = xlWorkbook.Sheets(1) ' Selecciona la primera hoja (ajusta según sea necesario)
+    
+    ' Definir fila de inicio para insertar los datos
+    filaInicio = 2 ' Suponiendo que la fila 1 tiene encabezados
+
+    ' Escribir datos en las celdas
+    Do Until rs.EOF
+        For i = 0 To rs.Fields.Count - 1
+            xlWorksheet.Cells(filaInicio, i + 1).Value = rs.Fields(i).Value
+        Next i
+        filaInicio = filaInicio + 1 ' Mover a la siguiente fila
+        rs.MoveNext ' Avanzar al siguiente registro
+    Loop
+
+    ' Guardar y cerrar el archivo Excel
+    xlWorkbook.Save
+    xlWorkbook.Close
+    xlApp.Quit
+
+    ' Liberar recursos
+    rs.Close
+    cn.Close
+    Set rs = Nothing
+    Set cn = Nothing
+    Set xlWorksheet = Nothing
+    Set xlWorkbook = Nothing
+    Set xlApp = Nothing
+    
+    MsgBox "Datos exportados correctamente a Excel.", vbInformation
+End Sub
+
+Explicación del código:
+
+1. Conexión a la base de datos:
+
+Se usa ADO para conectarse a la base de datos y ejecutar una consulta SQL que obtiene los datos necesarios.
+
+Cambia la cadena de conexión según tu base de datos (Access, SQL Server, etc.).
+
+
+
+2. Uso del objeto Excel.Application:
+
+El objeto Excel se inicializa como una aplicación oculta (xlApp.Visible = False).
+
+Se abre el archivo Excel en segundo plano.
+
+
+
+3. Inserción de datos:
+
+Los datos de la base de datos se escriben en las celdas de Excel, comenzando desde una fila específica (filaInicio).
+
+Se recorre cada campo de cada registro del recordset para colocarlo en columnas consecutivas.
+
+
+
+4. Guardar y cerrar:
+
+Se guarda el archivo después de agregar los datos y se cierra tanto el libro como la aplicación Excel.
+
+
+
+
+Consideraciones:
+
+Encabezados: Si necesitas agregar encabezados, puedes escribirlos manualmente en la fila 1 antes del bucle Do Until.
+
+Ruta: Cambia las rutas del archivo Excel y de la base de datos para que sean correctas en tu entorno.
+
+Control de errores: Es recomendable agregar manejo de errores para asegurarte de que los objetos se cierren incluso si ocurre un error.
+
+
+Este método es útil si necesitas manipular archivos Excel directamente y asegurarte de que no se muestren al usuario durante la ejecución.
