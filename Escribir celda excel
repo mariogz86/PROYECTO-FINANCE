@@ -225,3 +225,87 @@ Sub InsertarDatosSinAbrirLibro()
 
     MsgBox "Valor insertado correctamente en la celda " & celda, vbInformation
 End Sub
+
+
+Para agregar contenido de una base de datos a un libro de Excel sin abrirlo directamente en la interfaz del usuario, puedes usar ADO (ActiveX Data Objects) para conectarte a la base de datos y ADOX para escribir en el archivo Excel. Aunque el libro de Excel no se abre de forma visual, sigue siendo accesible para escritura y lectura mediante programación.
+
+A continuación, un ejemplo de código en VBA que ilustra cómo lograr esto:
+
+Pasos:
+
+1. Configura la referencia a Microsoft ActiveX Data Objects Library desde el editor VBA.
+
+
+2. Usa una conexión ADO para leer datos de la base de datos.
+
+
+3. Usa un objeto de conexión para escribir en el archivo Excel.
+
+
+
+Código VBA:
+
+Sub EscribirEnExcelSinAbrir()
+    Dim cn As Object ' Objeto para conexión ADO
+    Dim rs As Object ' Objeto para almacenar datos (Recordset)
+    Dim cnExcel As Object ' Objeto de conexión para el libro de Excel
+    Dim rutaExcel As String
+    Dim hojaDestino As String
+    Dim consultaSQL As String
+    Dim columnaDestino As String
+    
+    ' Ruta del archivo Excel (debe ser válido)
+    rutaExcel = "C:\Ruta\Archivo.xlsx"
+    hojaDestino = "Hoja1$" ' Nombre de la hoja (agrega $ al final)
+    columnaDestino = "A1" ' Celda donde empezar a escribir
+
+    ' Conexión a la base de datos (ajusta según tu base de datos)
+    Set cn = CreateObject("ADODB.Connection")
+    cn.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Ruta\BaseDeDatos.accdb;"
+    
+    ' Consulta SQL para extraer datos
+    consultaSQL = "SELECT * FROM NombreTabla"
+    Set rs = cn.Execute(consultaSQL)
+
+    ' Conexión al archivo Excel (sin abrirlo en la interfaz)
+    Set cnExcel = CreateObject("ADODB.Connection")
+    cnExcel.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & rutaExcel & ";Extended Properties=""Excel 12.0 Xml;HDR=YES"";"
+    
+    ' Escribir datos en el Excel desde el recordset
+    Do Until rs.EOF
+        Dim fila As Integer
+        fila = 1 ' Empieza en la primera fila
+
+        ' Itera a través de los campos y agrega datos a las celdas
+        For i = 0 To rs.Fields.Count - 1
+            cnExcel.Execute "INSERT INTO [" & hojaDestino & "] (" & columnaDestino & ") VALUES ('" & rs.Fields(i).Value & "')"
+        Next i
+        
+        fila = fila + 1
+        rs.MoveNext ' Avanza al siguiente registro
+    Loop
+
+    ' Cierra conexiones
+    rs.Close
+    cn.Close
+    cnExcel.Close
+    Set rs = Nothing
+    Set cn = Nothing
+    Set cnExcel = Nothing
+    
+    MsgBox "Datos escritos correctamente en el Excel sin abrirlo.", vbInformation
+End Sub
+
+Consideraciones:
+
+1. Ruta y permisos: Asegúrate de que la ruta del archivo Excel sea válida y que tengas permisos de escritura en ese archivo.
+
+
+2. Estructura del archivo: Si el archivo Excel no tiene un encabezado adecuado, habilita HDR=NO en las propiedades de conexión.
+
+
+3. Bibliotecas de referencia: Si trabajas con bases de datos más recientes o en sistemas modernos, podrías necesitar ajustar el proveedor en Provider (por ejemplo, Microsoft.ACE.OLEDB.16.0).
+
+
+
+Con este método puedes interactuar con un archivo Excel sin abrirlo visualmente.
