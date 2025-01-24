@@ -98,3 +98,90 @@ document.getElementById('fileInput').addEventListener('change', function (event)
   ```
 
 ¿Te gustaría añadir algo más, como trabajar con múltiples hojas o estilos de celdas?
+
+
+Llenar un libro de Excel mediante VBA sin abrirlo directamente se puede lograr utilizando la biblioteca ADO (ActiveX Data Objects), que permite acceder y manipular datos en archivos Excel como si fueran bases de datos. A continuación, te muestro un ejemplo práctico:
+
+Requisitos previos
+
+1. Asegúrate de habilitar la referencia a la biblioteca ADO:
+
+En el Editor de VBA, ve a Herramientas > Referencias.
+
+Activa la opción Microsoft ActiveX Data Objects x.x Library (elige la versión más reciente disponible, como 6.1).
+
+
+
+2. Necesitas conocer el nombre y ubicación del archivo Excel que quieres modificar, así como la hoja y los rangos en los que deseas trabajar.
+
+
+
+
+---
+
+Código VBA para llenar datos sin abrir el libro
+
+Sub LlenarExcelSinAbrir()
+    Dim cn As Object ' Objeto para la conexión (ADO)
+    Dim cmd As Object ' Objeto para los comandos SQL
+    Dim strRuta As String
+    Dim strConexion As String
+    Dim strSQL As String
+
+    ' Ruta del libro de Excel
+    strRuta = "C:\Ruta\Del\Archivo.xlsx"
+    
+    ' Cadena de conexión para Excel (para archivos XLSX, usa "Excel 12.0")
+    strConexion = "Provider=Microsoft.ACE.OLEDB.12.0;" & _
+                  "Data Source=" & strRuta & ";" & _
+                  "Extended Properties=""Excel 12.0 Xml;HDR=Yes"";"
+
+    ' Conexión a través de ADO
+    Set cn = CreateObject("ADODB.Connection")
+    cn.Open strConexion
+
+    ' Comando SQL para insertar datos en la Hoja1
+    strSQL = "INSERT INTO [Hoja1$](Columna1, Columna2) VALUES ('Dato1', 'Dato2')"
+
+    ' Ejecutar el comando SQL
+    Set cmd = CreateObject("ADODB.Command")
+    With cmd
+        .ActiveConnection = cn
+        .CommandText = strSQL
+        .Execute
+    End With
+
+    ' Cerrar conexión
+    cn.Close
+    Set cmd = Nothing
+    Set cn = Nothing
+
+    MsgBox "Datos insertados correctamente sin abrir el libro", vbInformation
+End Sub
+
+
+---
+
+Detalles importantes
+
+1. Formato del archivo Excel: Este ejemplo está diseñado para libros en formato .xlsx. Si trabajas con .xls, cambia el proveedor en la cadena de conexión a:
+
+Provider=Microsoft.Jet.OLEDB.4.0;...
+
+
+2. Estructura del SQL:
+
+El nombre de la hoja debe terminar con $ (por ejemplo, Hoja1$).
+
+Asegúrate de que las columnas en el SQL coincidan con los encabezados de tu hoja de cálculo.
+
+
+
+3. Permisos: Asegúrate de que el archivo Excel no esté abierto y que tengas permisos de escritura sobre él.
+
+
+
+
+---
+
+¿Tienes algún detalle específico que quieras agregar o modificar en este ejemplo?
