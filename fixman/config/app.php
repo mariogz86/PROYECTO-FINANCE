@@ -1,6 +1,6 @@
 <?php
 
-	const APP_URL="http://localhost/sites/fixman/";
+	const APP_URL="http://localhost/fixman/";
 	const APP_NAME="FIXMAN";
 	const APP_SESSION_NAME="POS"; 
 	const APP_SESSION=30;
@@ -8,12 +8,14 @@
 	/******************* Variables para correo ************************** */
 	 
 	const APP_CharSet = "UTF-8";
-	const APP_Host = 'webmail.bcn.gob.ni';
+	const APP_Host = 'smtp.gmail.com';
 	const APP_SMTPAuth = true;
 	const APP_Port = 587;
-	const APP_Username = 'sacn@bcn.gob.ni';
-	const APP_Password = '20s4CNsysnbcDT';
-	const APP_SMTPSecure = 'tls';
+	const APP_Username = 'magbgol@gmail.com';
+	const APP_Password = 'snsoslkxdamvmxoe';
+	// const APP_SMTPSecure = 'tls';
+	 
+
 	const APP_SMTPDebug = 0;	
 
 
@@ -25,7 +27,7 @@
 	const MONEDA_SEPARADOR_DECIMAL=".";
 
 	const VISTAS=["dashboard","logOut","catalogo","valcatalogo","form","hojaform","archivo","variable","validacion","clonar","carga","vercarga",
-				  "impvalid","generar","rol","menu"];
+				  "impvalid","generar","rol","menu","opcionmenu","opcionrol"];
 
 
 	/*----------  Marcador de campos obligatorios (Font Awesome) ----------*/

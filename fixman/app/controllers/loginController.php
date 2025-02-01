@@ -161,7 +161,7 @@ use PHPMailer\PHPMailer\Exception;
 										echo '<article class="message is-danger">
 										<div class="message-body">
 										  <strong>Ocurrió un error </strong><br>
-										  Cuenta de usuario bloqueada - Cuenta SACN, favor contacte al administrador.
+										  Cuenta de usuario bloqueada - Cuenta FIXMAN, favor contacte al administrador.
 										</div>
 									  </article>';
 									}else{
@@ -282,6 +282,13 @@ use PHPMailer\PHPMailer\Exception;
 		//funcion para enviar correo cuando la cuenta esta bloqueada por varios intentos
 		public function enviarcorreocuentabloqueada(){
 			$phpmailer = new PHPMailer();
+			$phpmailer->SMTPOptions = array(
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true,
+				)
+			  );
 			$phpmailer->isSMTP();
 			$phpmailer->CharSet = APP_CharSet;
 			$phpmailer->Host = APP_Host;
@@ -289,16 +296,16 @@ use PHPMailer\PHPMailer\Exception;
 			$phpmailer->Port = APP_Port;
 			$phpmailer->Username = APP_Username;
 			$phpmailer->Password = APP_Password;
-			$phpmailer->SMTPSecure = APP_SMTPSecure;
+			$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$phpmailer->SMTPDebug = APP_SMTPDebug;
 
 			$phpmailer->setFrom(APP_Username);
 			$phpmailer->addAddress($_SESSION['correo']);
 			$phpmailer->isHTML(true); // Set email format to plain text
 
-			$phpmailer->Subject = "Cuenta de usuario bloqueada - SACN";
+			$phpmailer->Subject = "Cuenta de usuario bloqueada - FIXMAN";
 			$phpmailer->Body    = "Estimado(a) <b>" . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "</b>:<br><br>"
-				. "Le informamos que su cuenta de usuario <b>".$_SESSION['usuario']."</b> del sistema <b>Automatizado de Cuentas Nacionales SACN</b> ha sido bloqueada, "
+				. "Le informamos que su cuenta de usuario <b>".$_SESSION['usuario']."</b> del sistema <b>FIXMAN</b> ha sido bloqueada, "
 				. "debido a que realizó la cantidad de 3 intentos de inicio de sesión fallidos.<br><br>"
 				. "Para mayor información favor contactar al administrador del sistema para desbloquear su cuenta.";
 
@@ -336,6 +343,13 @@ use PHPMailer\PHPMailer\Exception;
 								
 
 						$phpmailer = new PHPMailer();
+						$phpmailer->SMTPOptions = array(
+							'ssl' => array(
+								'verify_peer' => false,
+								'verify_peer_name' => false,
+								'allow_self_signed' => true,
+							)
+						  );
 						$phpmailer->isSMTP();
 						$phpmailer->CharSet = APP_CharSet;
 						$phpmailer->Host = APP_Host;
@@ -343,14 +357,14 @@ use PHPMailer\PHPMailer\Exception;
 						$phpmailer->Port = APP_Port;
 						$phpmailer->Username = APP_Username;
 						$phpmailer->Password = APP_Password;
-						$phpmailer->SMTPSecure = APP_SMTPSecure;
+						$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 						$phpmailer->SMTPDebug = APP_SMTPDebug;
 
 						$phpmailer->setFrom(APP_Username);
 						$phpmailer->addAddress($email);
 						$phpmailer->isHTML(true); // Set email format to plain text
 
-						$phpmailer->Subject = "Resteo clave de usuario - SACN";
+						$phpmailer->Subject = "Resteo clave de usuario - FIXMAN";
 						$phpmailer->Body    = "Estimado(a) <b>" . $check_usuario['u_nombre_completo'] . " " . $check_usuario['u_apellido_completo'] . "</b>:<br><br>"
 							. "Le informamos que su clave  de usuario temporal es <b>".$clavetemp." </b>"
 							. "favor de cambiar su clave al ingresar al sistema nuevamente.<br><br>"

@@ -43,8 +43,8 @@ require_once "../autoload.php";
         if($result){
             $alerta=[
                 "tipo"=>"limpiar",
-                "titulo"=>"opcion de menú",
-                "texto"=>"El nombre de la opcion ya existe en el sistema",
+                "titulo"=>"opcion rol",
+                "texto"=>"Opción ya se encuentra asociada al rol.	",
                 "icono"=>"warning"
             ];	
 
@@ -54,39 +54,33 @@ require_once "../autoload.php";
 		//se invoca el metodo de guardar del controlador
 		$result =$insopcion->guardar();
 		//resultado que se envia al metodo POST
-		if($result){
-			if ($_POST["idopcion"]=="0"){
+		if($result){ 
 			$alerta=[
 				"tipo"=>"limpiar",
 				"titulo"=>"opción de menú",
 				"texto"=>"El registro se guardo con éxito",
 				"icono"=>"success"
-			];}
-			else{
-				$alerta=[
-					"tipo"=>"limpiar",
-					"titulo"=>"opción de menú",
-					"texto"=>"El registro se actualizo con éxito",
-					"icono"=>"success"
-				];	
+			];
+
+			$opcionmenu =$insopcion->Buscaropcionmenu();
+			$idmenu=$opcionmenu[0]["id_menu"];
+
+			$existemenurol =$insopcion->Buscarrolmenu($idmenu, $_POST["cmb_rol"]	);
+
+			if($existemenurol[0]["count"]==0)
+			{
+				$result =$insopcion->guardarrolmenu($idmenu, $_POST["cmb_rol"]	);
+
 			}
-		}else{
-			if ($_POST["idopcion"]=="0"){
+			 
+		}else{ 
 				$alerta=[
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el opcion, por favor intente nuevamente",
 					"icono"=>"error"
 				];
-			}
-				else{
-					$alerta=[
-						"tipo"=>"simple",
-					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar el opcion, por favor intente nuevamente",
-					"icono"=>"error"
-					];	
-				}
+		 
 			
 		}
     }
@@ -107,8 +101,8 @@ require_once "../autoload.php";
 
                 $alerta=[
 					"tipo"=>"limpiar",
-					"titulo"=>"Inactivar registro",
-					"texto"=>"El registro se Inactivo con éxito",
+					"titulo"=>"Eliminar registro",
+					"texto"=>"El registro se elimino con éxito",
 					"icono"=>"success"
 				];
             }

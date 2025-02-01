@@ -104,33 +104,34 @@ const idopcionrol = document.getElementsByName("idopcionrol");
 const formopcionrol = document.getElementsByName("formopcionrol");
 const gridcat = document.getElementsByName("gridcat");
 
-$('#select_rol').on('change', function() {
-    var selectVal = $("#select_rol option:selected").val();
-    if (selectVal != "" && selectVal != undefined) {
-        $.ajax({
-            type: "GET",
-            url: "<?php  echo APP_URL.'ajax/opcionrolAjax.php' ?>",
-            data: "cargagrid=" + $("#select_rol option:selected").val(),
-            success: function(response) {
-                $(".loadersacn").fadeOut("slow");
-                var res = jQuery.parseJSON(response);
-                if (res.status == 200) {
-                    llenargird(res.data);
+// $('#select_rol').on('change', function() {
+//     var selectVal = $("#select_rol option:selected").val();
+//     if (selectVal != "" && selectVal != undefined) {
+//         $.ajax({
+//             type: "GET",
+//             url: "<?php  echo APP_URL.'ajax/opcionrolAjax.php' ?>",
+//             data: "cargagrid=" + $("#select_rol option:selected").val(),
+//             success: function(response) {
+//                 $(".loadersacn").fadeOut("slow");
+//                 var res = jQuery.parseJSON(response);
+//                 if (res.status == 200) {
+//                     llenargird(res.data);
 
-                } else {
-                    cargargrid([]);
-                }
+//                 } else {
+//                     cargargrid([]);
+//                 }
 
-            }
-        });
-    }
-});
+//             }
+//         });
+//     }
+// });
 
 
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
-    
+    $('.form-select').prop("selectedIndex", 0);
+    $('.form-select').change();
 
     gridcat[0].style.display = "";
 
@@ -227,29 +228,15 @@ function llenargird(datos){
 
                     },
                     {
-                        width: "30%",
-                        title: 'Usuario modificación',
-                        data: 'usuariom',
-
-
-                    },
-                    {
-                        width: "30%",
-                        title: 'Fecha modificación',
-                        data: 'fecha_modifica',
-
-
-                    },
-                    {
                         className: "text-center",
                         title: 'Acción',
-                        data: 'ROLOPCION_ID',
+                        data: 'rolopcion_id',
                         render: function(data, type, row, meta) {
 
                             if (row.u_estado == 0) {
                                 return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="activar">' +
-                                    '<input type="hidden" name="ROLOPCION_ID" value="' +
+                                    '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +
                                     '<button type="submit" title="Activar" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-check-circle"></i>' +
@@ -258,9 +245,9 @@ function llenargird(datos){
                             } else {
                                 return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
-                                    '<input type="hidden" name="ROLOPCION_ID" value="' +
+                                    '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Eliminar" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +
                                     '</form></td>';
