@@ -143,4 +143,10 @@
 			}
 		}
 
+		public function ContarRegistros($consulta){			
+			$total = $this->ejecutarConsulta($consulta);
+			$total = (int) $total->fetchColumn(); 
+			return $total;
+		}
+
 	}

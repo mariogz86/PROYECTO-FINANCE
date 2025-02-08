@@ -10,7 +10,7 @@ p {
 }
 </style>
 <div class="container">
-    <h1 class="title">Roles</h1>
+    <h1 class="title">Role</h1>
 
     <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
 
@@ -19,7 +19,7 @@ p {
 
         <p class="has-text-left pt-4 pb-4">
             <a name="agregarcat" href="#" class="button is-link is-rounded btn-back"><i class="fas fa-plus"></i> &nbsp;
-                Agregar registro</a>
+                Add record</a>
         </p>
         <table id="myTable" class="table table-striped table-bordered"></table>
     </div>
@@ -29,14 +29,14 @@ p {
         <input type="hidden" name="idrol" value="">
         <p class="has-text-right pt-4 pb-4">
             <button name="regresar" type="reset" class="button is-link is-light is-rounded"><i
-                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Regresar</button>
+                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
         </p>
         <input type="hidden" name="modulo_Opcion" value="registrar">
         <div class="col-sm-12 col-md-6">
             <div class="columns ">
                 <div class="column ">
                     <div class="control ">
-                        <label>Rol <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Name Role <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="rol" 
                             maxlength="250" required>
                     </div>
@@ -45,7 +45,7 @@ p {
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Descripción <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Description  <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="descripcion" maxlength="2000" required>
                     </div>
                 </div>
@@ -55,11 +55,11 @@ p {
         </div>
         <p class="has-text-centered">
             <button type="reset" class="button is-link is-light is-rounded"><i class="fas fa-paint-roller"></i> &nbsp;
-                Limpiar</button>
-            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp; Guardar</button>
+                Clean</button>
+            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp; Save</button>
         </p>
         <p class="has-text-centered pt-6">
-            <small>Los campos marcados con <?php echo CAMPO_OBLIGATORIO; ?> son obligatorios</small>
+            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are mandatory</small>
         </p>
     </form>
 </div>

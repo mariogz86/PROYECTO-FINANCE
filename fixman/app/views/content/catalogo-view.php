@@ -71,61 +71,9 @@ p {
         </p>
     </form>
 </div>
-<input type="file" id="fileInput" accept=".xlsx, .xls" />
-
+ 
 
 <script>
-/********************************************************************************** */
-// Importar la biblioteca (solo si estás en Node.js)
-// const XLSX = require('xlsx');
-
-// Función para modificar una celda específica en un archivo Excel
-function modificarCeldaExcel(file) {
-  const reader = new FileReader();
-
-  reader.onload = function (event) {
-    const data = event.target.result;
-
-    // Leer el archivo como un libro de trabajo
-    const workbook = XLSX.read(data, { type: 'binary' });
-
-    // Seleccionar la hoja deseada (por ejemplo, la primera)
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets['Datos_Emp'];
-
-    // Modificar una celda específica (ejemplo: A1)
-    worksheet['A1'] = { v: 'Nuevo Valor', t: 's' }; // 'v' es el valor, 't' es el tipo ('s' para string)
-
-    // Guardar los cambios en el archivo Excel
-    const newExcelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-    // Descargar el archivo modificado
-    const blob = new Blob([s2ab(newExcelData)], { type: "application/octet-stream" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = "Archivo_Modificado.xlsx";
-    link.click();
-    console.log("Celda modificada y archivo descargado.");
-  };
-
-  reader.readAsBinaryString(file);
-}
-
-// Función auxiliar para convertir datos binarios
-function s2ab(s) {
-  const buf = new ArrayBuffer(s.length);
-  const view = new Uint8Array(buf);
-  for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-  return buf;
-}
-
-// Uso: Seleccionar un archivo desde el navegador
-document.getElementById('fileInput').addEventListener('change', function (event) {
-  const file = event.target.files[0];
-  modificarCeldaExcel(file);
-});
-/************************************************************************************** */
 
 
 const button = document.getElementsByName("agregarcat");

@@ -32,7 +32,7 @@
                             <i class="fab fa-dashcube fa-fw"></i>
                         </div>
                         <div class="navLateral-body-cr">
-                            Inicio
+                            Start
                         </div>
                     </a>
                 </li>
@@ -61,7 +61,7 @@
                             <i class="fas fa-power-off"></i>
                         </div>
                         <div class="navLateral-body-cr">
-                            Cierre sesión
+                        Sign out
 							
                         </div>
                        

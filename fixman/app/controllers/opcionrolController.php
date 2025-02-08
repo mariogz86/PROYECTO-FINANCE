@@ -22,7 +22,6 @@
 		//Funcion para guardar los datos del rol
 		public function guardar(){
 			 
-			
 			$idrol = trim($_POST["cmb_rol"]);			
 			$opcion = trim($_POST["cmb_opcion"]);
 
@@ -30,19 +29,6 @@
 				$sentencia ="select \"SYSTEM\".INSERTAR_ROLOPCION('".$opcion."','".$idrol."','".$_SESSION['id']."');";
 				$sql=$this->actualizarDatos($sentencia);
 				$sql->execute();
-			 
-
-		 return $sql;
-		}
-
-		public function guardarrolmenu($menu,$rol){
-		 
-
-			 
-				$sentencia ="select \"SYSTEM\".INSERTAR_ROLMENU('".$menu."','".$rol."','".$_SESSION['id']."');";
-				$sql=$this->actualizarDatos($sentencia);
-				$sql->execute();
-			 
 
 		 return $sql;
 		}
@@ -56,36 +42,50 @@
                 $sentencia ="select * from \"SYSTEM\".OBTENER_rolopcion where id_rol='".$idrol."' and id_opcion='".$opcion."'  ";
                 $datos = $this->ejecutarConsulta($sentencia);
                 $datos = $datos->fetchAll();
-           
 
         return $datos;
         }
 
-		 //Funcion para validar que no exista el nombre del menu
-		 public function Buscaropcionmenu(){
+
+		public function guardarrolmenu($menu,$rol){
+		 
+
+			 
+			$sentencia ="select \"SYSTEM\".INSERTAR_ROLMENU('".$menu."','".$rol."','".$_SESSION['id']."');";
+			$sql=$this->actualizarDatos($sentencia);
+			$sql->execute();
+		 
+
+	 return $sql;
+	}
+
+	 //Funcion para validar que no exista el nombre del menu
+	 public function Buscaropcionmenu(){
                      	
-			$opcion = trim($_POST["cmb_opcion"]);
-             
-                $sentencia ="select * from \"SYSTEM\".obtener_opcionmenu where id_opcion='".$opcion."'  ";
-                $datos = $this->ejecutarConsulta($sentencia);
-                $datos = $datos->fetchAll();
-           
+		$opcion = trim($_POST["cmb_opcion"]);
+		 
+			$sentencia ="select * from \"SYSTEM\".obtener_opcionmenu where id_opcion='".$opcion."'  ";
+			$datos = $this->ejecutarConsulta($sentencia);
+	 
+			$datos = $datos->fetchAll();
+	   
 
-        return $datos;
-        }
+		 
+	return $datos;
+	}
 
-		 //Funcion para validar que no exista el nombre del menu
-		 public function Buscarrolmenu($menu,$rol){
+	 //Funcion para validar que no exista el nombre del menu
+	 public function Buscarrolmenu($menu,$rol){
                      	
 			 
              
-                $sentencia ="select count(id_rol) from \"SYSTEM\".obtener_rolmenu where id_menu='".$menu."' and id_rol='".$rol."'  ";
-                $datos = $this->ejecutarConsulta($sentencia);
-                $datos = $datos->fetchAll();
-           
+		$sentencia ="select count(id_rol) from \"SYSTEM\".obtener_rolmenu where id_menu='".$menu."' and id_rol='".$rol."'  ";
+		$datos = $this->ejecutarConsulta($sentencia);
+		$datos = $datos->fetchAll();
+   
 
-        return $datos;
-        }
+return $datos;
+}
  
 
 		//Funcion para cambiar de estado al rol 

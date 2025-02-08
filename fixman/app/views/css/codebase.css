@@ -11313,7 +11313,7 @@ a.bg-danger-light:focus, a.bg-danger-light:hover {
 }
 
 .bg-white {
-  background-color: #a5626200 !important;
+  background-color: #fff !important;
 }
 
 a.bg-white:focus, a.bg-white:hover {
@@ -11473,6 +11473,12 @@ a.bg-gray-lighter:focus, a.bg-gray-lighter:hover {
   /* background-color: #f8f9fa; */
   background-position: 0% 0%;
   background-size: cover;
+}
+
+.bg-image2 {
+  /* background-color: #f8f9fa; */
+  background-position: 0% 0%;
+  background-size:contain;
 }
 
 /* .bg-image {

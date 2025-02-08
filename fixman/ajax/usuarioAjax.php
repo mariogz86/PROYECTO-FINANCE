@@ -38,6 +38,18 @@ require_once "../autoload.php";
 	//Metodo POST para el registro a guardar en la pantalla
 	if(isset($_POST['modulo_Opcion']))
 	{
+
+		$buscarUsuario =$insformulario->BuscarUsuario();
+
+		if($buscarUsuario>0){
+			$alerta=[
+				"tipo"=>"simple",
+				"titulo"=>"Usuario",
+				"texto"=>"El nombre de usuario ya existe en el sistema.",
+				"icono"=>"warning"
+			];	
+		}
+		else{
 		//se invoca el metodo de guardar del controlador
 		$result =$insformulario->guardar();
 		//resultado que se envia al metodo POST
@@ -76,7 +88,7 @@ require_once "../autoload.php";
 				}
 			
 		}
-
+	}
 		echo json_encode($alerta); 
 	}
 

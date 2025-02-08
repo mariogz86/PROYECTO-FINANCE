@@ -267,3 +267,31 @@ ALTER TABLE "SYSTEM".catalogovalor
 
 
 /*********************************************************** FIN DE ESTRUCTURA CATALOGOS DEL SISTEMA ***************************************************************************************************************************/
+/******************************************************* CONFUGARACIONES *************************************************/
+CREATE TABLE "SYSTEM"."COMPANY" (
+	"id_company" serial PRIMARY KEY NOT NULL, 
+	"nombre" VARCHAR(255) NOT NULL, 	
+	"direccion" VARCHAR(2000) NOT NULL, 
+	"ciudad" VARCHAR(2000) NOT NULL, 	
+	"id_valestado" INTEGER NOT NULL,	
+	"codigozip" INTEGER NOT NULL,	
+	"nombrecompleto" VARCHAR(255) NOT NULL,
+	"telefono" VARCHAR(255) NOT NULL, 
+	"email" VARCHAR(255) NOT NULL, 	
+	"u_estado" SMALLINT NOT NULL DEFAULT '1',	
+	"fecha_creacion" DATE NOT NULL,	
+	"usuario_creacion" INTEGER NOT NULL,
+	"fecha_modifica" DATE NULL ,	
+	"usuario_modifica" INTEGER NULL
+);
+
+--CREACION DE FOREING KEY
+
+ALTER TABLE "SYSTEM".company
+   ADD CONSTRAINT fk_id_valestado
+   FOREIGN KEY (id_valestado) 
+   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+
+--CREACION DE INDICES 
+  create index ind_id_company on "SYSTEM".COMPANY("id_company");  
+  create index ind_id_valestado on "SYSTEM".COMPANY("id_valestado"); 

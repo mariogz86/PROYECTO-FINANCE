@@ -376,14 +376,6 @@ table th {
     padding: 1.25rem
 }
 
-.box2 {
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 0.5em 1em 0.875em rgba(10, 10, 10, .1), 0 0 0 13px rgba(13, 10, 10, .02) !important;
-    color: #4a4a4a;
-    display: block;
-    padding: 1.25rem;
-}
 a.box:focus,a.box:hover {
     box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px #485fc7
 }
@@ -11716,4 +11708,14 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
 
 .redClass{
     color: #ff0000
+}
+
+.button.is-accionesbloquear {
+    background-color: #4aa081;
+    border-color: transparent;
+    color: #fff
+}
+
+.bloqueado {
+    color: #1e00ff;
 }

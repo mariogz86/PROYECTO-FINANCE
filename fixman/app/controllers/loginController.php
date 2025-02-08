@@ -150,7 +150,7 @@ use PHPMailer\PHPMailer\Exception;
 									echo '<article class="message is-danger">
 									<div class="message-body">
 									  <strong>Ocurrió un error </strong><br>
-									  Cuenta de usuario bloqueada - Cuenta SACN, favor contacte al administrador.
+									  Cuenta de usuario bloqueada - Cuenta FIXMAN, favor contacte al administrador.
 									</div>
 								  </article>';
 								}else{
@@ -282,13 +282,14 @@ use PHPMailer\PHPMailer\Exception;
 		//funcion para enviar correo cuando la cuenta esta bloqueada por varios intentos
 		public function enviarcorreocuentabloqueada(){
 			$phpmailer = new PHPMailer();
+
 			$phpmailer->SMTPOptions = array(
 				'ssl' => array(
 					'verify_peer' => false,
 					'verify_peer_name' => false,
 					'allow_self_signed' => true,
 				)
-			  );
+			  );	
 			$phpmailer->isSMTP();
 			$phpmailer->CharSet = APP_CharSet;
 			$phpmailer->Host = APP_Host;
@@ -305,7 +306,7 @@ use PHPMailer\PHPMailer\Exception;
 
 			$phpmailer->Subject = "Cuenta de usuario bloqueada - FIXMAN";
 			$phpmailer->Body    = "Estimado(a) <b>" . $_SESSION['nombre'] . " " . $_SESSION['apellido'] . "</b>:<br><br>"
-				. "Le informamos que su cuenta de usuario <b>".$_SESSION['usuario']."</b> del sistema <b>FIXMAN</b> ha sido bloqueada, "
+				. "Le informamos que su cuenta de usuario <b>".$_SESSION['usuario']."</b> del sistema <b>Automatizado de Cuentas Nacionales FIXMAN</b> ha sido bloqueada, "
 				. "debido a que realizó la cantidad de 3 intentos de inicio de sesión fallidos.<br><br>"
 				. "Para mayor información favor contactar al administrador del sistema para desbloquear su cuenta.";
 
@@ -342,14 +343,13 @@ use PHPMailer\PHPMailer\Exception;
 						$this->actualizarclave($clavetemp,$check_usuario['id_usuario']);
 								
 
-						$phpmailer = new PHPMailer();
 						$phpmailer->SMTPOptions = array(
 							'ssl' => array(
 								'verify_peer' => false,
 								'verify_peer_name' => false,
 								'allow_self_signed' => true,
 							)
-						  );
+						  );	
 						$phpmailer->isSMTP();
 						$phpmailer->CharSet = APP_CharSet;
 						$phpmailer->Host = APP_Host;

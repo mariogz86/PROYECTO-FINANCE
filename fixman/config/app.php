@@ -26,8 +26,7 @@
 	const MONEDA_SEPARADOR_MILLAR=",";
 	const MONEDA_SEPARADOR_DECIMAL=".";
 
-	const VISTAS=["dashboard","logOut","catalogo","valcatalogo","form","hojaform","archivo","variable","validacion","clonar","carga","vercarga",
-				  "impvalid","generar","rol","menu","opcionmenu","opcionrol"];
+	const VISTAS=["dashboard","logOut","catalogo","valcatalogo","rol","menu","opcionmenu","opcionrol","usuario","company"];
 
 
 	/*----------  Marcador de campos obligatorios (Font Awesome) ----------*/

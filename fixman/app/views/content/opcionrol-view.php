@@ -130,8 +130,7 @@ const gridcat = document.getElementsByName("gridcat");
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
+    
 
     gridcat[0].style.display = "";
 
@@ -228,6 +227,20 @@ function llenargird(datos){
 
                     },
                     {
+                        width: "30%",
+                        title: 'Usuario modificación',
+                        data: 'usuariom',
+
+
+                    },
+                    {
+                        width: "30%",
+                        title: 'Fecha modificación',
+                        data: 'fecha_modifica',
+
+
+                    },
+                    {
                         className: "text-center",
                         title: 'Acción',
                         data: 'rolopcion_id',
@@ -247,7 +260,7 @@ function llenargird(datos){
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
                                     '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Eliminar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +
                                     '</form></td>';
