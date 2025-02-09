@@ -78,13 +78,13 @@ regresar[0].addEventListener("click", (event) => {
     gridcat[0].style.display = "";
     formrol[0].style.display = "none";
     document.getElementsByName("formrol")[0].reset();
-    $("#titulo")[0].innerText = "Lista de Roles";
+    $("#titulo")[0].innerText = "List of Roles";
 
 });
 
 button[0].addEventListener("click", (event) => {
     event.preventDefault();
-    $("#titulo")[0].innerText = "Nuevo Rol";
+    $("#titulo")[0].innerText = "New Role";
     gridcat[0].style.display = "none";
     formrol[0].style.display = "";
     idrol[0].value = 0;
@@ -93,7 +93,7 @@ button[0].addEventListener("click", (event) => {
 $(document).on('click', '#modificar', function(e) {
 
     event.preventDefault();
-    $("#titulo")[0].innerText = "Modificar Rol";
+    $("#titulo")[0].innerText = "Modify Role";
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
     gridcat[0].style.display = "none";
@@ -132,7 +132,7 @@ $(document).on('submit', '#formrol', function(e) {
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
-    $("#titulo")[0].innerText = "Lista de Roles";
+    $("#titulo")[0].innerText = "List of Roles";
 
     gridcat[0].style.display = "";
     formrol[0].style.display = "none";
@@ -147,9 +147,9 @@ function cargargrid() {
 
             $('#myTable').DataTable({
                 data: res.data,
-                language: {
-                    "url": "<?php  echo APP_URL?>config/Spanish.json"
-                },
+                // language: {
+                //     "url": "<?php  echo APP_URL?>config/Spanish.json"
+                // },
                 //searching: false, 
                 "createdRow": function(row, data, dataIndex) {
                     if (data.u_estado == 0) {
@@ -166,24 +166,24 @@ function cargargrid() {
                     },
                     {
                         width: "30%",
-                        title: 'Nombre',
+                        title: 'Role',
                         data: 'rol',
 
                     }, 
                     {
                         width: "50%",
-                        title: 'Descripción',
+                        title: 'Description',
                         data: 'descripcion', 
                     },
                     {
                         width: "30%",
-                        title: 'Estado',
+                        title: 'State',
                         data: 'u_estado',
                         render: function(data, type, row, meta) {
                             if (row.u_estado == 1) {
-                                return "Activo";
+                                return "Active";
                             } else {
-                                return "Inactivo";
+                                return "inactive";
                             }
 
                         }
@@ -192,35 +192,35 @@ function cargargrid() {
 
                     {
                         width: "30%",
-                        title: 'Usuario creación',
+                        title: 'User creation',
                         data: 'usuario',
 
 
                     },
                     {
                         width: "30%",
-                        title: 'Fecha creación',
+                        title: 'Creation date',
                         data: 'fecha_creacion',
 
 
                     },
                     {
                         width: "30%",
-                        title: 'Usuario modificación',
+                        title: 'User modification',
                         data: 'usuariom',
 
 
                     },
                     {
                         width: "30%",
-                        title: 'Fecha modificación',
+                        title: 'Modification date',
                         data: 'fecha_modifica',
 
 
                     },
                     {
                         className: "text-center",
-                        title: 'Editar',
+                        title: 'Edit',
                         data: 'id_rol',
                         render: function(data, type, row, meta) {
                             return '<td><a id="modificar" title="Editar" href="#" class="button is-info is-rounded is-small" valor="' +
@@ -231,7 +231,7 @@ function cargargrid() {
                     },
                     {
                         className: "text-center",
-                        title: 'Acción',
+                        title: 'Action',
                         data: 'id_rol',
                         render: function(data, type, row, meta) {
 

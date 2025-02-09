@@ -141,7 +141,7 @@ $(document).ready(function() {
     $('.form-select').prop("selectedIndex", 0);
     $('.form-select').change();
 
-    $("#combodetalle")[0].style.display = "none";
+   
 });
 
 regresar[0].addEventListener("click", (event) => {
@@ -151,8 +151,7 @@ regresar[0].addEventListener("click", (event) => {
     document.getElementsByName("formusuario")[0].reset();
     $("#titulo")[0].innerText = "Lista de Usuarios";
     $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-    $("#combodetalle")[0].style.display = "none";
+    $('.form-select').change(); 
 
 
 
@@ -185,51 +184,12 @@ $(document).on('click', '#modificar', function(e) {
 
     $("#select_rol").val(dato.id_rol);
     $('#select_rol').change();
- 
-
-
-
-    $("#combodetalle")[0].style.display = "none";
+  
 
 
 });
 
-$('#select_actividad').on('change', function() {
-    var selectVal = $("#select_actividad option:selected").val();
-    $.ajax({
-        type: "GET",
-        url: "<?php  echo APP_URL.'ajax/usuarioAjax.php' ?>",
-        data: "Cargardetalleactividad=" + selectVal,
-        success: function(response) {
 
-            var res = jQuery.parseJSON(response);
-            var $select = $('#select_detactiv');
-            if (res.status == 200) {
-                $("#combodetalle")[0].style.display = "";
-                $("#select_detactiv option").remove();
-                $select.append('<option value="">Seleccione un valor</option>');
-                $.each(res.data, function(id_catalogovalor, nombre) {
-                    $select.append('<option value=' + nombre.id_catalogovalor + '>' + nombre
-                        .nombre +
-                        '</option>');
-                });
-
-                if (parseInt(id_detalleactividad[0].value) > 0) {
-                    $("#select_detactiv").val(id_detalleactividad[0].value);
-                    $('#select_detactiv').change();
-                }
-
-
-            } else {
-                $("#select_detactiv option").remove();
-                $select.append('<option value="">Seleccione un valor</option>');
-                $("#combodetalle")[0].style.display = "none";
-            }
-
-
-        }
-    });
-});
 
 
 $(document).on('submit', '#formusuario', function(e) {

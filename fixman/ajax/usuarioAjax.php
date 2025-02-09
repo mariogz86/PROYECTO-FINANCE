@@ -92,43 +92,7 @@ require_once "../autoload.php";
 		echo json_encode($alerta); 
 	}
 
-	//Metodo POST para cambio de ruta
-	if(isset($_POST['hdf_cambioruta'])=="cambioruta")
-	{
-		//se valida si la ruta indicada existe
-		if (!is_dir( $_POST["nuevaruta"])) {
-			$alerta=[
-				"tipo"=>"simple",
-				"titulo"=>"Error",
-				"texto"=>"Ruta indicada no existe, por favor validar.",
-				"icono"=>"error"
-			];
-		}else{
-			//metodo del controlador para guardar el cambio de ruta
-			$result =$insformulario->guardar_cambioruta(); 
-
-			//resultado que se envia al guardar el registro
-			if($result){
-					$alerta=[
-						"tipo"=>"limpiar",
-						"titulo"=>"Cambio de ruta",
-						"texto"=>"Ruta actualizada para los formularios seleccionados",
-						"icono"=>"success"
-					];	
-				}else{
-					$alerta=[
-						"tipo"=>"simple",
-					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar la ruta, por favor intente nuevamente",
-					"icono"=>"error"
-					];	
-				}
-		}
-
-		echo json_encode($alerta); 
-		 
-	}
-
+	 
 	//Metodo POST para el guardado de un registro
 	
 	if(isset($_POST['modulo_usuario']))

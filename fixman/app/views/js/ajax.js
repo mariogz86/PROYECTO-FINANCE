@@ -9,14 +9,14 @@ btn_exit.forEach(exitSystem => {
         e.preventDefault();
         
         Swal.fire({
-            title: '¿Quieres salir del sistema?',
-            text: "La sesión actual se cerrará y saldrás del sistema",
+            title: 'Do you want to log out of the system?',
+            text: "The current session will be closed and you will log out of the system",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#6e7881',
-            confirmButtonText: 'Si, salir',
-            cancelButtonText: 'Cancelar'
+            confirmButtonText: 'go out',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 let url=this.getAttribute("href");
@@ -36,14 +36,14 @@ btn_exit.forEach(exitSystem => {
             e.preventDefault();
     
             Swal.fire({
-                title: '¿Estás seguro?',
-                text: "Quieres realizar la acción solicitada",
+                title: 'You are sure?',
+                text: "You want to perform the requested action",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, realizar',
-                cancelButtonText: 'No, cancelar'
+                confirmButtonText: 'Yes, perform',
+                cancelButtonText: 'No, cancel'
             }).then((result) => {
                 if (result.isConfirmed){
                     $(".loadersacn")[0].style.display = "";
@@ -79,7 +79,7 @@ btn_exit.forEach(exitSystem => {
                                                icon: "error",
                                                title: "Error",
                                                text: error,
-                                               confirmButtonText: 'Aceptar'
+                                               confirmButtonText: 'Accept'
                                            });
                                            $(".loadersacn").fadeOut("slow");
                                                console.log(error);
@@ -103,14 +103,14 @@ btn_exit.forEach(exitSystem => {
             e.preventDefault();
     
             Swal.fire({
-                title: '¿Estás seguro?',
-                text: "Quieres realizar la acción solicitada",
+                title: 'You are sure?',
+                text: "You want to perform the requested action",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, realizar',
-                cancelButtonText: 'No, cancelar'
+                confirmButtonText: 'Yes, perform',
+                cancelButtonText: 'No, cancel'
             }).then((result) => {
                 if (result.isConfirmed){
                     $(".loadersacn")[0].style.display = "";
@@ -177,7 +177,7 @@ function alertas_ajax(alerta){
             icon: alerta.icono,
             title: alerta.titulo,
             text: alerta.texto,
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Accept'
         });
 
     }else if(alerta.tipo=="recargar"){
@@ -186,7 +186,7 @@ function alertas_ajax(alerta){
             icon: alerta.icono,
             title: alerta.titulo,
             text: alerta.texto,
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Accept'
         }).then((result) => {
             if(result.isConfirmed){
                 location.reload();
@@ -199,7 +199,7 @@ function alertas_ajax(alerta){
             icon: alerta.icono,
             title: alerta.titulo,
             text: alerta.texto,
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Accept'
         }).then((result) => {
             if(result.isConfirmed){
                 

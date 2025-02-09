@@ -119,24 +119,39 @@ use PHPMailer\PHPMailer\Exception;
  
 		//funcion para enviar correo cuando la cuenta esta bloqueada por varios intentos
 		public function usuariocreado($nombre,$apellido,$usuario,$clave){
-			$phpmailer = new PHPMailer();
-		 
+			$phpmailer = new PHPMailer(true);
 			$phpmailer->SMTPOptions = array(
-				'ssl' => array(
-					'verify_peer' => false,
-					'verify_peer_name' => false,
-					'allow_self_signed' => true,
-				)
-			  );	
+							'ssl' => array(
+								'verify_peer' => false,
+								'verify_peer_name' => false,
+								'allow_self_signed' => true,
+							)
+						);	
 			$phpmailer->isSMTP();
-			$phpmailer->CharSet = APP_CharSet;
-			$phpmailer->Host = APP_Host;
-			$phpmailer->SMTPAuth = APP_SMTPAuth;
-			$phpmailer->Port = APP_Port;
-			$phpmailer->Username = APP_Username;
-			$phpmailer->Password = APP_Password;
+			$phpmailer->Host       = 'smtp-relay.sendinblue.com';
+			$phpmailer->SMTPAuth   = true;
+			$phpmailer->Username   = '854a84002@smtp-brevo.com';  // Tu correo registrado en Sendinblue
+			$phpmailer->Password   = '7DJzMZct3NVwC8X1';  // API Key proporcionada por Sendinblue
 			$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$phpmailer->Port       = 587;
 			$phpmailer->SMTPDebug = APP_SMTPDebug;
+		 
+			// $phpmailer->SMTPOptions = array(
+			// 	'ssl' => array(
+			// 		'verify_peer' => false,
+			// 		'verify_peer_name' => false,
+			// 		'allow_self_signed' => true,
+			// 	)
+			//   );	
+			// $phpmailer->isSMTP();
+			// $phpmailer->CharSet = APP_CharSet;
+			// $phpmailer->Host = APP_Host;
+			// $phpmailer->SMTPAuth = APP_SMTPAuth;
+			// $phpmailer->Port = APP_Port;
+			// $phpmailer->Username = APP_Username;
+			// $phpmailer->Password = APP_Password;
+			// $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			// $phpmailer->SMTPDebug = APP_SMTPDebug;
 
 			$phpmailer->setFrom(APP_Username);
 			$phpmailer->addAddress($_SESSION['correo']);

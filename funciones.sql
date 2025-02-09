@@ -950,3 +950,135 @@ RETURNING
 	id_usuario;
 end;
 $$ LANGUAGE PLPGSQL;
+
+
+CREATE OR REPLACE VIEW "SYSTEM".OBTENER_COMPANY AS
+SELECT
+	U.ID_COMPANY,
+	U.NOMBRE,
+	U.DIRECCION,
+	U.CIUDAD,
+	U.ID_VALESTADO,
+	U.CODIGOZIP,
+	U.NOMBRECOMPLETO,
+	U.TELEFONO,
+	U.EMAIL,
+	U.U_ESTADO,
+	U.FECHA_CREACION,
+	U.USUARIO_CREACION,
+	U.FECHA_MODIFICA,
+	U.USUARIO_MODIFICA,
+	U."NTE",
+	U.CREDITO,
+	cve.nombre as Estado,
+	UM.USUARIO AS USUARIOM,
+	UU.Usuario as Usuario
+FROM
+	"SYSTEM".company U 
+	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=U.ID_VALESTADO
+	JOIN "SYSTEM".USUARIOS UU ON UU.ID_USUARIO = U.USUARIO_CREACION
+	LEFT JOIN "SYSTEM".USUARIOS UM ON UM.ID_USUARIO = U.USUARIO_MODIFICA
+ORDER BY
+	U.ID_COMPANY ASC;
+	
+	
+CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_COMPANY (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$
+begin
+ RETURN QUERY
+INSERT INTO
+"SYSTEM".company ( 
+		NOMBRE,
+		DIRECCION,
+		CIUDAD,
+		ID_VALESTADO,
+		CODIGOZIP,
+		NOMBRECOMPLETO,
+		TELEFONO,
+		EMAIL,
+		CREDITO,
+		"NTE",
+		U_ESTADO,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+	select (data ->> 'nombre')::varchar(255) ,
+	(data ->> 'direccion')::varchar(2000) ,
+	(data ->> 'ciudad')::varchar(255) , 
+	(data ->> 'cmb_estado')::integer ,
+	(data ->> 'codigozip')::integer ,
+	(data ->> 'nombrecompleto')::varchar(255) ,
+	(data ->> 'telefono')::varchar(255) ,
+	(data ->> 'email')::varchar(255) , 
+	(data ->> 'credito')::DOUBLE PRECISION ,
+	(data ->> 'nte')::DOUBLE PRECISION ,
+	 	1,
+		CURRENT_DATE,
+		IDUSUARIO,
+		NULL,
+		NULL
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)
+ 
+RETURNING
+	ID_COMPANY; 
+end;
+$$ LANGUAGE PLPGSQL;
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".ACTUALIZAR_COMPANY (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$
+begin
+ RETURN QUERY 
+UPDATE "SYSTEM".company   
+set
+ nombre=foo2.nombre,direccion=foo2.nombre
+ ,ciudad=foo2.ciudad,id_valestado=foo2.cmb_estado
+ ,codigozip=foo2.codigozip,email=foo2.email,
+ nombrecompleto=foo2.nombrecompleto,telefono=foo2.telefono,
+ credito=foo2.credito,"NTE"=foo2.nte,
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'idCompany')::integer as idcompany ,
+	(data ->> 'nombre')::varchar(255) as nombre ,
+	(data ->> 'ciudad')::varchar(255) as ciudad,
+	(data ->> 'direccion')::varchar(2000) as direccion,
+	(data ->> 'cmb_estado')::integer as cmb_estado,
+	(data ->> 'codigozip')::integer as codigozip,
+	(data ->> 'email')::varchar(255) as email,
+	(data ->> 'nombrecompleto')::varchar(255) as nombrecompleto,
+	(data ->> 'telefono')::varchar(255) as telefono ,
+	(data ->> 'credito')::DOUBLE PRECISION as credito ,
+	(data ->> 'nte')::DOUBLE PRECISION as nte 
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO2
+ WHERE company.id_company = foo2.idCompany
+
+RETURNING
+	ID_COMPANY; 
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".cambiarestado_company (IDCOMPANY INTEGER, ESTADO INT, IDUSUARIO INT) RETURNS SETOF INT AS $$
+begin
+RETURN QUERY
+UPDATE "SYSTEM".company
+SET
+	U_ESTADO = ESTADO,
+	FECHA_MODIFICA = CURRENT_DATE,
+	USUARIO_MODIFICA = IDUSUARIO
+WHERE
+	ID_COMPANY = IDCOMPANY
+RETURNING
+	ID_COMPANY;
+end;
+$$ LANGUAGE PLPGSQL;

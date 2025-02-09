@@ -7,13 +7,22 @@
 
 	/******************* Variables para correo ************************** */
 	 
+	// const APP_CharSet = "UTF-8";
+	// const APP_Host = 'smtp.gmail.com';
+	// const APP_SMTPAuth = true;
+	// const APP_Port = 587;
+	// const APP_Username = 'magbgol@gmail.com';
+	// const APP_Password = 'snsoslkxdamvmxoe';
+	// const APP_SMTPSecure = 'tls';
+
+	//https://app.brevo.com/ para entrar a confugaracion del sitio
+	//cuenta systemfixman@gmail.com, clave 2022.Gol
 	const APP_CharSet = "UTF-8";
-	const APP_Host = 'smtp.gmail.com';
+	const APP_Host = 'smtp-relay.brevo.com';
 	const APP_SMTPAuth = true;
 	const APP_Port = 587;
-	const APP_Username = 'magbgol@gmail.com';
-	const APP_Password = 'snsoslkxdamvmxoe';
-	// const APP_SMTPSecure = 'tls';
+	const APP_Username = 'systemfixman@gmail.com';
+	const APP_Password = 'kcs435AE9nOwtpgh';
 	 
 
 	const APP_SMTPDebug = 0;	
