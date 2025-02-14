@@ -275,9 +275,9 @@ ALTER TABLE "SYSTEM".catalogovalor
 		"ciudad" VARCHAR(2000) NOT NULL, 	
 		"id_valestado" INTEGER NOT NULL,	
 		"codigozip" INTEGER NOT NULL,	
-		"nombrecompleto" VARCHAR(255) NOT NULL,
-		"telefono" VARCHAR(255) NOT NULL, 
-		"email" VARCHAR(255) NOT NULL, 
+		"nombrecompleto" VARCHAR(255) NULL,
+		"telefono" VARCHAR(255)  NULL, 
+		"email" VARCHAR(255)  NULL, 
 		"credito" DOUBLE PRECISION null,
 		"NTE" DOUBLE PRECISION null,
 		"u_estado" SMALLINT NOT NULL DEFAULT '1',	
@@ -287,13 +287,72 @@ ALTER TABLE "SYSTEM".catalogovalor
 		"usuario_modifica" INTEGER NULL
 	);
 	
-	--CREACION DE FOREING KEY
 	
-	ALTER TABLE "SYSTEM".company
+		CREATE TABLE "SYSTEM".cliente (
+		"id_cliente" serial PRIMARY KEY NOT NULL, 		
+		"id_valestado" INTEGER NOT NULL,
+		"full_name" VARCHAR(500) NULL,		
+		"address" VARCHAR(2000) NOT NULL, 
+		"city" VARCHAR(2000) NOT NULL, 	 
+		"codigozip" INTEGER NOT NULL,			
+		"phone" VARCHAR(255) NOT  NULL, 
+		"phone_movil" VARCHAR(255)  NULL, 
+		"email" VARCHAR(255)  NULL, 
+		"company_name" VARCHAR(255)  NULL, 
+		"contact_info" VARCHAR(255)  NULL, 
+		"contact_phone" VARCHAR(255)  NULL, 
+		"contact_email" VARCHAR(255)  NULL, 
+		"valor_nte" DOUBLE PRECISION null,
+		"customer_fee" DOUBLE PRECISION null,		
+		"u_estado" SMALLINT NOT NULL DEFAULT '1',	
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);
+	
+	--CREACION DE FOREING KEY  
+	   ALTER TABLE "SYSTEM".cliente
 	   ADD CONSTRAINT fk_id_valestado
 	   FOREIGN KEY (id_valestado) 
 	   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+	   
+	   --CREACION DE INDICES   
+	  create index cliente_idcliente on "SYSTEM".CLIENTE("id_cliente");   
 	
-	--CREACION DE INDICES 
-	  create index ind_id_company on "SYSTEM".COMPANY("id_company");  
-	  create index ind_id_valestado on "SYSTEM".COMPANY("id_valestado"); 
+	CREATE TABLE "SYSTEM".trabajo (
+		"id_trabajo" serial PRIMARY KEY NOT NULL, 
+		"id_company" INTEGER NOT NULL,		
+		"id_cliente" INTEGER NOT NULL,
+		"id_estadotrabajo" INTEGER NOT NULL,
+		"id_tecnico" INTEGER NULL,
+		"num_referencia" VARCHAR(250) NOT NULL,
+		"u_estado" SMALLINT NOT NULL DEFAULT '1',	
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);
+	
+	--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".trabajo
+	   ADD CONSTRAINT fk_id_cliente
+	   FOREIGN KEY (id_cliente) 
+	   REFERENCES "SYSTEM".cliente(id_cliente);
+	   
+	   ALTER TABLE "SYSTEM".trabajo
+	   ADD CONSTRAINT fk_id_company
+	   FOREIGN KEY (id_company) 
+	   REFERENCES "SYSTEM".company(id_company);
+	   
+	   ALTER TABLE "SYSTEM".trabajo
+	   ADD CONSTRAINT fk_id_estadotrabajo
+	   FOREIGN KEY (id_estadotrabajo) 
+	   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+	   
+	   --CREACION DE INDICES   
+	  create index trabajo_idcliente on "SYSTEM".trabajo("id_cliente");  
+	  create index trabajo_id_estadotrabajo on "SYSTEM".trabajo("id_estadotrabajo");
+	  create index trabajo_id_company on "SYSTEM".trabajo("id_company");
+	 

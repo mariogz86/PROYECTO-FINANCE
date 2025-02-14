@@ -1038,7 +1038,7 @@ begin
  RETURN QUERY 
 UPDATE "SYSTEM".company   
 set
- nombre=foo2.nombre,direccion=foo2.nombre
+ nombre=foo2.nombre,direccion=foo2.direccion
  ,ciudad=foo2.ciudad,id_valestado=foo2.cmb_estado
  ,codigozip=foo2.codigozip,email=foo2.email,
  nombrecompleto=foo2.nombrecompleto,telefono=foo2.telefono,
@@ -1082,3 +1082,31 @@ RETURNING
 	ID_COMPANY;
 end;
 $$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE VIEW "SYSTEM".OBTENER_JOBS AS
+SELECT	
+	T.ID_TRABAJO,
+	T.ID_COMPANY,	
+	T.ID_CLIENTE,
+	COM.NOMBRE,
+	T.NUM_REFERENCIA,
+	cve.nombre as Estado,
+	T.U_ESTADO,
+	T.ID_ESTADOTRABAJO,
+	T.FECHA_CREACION,
+	T.USUARIO_CREACION,
+	T.FECHA_MODIFICA,
+	T.USUARIO_MODIFICA,	
+	C.FULL_NAME,
+	C.CITY,
+	C.PHONE,
+	C.EMAIL, 
+	UM.USUARIO AS USUARIOM,
+	UU.Usuario as Usuario
+FROM
+	"SYSTEM".TRABAJO T
+	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=T.id_estadotrabajo
+	INNER JOIN "SYSTEM".CLIENTE C ON C.ID_CLIENTE = T.ID_CLIENTE
+	INNER JOIN "SYSTEM".COMPANY COM ON COM.ID_COMPANY = T.ID_COMPANY
+	JOIN "SYSTEM".USUARIOS UU ON UU.ID_USUARIO = T.USUARIO_CREACION
+	LEFT JOIN "SYSTEM".USUARIOS UM ON UM.ID_USUARIO = T.USUARIO_MODIFICA
