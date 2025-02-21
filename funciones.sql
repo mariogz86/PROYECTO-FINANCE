@@ -1083,30 +1083,361 @@ RETURNING
 end;
 $$ LANGUAGE PLPGSQL;
 
-CREATE OR REPLACE VIEW "SYSTEM".OBTENER_JOBS AS
+
+
+
+CREATE OR REPLACE FUNCTION "SYSTEM".GENERARREFTRABAJO(idtrabajo INT)
+RETURNS TEXT AS $$
+BEGIN
+	RETURN CONCAT('INV-',idtrabajo,'-',TO_CHAR(NOW(),'YYYYMMDDHH'));
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_JOB (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$
+DECLARE	idcliente INT; 
+DECLARE	idestadojob INT; 
+DECLARE	idtrabajo INT; 
+begin 
+
+select id_catalogovalor into idestadojob  from "SYSTEM".catalogovalor where nombre='Booked' and u_estado=1;
+
+INSERT INTO
+	"SYSTEM".CLIENTE (
+		ID_VALESTADO,
+		FULL_NAME,
+		ADDRESS,
+		CITY,
+		CODIGOZIP,
+		PHONE,
+		PHONE_MOVIL,
+		EMAIL,
+		COMPANY_NAME,
+		CONTACT_INFO,
+		CONTACT_PHONE,
+		CONTACT_EMAIL,
+		VALOR_NTE,
+		CUSTOMER_FEE,
+		U_ESTADO,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+select 
+	(data ->> 'cmb_estado')::integer cmb_estado ,
+	(data ->> 'fullname')::varchar(500) fullname,
+	(data ->> 'direccion')::varchar(2000) direccion,
+	(data ->> 'city')::varchar(2000) city, 
+	(data ->> 'codigozip')::integer codigozip,
+	(data ->> 'phone')::varchar(255) phone,
+	(data ->> 'telefono')::varchar(255) telefono , 
+	(data ->> 'email')::varchar(255) email ,
+	(data ->> 'companyname')::varchar(255) companyname, 	 	
+	(data ->> 'contactinfo')::varchar(255) contactinfo,
+	(data ->> 'contactphone')::varchar(255) contactphone,	
+	(data ->> 'contactmail')::varchar(255) contactmail,
+	(data ->> 'nte')::DOUBLE PRECISION nte,
+	(data ->> 'fee')::DOUBLE PRECISION fee,
+	 	1,
+		CURRENT_DATE,
+		IDUSUARIO,
+		NULL,
+		NULL
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)
+RETURNING ID_CLIENTE INTO idcliente ; 
+
+
+INSERT INTO
+	"SYSTEM".TRABAJO ( 
+		ID_COMPANY,
+		ID_CLIENTE,
+		ID_ESTADOTRABAJO,
+		ID_TECNICO,
+		NUM_REFERENCIA,
+		U_ESTADO,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+select 
+	(data ->> 'idCompany')::integer as idCompany ,
+	idcliente,
+	idestadojob,
+	null,
+	'#REF', 
+	 	1,
+		CURRENT_DATE,
+		IDUSUARIO,
+		NULL,
+		NULL
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)
+ RETURNING  ID_TRABAJO INTO idtrabajo; 
+
+ RETURN QUERY
+ UPDATE "SYSTEM".TRABAJO set NUM_REFERENCIA="SYSTEM".GENERARREFTRABAJO(idtrabajo)
+ where ID_TRABAJO=idtrabajo
+ RETURNING  ID_TRABAJO;
+
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+    CREATE OR REPLACE VIEW "SYSTEM".OBTENER_JOBS AS
 SELECT	
 	T.ID_TRABAJO,
 	T.ID_COMPANY,	
 	T.ID_CLIENTE,
 	COM.NOMBRE,
 	T.NUM_REFERENCIA,
-	cve.nombre as Estado,
+	cve.nombre as Estadojob,
+	cvec.nombre as Estadocompany,
 	T.U_ESTADO,
 	T.ID_ESTADOTRABAJO,
 	T.FECHA_CREACION,
 	T.USUARIO_CREACION,
 	T.FECHA_MODIFICA,
 	T.USUARIO_MODIFICA,	
+	C.ID_VALESTADO as estadocliente,
 	C.FULL_NAME,
+	C.ADDRESS,
 	C.CITY,
+	C.CODIGOZIP,
 	C.PHONE,
-	C.EMAIL, 
+	C.PHONE_MOVIL,
+	C.EMAIL,
+	C.COMPANY_NAME,
+	C.CONTACT_INFO,
+	C.CONTACT_PHONE,
+	C.CONTACT_EMAIL,
+	C.VALOR_NTE,
+	C.CUSTOMER_FEE,
 	UM.USUARIO AS USUARIOM,
 	UU.Usuario as Usuario
 FROM
 	"SYSTEM".TRABAJO T
-	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=T.id_estadotrabajo
+	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=T.id_estadotrabajo	
 	INNER JOIN "SYSTEM".CLIENTE C ON C.ID_CLIENTE = T.ID_CLIENTE
 	INNER JOIN "SYSTEM".COMPANY COM ON COM.ID_COMPANY = T.ID_COMPANY
+	INNER JOIN "SYSTEM".catalogovalor cvec on CVEc.id_catalogovalor=com.id_valestado
 	JOIN "SYSTEM".USUARIOS UU ON UU.ID_USUARIO = T.USUARIO_CREACION
-	LEFT JOIN "SYSTEM".USUARIOS UM ON UM.ID_USUARIO = T.USUARIO_MODIFICA
+	LEFT JOIN "SYSTEM".USUARIOS UM ON UM.ID_USUARIO = T.USUARIO_MODIFICA;
+	
+	
+	CREATE
+OR REPLACE FUNCTION "SYSTEM".ACTUALIZAR_JOB (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$
+DECLARE	idcliente INT; 
+begin
+select id_cliente into idcliente	  from "SYSTEM".trabajo where id_trabajo in (
+select 
+	(data ->> 'idjob')::integer as idjob 
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data));
+
+UPDATE "SYSTEM".CLIENTE
+SET 
+	ID_VALESTADO = foo.cmb_estado,
+	FULL_NAME = foo.fullname,
+	ADDRESS = foo.direccion,
+	CITY = foo.city,
+	CODIGOZIP = foo.codigozip,
+	PHONE = foo.phone,
+	PHONE_MOVIL = foo.telefono,
+	EMAIL = foo.email,
+	COMPANY_NAME = foo.companyname,
+	CONTACT_INFO = foo.contactinfo,
+	CONTACT_PHONE = foo.contactphone,
+	CONTACT_EMAIL = foo.contactmail,
+	VALOR_NTE = foo.nte,
+	CUSTOMER_FEE =foo.fee,
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'idjob')::integer as idjob ,
+	(data ->> 'idCompany')::integer as idCompany ,
+	(data ->> 'fullname')::varchar(500) fullname,
+	(data ->> 'city')::varchar(2000) city, 
+	(data ->> 'codigozip')::integer codigozip,
+	(data ->> 'direccion')::varchar(2000) direccion,
+	(data ->> 'cmb_estado')::integer cmb_estado ,
+	(data ->> 'phone')::varchar(255) phone,
+	(data ->> 'telefono')::varchar(255) telefono , 
+	(data ->> 'email')::varchar(255) email ,
+	(data ->> 'companyname')::varchar(255) companyname, 	 	
+	(data ->> 'contactinfo')::varchar(255) contactinfo,
+	(data ->> 'contactphone')::varchar(255) contactphone,
+	(data ->> 'contactmail')::varchar(255) contactmail,
+	(data ->> 'nte')::DOUBLE PRECISION nte,
+	(data ->> 'fee')::DOUBLE PRECISION fee
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data) ) as FOO
+ WHERE CLIENTE.ID_CLIENTE = idcliente;
+
+ RETURN QUERY  
+UPDATE "SYSTEM".trabajo   
+set
+ id_company=foo.idCompany,
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'idjob')::integer as idjob ,
+	(data ->> 'idCompany')::integer as idCompany
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO
+ WHERE trabajo.id_trabajo = foo.idjob
+
+RETURNING
+	id_trabajo; 
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".cambiarestado_job (IDjob INTEGER, ESTADO INT, IDUSUARIO INT) RETURNS SETOF INT AS $$
+begin
+RETURN QUERY
+UPDATE "SYSTEM".trabajo
+SET
+	U_ESTADO = ESTADO,
+	FECHA_MODIFICA = CURRENT_DATE,
+	USUARIO_MODIFICA = IDUSUARIO
+WHERE
+	ID_TRABAJO = IDjob
+RETURNING
+	ID_TRABAJO;
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_SERVICIO (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin 
+RETURN QUERY 
+ INSERT INTO
+	"SYSTEM".SERVICIO ( 
+		ID_TRABAJO,
+		ID_VALSERVICE,
+		ID_VALAPPLIANCE,
+		ID_VALBRAND,
+		ID_VALSYMPTOM,
+		MODEL,
+		PROBLEMDETAIL,
+		SERVICEFEE,
+		COVERED,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+select 
+	(data ->> 'id_trabajo')::integer id_trabajo ,
+	(data ->> 'id_valservice')::integer id_valservice ,
+	(data ->> 'id_valappliance')::integer id_valappliance ,
+	(data ->> 'id_valbrand')::integer id_valbrand ,
+	(data ->> 'id_valsymptom')::integer id_valsymptom ,
+	(data ->> 'model')::varchar(250) model,
+	(data ->> 'problemdetail')::varchar(2500) problemdetail, 
+	(data ->> 'servicefee')::DOUBLE PRECISION servicefee,
+	(data ->> 'covered')::DOUBLE PRECISION covered,
+		CURRENT_DATE,
+		IDUSUARIO,
+		NULL,
+		NULL
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)
+RETURNING  ID_SERVICIO;
+
+end;
+$$ LANGUAGE PLPGSQL;
+
+		CREATE
+OR REPLACE FUNCTION "SYSTEM".ACTUALIZAR_SERVICE (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin  
+ RETURN QUERY  
+UPDATE "SYSTEM".servicio   
+set 
+	ID_TRABAJO = foo.idtrabajo,
+	ID_VALSERVICE = foo.idvalservice,
+	ID_VALAPPLIANCE = foo.idvalappliance,
+	ID_VALBRAND = foo.idvalbrand,
+	ID_VALSYMPTOM = foo.idvalsymptom,
+	MODEL = foo.datamodel,
+	PROBLEMDETAIL = foo.dataproblemdetail,
+	SERVICEFEE = foo.dataservicefee,
+	COVERED = foo.datacovered, 	
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'id_servicio')::integer idservicio ,
+	(data ->> 'id_trabajo')::integer idtrabajo ,
+	(data ->> 'id_valservice')::integer idvalservice ,
+	(data ->> 'id_valappliance')::integer idvalappliance ,
+	(data ->> 'id_valbrand')::integer idvalbrand ,
+	(data ->> 'id_valsymptom')::integer idvalsymptom ,
+	(data ->> 'model')::varchar(250) datamodel,
+	(data ->> 'problemdetail')::varchar(2500) dataproblemdetail, 
+	(data ->> 'servicefee')::DOUBLE PRECISION dataservicefee,
+	(data ->> 'covered')::DOUBLE PRECISION datacovered
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO
+ WHERE servicio.id_servicio = foo.idservicio
+
+RETURNING
+	id_servicio; 
+end;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE VIEW "SYSTEM".OBTENER_SERVICE AS
+SELECT
+	U.ID_SERVICIO,
+	U.ID_TRABAJO,
+	U.ID_VALSERVICE,
+	U.ID_VALAPPLIANCE,
+	U.ID_VALBRAND,
+	U.ID_VALSYMPTOM,
+	U.MODEL,
+	U.PROBLEMDETAIL,
+	U.SERVICEFEE,
+	U.COVERED,
+	U.FECHA_CREACION,
+	U.USUARIO_CREACION,
+	U.FECHA_MODIFICA,
+	U.USUARIO_MODIFICA,
+	cve.nombre as tiposervicio,
+	cva.nombre as appliance,
+	cvb.nombre as brand,
+	cvs.nombre as symptom,
+	UM.USUARIO AS USUARIOM,
+	UU.Usuario as Usuario
+FROM
+	"SYSTEM".servicio U 
+	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=U.ID_VALSERVICE
+	INNER JOIN "SYSTEM".catalogovalor cva on CVa.id_catalogovalor=U.ID_VALAPPLIANCE
+	INNER JOIN "SYSTEM".catalogovalor cvb on CVb.id_catalogovalor=U.ID_VALBRAND
+	INNER JOIN "SYSTEM".catalogovalor cvs on CVs.id_catalogovalor=U.ID_VALSYMPTOM
+	JOIN "SYSTEM".USUARIOS UU ON UU.ID_USUARIO = U.USUARIO_CREACION
+	LEFT JOIN "SYSTEM".USUARIOS UM ON UM.ID_USUARIO = U.USUARIO_MODIFICA
+ORDER BY
+	U.ID_SERVICIO ASC;
+	
+	
+	CREATE
+OR REPLACE FUNCTION "SYSTEM".cambiarestado_service (IDservicio INTEGER, ESTADO INT, IDUSUARIO INT) RETURNS SETOF INT AS $$
+begin
+RETURN QUERY
+DELETE FROM "SYSTEM".servicio
+WHERE
+	id_servicio = IDservicio
+RETURNING
+	id_servicio;
+end;
+$$ LANGUAGE PLPGSQL;

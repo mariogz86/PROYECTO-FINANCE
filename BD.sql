@@ -355,4 +355,36 @@ ALTER TABLE "SYSTEM".catalogovalor
 	  create index trabajo_idcliente on "SYSTEM".trabajo("id_cliente");  
 	  create index trabajo_id_estadotrabajo on "SYSTEM".trabajo("id_estadotrabajo");
 	  create index trabajo_id_company on "SYSTEM".trabajo("id_company");
+	  
+	  
+	  CREATE TABLE "SYSTEM".servicio (
+		"id_servicio" serial PRIMARY KEY NOT NULL, 
+		"id_trabajo" INTEGER NOT NULL,
+		"id_valservice" INTEGER NOT NULL,
+		"id_valappliance" INTEGER NOT NULL,
+		"id_valbrand" INTEGER NOT NULL,
+		"id_valsymptom" INTEGER NOT NULL,		
+		"model" VARCHAR(250) NOT NULL,
+		"problemdetail" VARCHAR(2500) NOT NULL,	
+		"servicefee" DOUBLE PRECISION not null,
+		"covered" DOUBLE PRECISION null,		
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);
+	
+	--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".servicio
+	   ADD CONSTRAINT fk_id_trabajo
+	   FOREIGN KEY (id_trabajo) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+	   
+	   --CREACION DE INDICES   
+	  create index servicio_idtrabajo on "SYSTEM".servicio("id_trabajo");   
+	  create index servicio_id_valservice on "SYSTEM".servicio("id_valservice");   
+	  create index servicio_id_valappliance on "SYSTEM".servicio("id_valappliance");   
+	  create index servicio_id_valbrand on "SYSTEM".servicio("id_valbrand");   
+	  create index servicio_id_valsymptom on "SYSTEM".servicio("id_valsymptom");   
 	 
