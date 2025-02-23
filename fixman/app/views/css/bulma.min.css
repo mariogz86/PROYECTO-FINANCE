@@ -1124,28 +1124,54 @@ a.box:active {
     color: #3850b7
 }
 
+.button.is-services {
+    background-color: #33d54b;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-services.is-hovered,.button.is-services:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
+.button.is-acciones {
+    background-color: #ef1111fa;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-acciones.is-hovered,.button.is-acciones:hover {
+    background-color: #f19617;
+    border-color: transparent;
+    color: #000000
+}
+
+
+.button.is-eliminar {
+    background-color: #e96316fa;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-eliminar.is-hovered,.button.is-eliminar:hover {
+    background-color: #b9cbf4;
+    border-color: transparent;
+    color: #050505
+}
+
+
 .button.is-info {
     background-color: #3e8ed0;
     border-color: transparent;
     color: #fff
 }
 
-.button.is-services {
-    background-color: #3ed050;
-    border-color: transparent;
-    color: #fff;
-}
-
-.button.is-services.is-hovered,.button.is-services:hover {
-    background-color: #ec8603;
-    border-color: transparent;
-    color: #fff
-}
-
 .button.is-info.is-hovered,.button.is-info:hover {
-    background-color: #f25d03;
+    background-color: #ef923a;
     border-color: transparent;
-    color: #fff
+    color: #000000
 }
 
 .button.is-info.is-focused,.button.is-info:focus {
@@ -3012,8 +3038,7 @@ a.tag:hover {
 }
 
 .title:not(.is-spaced)+.subtitle {
-    margin-top: -1.25rem;
-    color: darkblue;
+    margin-top: -1.25rem
 }
 
 .title.is-1 {
@@ -11713,30 +11738,7 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
 }
 
 
-.button.is-acciones {
-    background-color: #4a83edfa;
-    border-color: transparent;
-    color: #fff
-}
 
-.button.is-acciones.is-hovered,.button.is-acciones:hover {
-    background-color: #f25d03;
-    border-color: transparent;
-    color: #fff
-}
-
-
-.button.is-eliminar {
-    background-color: #f72b2bfa;
-    border-color: transparent;
-    color: #fff
-}
-
-.button.is-eliminar.is-hovered,.button.is-eliminar:hover {
-    background-color: #ffd600;
-    border-color: transparent;
-    color: #000000
-}
 
 .redClass{
     color: #ff0000
@@ -11751,3 +11753,4 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
 .bloqueado {
     color: #1e00ff;
 }
+

@@ -45,6 +45,7 @@ require_once "../autoload.php";
 		if($result){
 			if ($_POST["idcatalogovalor"]=="0"){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"Valor de catálogo",
 				"texto"=>"El registro se guardo con éxito",
@@ -52,6 +53,7 @@ require_once "../autoload.php";
 			];}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"Valor de catálogo",
 					"texto"=>"El registro se actualizo con éxito",
@@ -61,6 +63,7 @@ require_once "../autoload.php";
 		}else{
 			if ($_POST["idcatalogovalor"]=="0"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el valor para el  catálogo, por favor intente nuevamente",
@@ -69,6 +72,7 @@ require_once "../autoload.php";
 			}
 				else{
 					$alerta=[
+						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo actualizar el valor para el catálogo, por favor intente nuevamente",
@@ -95,22 +99,25 @@ require_once "../autoload.php";
 		if($result){
 			if($_POST['accion']=="activar"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Activar registro",
-					"texto"=>"El registro se activo con éxito",
+					"titulo"=>"Activate registration",
+					"texto"=>"Registration was successfully activated",
 					"icono"=>"success"
 				];
 			}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Inactivar registro",
-					"texto"=>"El registro se Inactivo con éxito",
+					"titulo"=>"Deactivate registration",
+					"texto"=>"The registration was successfully deactivated",
 					"icono"=>"success"
 				];
 			} 
 		}else{
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 			"titulo"=>"Error",
 			"texto"=>"No se pudo realizar la acción solicitada, por favor intente nuevamente",

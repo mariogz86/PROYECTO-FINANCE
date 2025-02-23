@@ -18,6 +18,9 @@
 
 
 <script src="<?php echo APP_URL; ?>app/views/js/jquery-3.7.1.js"></script>
+<!-- <script src="<?php echo APP_URL; ?>app/views/js/popper.min.js" ></script>
+<script src="<?php echo APP_URL; ?>app/views/js/bootstrap.min.js"></script> -->
+ 
 <script src="<?php echo APP_URL; ?>app/views/js/xlsx.full2.min.js"></script>
 <script src="<?php echo APP_URL; ?>app/views/js/jquery.binarytransport.js"></script>
 

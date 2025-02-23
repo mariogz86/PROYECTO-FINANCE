@@ -54,7 +54,7 @@ p {
                                 $consulta_datos="select * from \"SYSTEM\".OBTENER_menu;"; 
 
                                 $datos = $insrol->Ejecutar($consulta_datos); 
-                                echo '<option value=""   >Seleccione un valor </option>';
+                                echo '<option value=""   >Select a value </option>';
                                     while($campos_caja=$datos->fetch()){
                                     if($campos_caja['u_estado']==1){
                                         echo '<option value="'.$campos_caja['id_menu'].'"   > '.$campos_caja['nombre'].'</option>';
@@ -328,7 +328,7 @@ function cargargrid() {
                         render: function(data, type, row, meta) {
 
                             if (row.u_estado == 0) {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/opcionAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="activar">' +
                                     '<input type="hidden" name="id_opcion" value="' +
                                     data + '">' +
@@ -337,7 +337,7 @@ function cargargrid() {
                                     '</button>' +
                                     '</form></td>';
                             } else {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/opcionAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
                                     '<input type="hidden" name="id_opcion" value="' +
                                     data + '">' +

@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAcciones', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -203,9 +203,9 @@ function alertas_ajax(alerta){
         }).then((result) => {
             if(result.isConfirmed){
                 
-                if (document.querySelector(".FormularioAjax").attributes["name"] != undefined){
+                if (document.querySelector(alerta.classform).attributes["name"] != undefined){
                    
-                    switch (document.querySelector(".FormularioAjax").attributes["name"].value) {
+                    switch (document.querySelector(alerta.classform).attributes["name"].value) {
                         case "formvariable":
                             cargargrid_post();
                           break;
@@ -217,15 +217,30 @@ function alertas_ajax(alerta){
                           break;   
                           case "formvercarga":
                             cargardatos(alerta);
-                          break;                        
+                          break; 
+                          case "accionservicio":
+                            cargaformularioservicio(0);
+                          break;  
+                          case "formservice":
+                            cargaformularioservicio(1);
+                          break;                         
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();
                       }
                 }
                 else{
-                    document.querySelector(".FormularioAjax").reset();
-                    cargargrid();
+                 
+
+                    switch (alerta.classform) {
+                       
+                          case ".FormularioAcciones":
+                            cargaformularioservicio(0);
+                          break;                         
+                        default:
+                            document.querySelector(".FormularioAjax").reset();
+                            cargargrid();
+                      }
                 }
                 
             }

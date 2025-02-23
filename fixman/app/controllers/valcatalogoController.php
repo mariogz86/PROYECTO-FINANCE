@@ -19,8 +19,8 @@
 			
 			$hoy = date("Y-m-d");
 			$idcat = $_POST["cmb_catalogo"];
-			$nombre = $_POST["nombre"];
-			$descripcion = $_POST["descripcion"];
+			$nombre = $this->limpiarCadena($_POST["nombre"]);
+			$descripcion = $this->limpiarCadena($_POST["descripcion"]);
 
 			if ($_POST["idcatalogovalor"]=="0"){
 				$sentencia ="select \"SYSTEM\".insertar_valorcat('".$idcat."','".$nombre."','".$descripcion."','".$_SESSION['id']."');";

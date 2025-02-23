@@ -42,6 +42,7 @@ require_once "../autoload.php";
         $result =$insopcion->Buscaropcion();
         if($result){
             $alerta=[
+				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
                 "titulo"=>"opcion de menú",
                 "texto"=>"El nombre de la opcion ya existe en el sistema",
@@ -57,6 +58,7 @@ require_once "../autoload.php";
 		if($result){
 			if ($_POST["idopcion"]=="0"){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"opción de menú",
 				"texto"=>"El registro se guardo con éxito",
@@ -64,6 +66,7 @@ require_once "../autoload.php";
 			];}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"opción de menú",
 					"texto"=>"El registro se actualizo con éxito",
@@ -73,6 +76,7 @@ require_once "../autoload.php";
 		}else{
 			if ($_POST["idopcion"]=="0"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el opcion, por favor intente nuevamente",
@@ -81,6 +85,7 @@ require_once "../autoload.php";
 			}
 				else{
 					$alerta=[
+						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo actualizar el opcion, por favor intente nuevamente",
@@ -106,9 +111,10 @@ require_once "../autoload.php";
               
 
                 $alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Inactivar registro",
-					"texto"=>"El registro se Inactivo con éxito",
+					"titulo"=>"Deactivate registration",
+					"texto"=>"The registration was successfully deactivated",
 					"icono"=>"success"
 				];
             }
@@ -119,9 +125,10 @@ require_once "../autoload.php";
 		if($result){
 			 
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Activar registro",
-					"texto"=>"El registro se activo con éxito",
+					"titulo"=>"Activate registration",
+					"texto"=>"Registration was successfully activated",
 					"icono"=>"success"
 				];
 			} 

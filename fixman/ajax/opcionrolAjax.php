@@ -42,6 +42,7 @@ require_once "../autoload.php";
         $result =$insopcion->Buscaropcion();
         if($result){
             $alerta=[
+				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
                 "titulo"=>"opcion rol",
                 "texto"=>"Opción ya se encuentra asociada al rol.	",
@@ -56,6 +57,7 @@ require_once "../autoload.php";
 		//resultado que se envia al metodo POST
 		if($result){ 
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"opción de menú",
 				"texto"=>"El registro se guardo con éxito",
@@ -75,6 +77,7 @@ require_once "../autoload.php";
 			 
 		}else{ 
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el opcion, por favor intente nuevamente",
@@ -100,6 +103,7 @@ require_once "../autoload.php";
               
 
                 $alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"Eliminar registro",
 					"texto"=>"El registro se elimino con éxito",
@@ -113,9 +117,10 @@ require_once "../autoload.php";
 		if($result){
 			 
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Activar registro",
-					"texto"=>"El registro se activo con éxito",
+					"titulo"=>"Activate registration",
+					"texto"=>"Registration was successfully activated",
 					"icono"=>"success"
 				];
 			} 

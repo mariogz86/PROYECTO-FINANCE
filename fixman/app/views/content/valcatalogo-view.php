@@ -57,7 +57,7 @@ p {
                         $consulta_datos="select * from \"SYSTEM\".obtener_catalogo;"; 
 
                         $datos = $insrol->Ejecutar($consulta_datos); 
-                        echo '<option value="0"   >Seleccione un valor </option>';
+                        echo '<option value="0"   >Select a value </option>';
                             while($campos_caja=$datos->fetch()){
                                if($campos_caja['u_estado']==1){
                                 echo '<option value="'.$campos_caja['id_catalogo'].'"   > '.$campos_caja['nombre'].'</option>';
@@ -300,7 +300,7 @@ function cargargrid() {
                         render: function(data, type, row, meta) {
 
                             if (row.u_estado == 0) {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/valcatalogoAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/valcatalogoAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="accion" value="activar">' +
                                     '<input type="hidden" name="id_catalogovalor" value="' +
                                     data + '">' +
@@ -309,7 +309,7 @@ function cargargrid() {
                                     '</button>' +
                                     '</form></td>';
                             } else {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/valcatalogoAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/valcatalogoAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="accion" value="inactivar">' +
                                     '<input type="hidden" name="id_catalogovalor" value="' +
                                     data + '">' +

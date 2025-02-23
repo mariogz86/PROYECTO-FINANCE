@@ -44,14 +44,14 @@ use PHPMailer\PHPMailer\Exception;
 			  
 			$datosform[] = array(
 				'idCompany' => $_POST["idCompany"],
-				'nombre' => $_POST["nombre"],
-				'ciudad' => $_POST["ciudad"],
-				'direccion' => $_POST["direccion"],
+				'nombre' => $this->limpiarCadena($_POST["nombre"]),
+				'ciudad' => $this->limpiarCadena($_POST["ciudad"]),
+				'direccion' => $this->limpiarCadena($_POST["direccion"]),
 				'cmb_estado' => $_POST["cmb_estado"],
 				'codigozip' => $_POST["codigozip"],   
-				'email' => $_POST["email"],
-				'nombrecompleto' => $_POST["nombrecompleto"],
-				'telefono' => $_POST["telefono"],
+				'email' => $this->limpiarCadena($_POST["email"]),
+				'nombrecompleto' => $this->limpiarCadena($_POST["nombrecompleto"]),
+				'telefono' => $this->limpiarCadena($_POST["telefono"]),
 				'credito' => $_POST["credito"],
 				'nte' => $_POST["nte"],
 			);

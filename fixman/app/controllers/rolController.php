@@ -18,8 +18,8 @@
 			 
 			
 			$hoy = date("Y-m-d");
-			$nombre = trim($_POST["rol"]);					
-			$descripcion = trim($_POST["descripcion"]);
+			$nombre = $this->limpiarCadena(trim($_POST["rol"]));					
+			$descripcion = $this->limpiarCadena(trim($_POST["descripcion"]));
 
 			if ($_POST["idrol"]=="0"){
 				$sentencia ="select \"SYSTEM\".insertar_rol('".$nombre."','".$descripcion."','".$_SESSION['id']."');";

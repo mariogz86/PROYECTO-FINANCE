@@ -31,7 +31,7 @@ p {
                         $consulta_datos="select * from \"SYSTEM\".obtener_roles where u_estado=1;"; 
 
                         $datos = $insrol->Ejecutar($consulta_datos); 
-                        echo '<option value=""   >Seleccione un valor </option>';
+                        echo '<option value=""   >Select a value </option>';
                             while($campos_caja=$datos->fetch()){
                                 echo '<option value="'.$campos_caja['id_rol'].'"   > '.$campos_caja['rol'].'</option>';
                             }
@@ -50,7 +50,7 @@ p {
                         $consulta_datos="select * from \"SYSTEM\".obtener_opcionmenu where u_estado=1;"; 
 
                         $datos = $insrol->Ejecutar($consulta_datos); 
-                        echo '<option value=""   >Seleccione un valor </option>';
+                        echo '<option value=""   >Select a value </option>';
                             while($campos_caja=$datos->fetch()){
                                 echo '<option value="'.$campos_caja['id_opcion'].'"   > '.$campos_caja['nombre'].'</option>';
                             }
@@ -247,7 +247,7 @@ function llenargird(datos){
                         render: function(data, type, row, meta) {
 
                             if (row.u_estado == 0) {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="activar">' +
                                     '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +
@@ -256,7 +256,7 @@ function llenargird(datos){
                                     '</button>' +
                                     '</form></td>';
                             } else {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/opcionrolAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
                                     '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +

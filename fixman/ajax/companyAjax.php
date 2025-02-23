@@ -43,6 +43,7 @@ require_once "../autoload.php";
 
 		if($buscarUsuario>0){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 				"titulo"=>"Company",
 				"texto"=>"The company name already exists in the system.",
@@ -56,6 +57,7 @@ require_once "../autoload.php";
 		if($result>0){
 			if ($_POST["idCompany"]=="0"){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"Company",
 				"texto"=>"The record was saved successfully",
@@ -63,6 +65,7 @@ require_once "../autoload.php";
 			];}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"Company",
 					"texto"=>"The registry was updated successfully",
@@ -72,17 +75,19 @@ require_once "../autoload.php";
 		}else{
 			if ($_POST["idCompany"]=="0"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"The User could not be registered, please try again",
+					"texto"=>"The record could not be saved, please try again",
 					"icono"=>"error"
 				];
 			}
 				else{
 					$alerta=[
+						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"Could not update User, please try again",
+					"texto"=>"The record could not be updated, please try again",
 					"icono"=>"error"
 					];	
 				}
@@ -92,42 +97,7 @@ require_once "../autoload.php";
 		echo json_encode($alerta); 
 	}
 
-	//Metodo POST para cambio de ruta
-	if(isset($_POST['hdf_cambioruta'])=="cambioruta")
-	{
-		//se valida si la ruta indicada existe
-		if (!is_dir( $_POST["nuevaruta"])) {
-			$alerta=[
-				"tipo"=>"simple",
-				"titulo"=>"Error",
-				"texto"=>"Ruta indicada no existe, por favor validar.",
-				"icono"=>"error"
-			];
-		}else{
-			//metodo del controlador para guardar el cambio de ruta
-			$result =$insformulario->guardar_cambioruta(); 
-
-			//resultado que se envia al guardar el registro
-			if($result){
-					$alerta=[
-						"tipo"=>"limpiar",
-						"titulo"=>"Cambio de ruta",
-						"texto"=>"Ruta actualizada para los formularios seleccionados",
-						"icono"=>"success"
-					];	
-				}else{
-					$alerta=[
-						"tipo"=>"simple",
-					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar la ruta, por favor intente nuevamente",
-					"icono"=>"error"
-					];	
-				}
-		}
-
-		echo json_encode($alerta); 
-		 
-	}
+	 
 
 	//Metodo POST para el guardado de un registro
 	
@@ -140,9 +110,10 @@ require_once "../autoload.php";
 
 			$result =$insformulario->cambiarestado(0);
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Inactivar registro",
-				"texto"=>"El registro se Inactivo con éxito",
+				"titulo"=>"Deactivate registration",
+				"texto"=>"The registration was successfully deactivated",
 				"icono"=>"success"
 			];
 		}
@@ -152,9 +123,10 @@ require_once "../autoload.php";
 
 			$result =$insformulario->cambiarestado(1);
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Activar registro",
-				"texto"=>"El registro se activo con éxito",
+				"titulo"=>"Activate registration",
+				"texto"=>"Registration was successfully activated",
 				"icono"=>"success"
 			];
 		}

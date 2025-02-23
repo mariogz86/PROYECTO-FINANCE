@@ -59,8 +59,8 @@ p {
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Email <?php echo CAMPO_OBLIGATORIO; ?></label>
-                        <input class="input" type="email" name="email" maxlength="70" required>
+                        <label>Email</label>
+                        <input class="input" type="email" name="email" maxlength="70"  >
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ p {
                         echo '<label>'.$catalogo[0]['nombre'].' '. CAMPO_OBLIGATORIO.'</label><br>';
 
                         echo ' <select name="cmb_estado" class="form-select" id="select_state" required>';
-                            echo '<option value="">Seleccione un valor </option>';
+                            echo '<option value="">Select a value </option>';
                             while($campos_caja=$datos->fetch()){
                             if($campos_caja['estado']==1){
                             echo '<option value="'.$campos_caja['id_catalogovalor'].'"> '.$campos_caja['nombre'].'
@@ -117,14 +117,14 @@ p {
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Contact Full Name <?php echo CAMPO_OBLIGATORIO; ?></label>
-                        <input class="input" type="text" name="nombrecompleto" maxlength="70" required>
+                        <label>Contact Full Name</label>
+                        <input class="input" type="text" name="nombrecompleto" maxlength="70"  >
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Contact Phone <?php echo CAMPO_OBLIGATORIO; ?></label>
-                        <input class="input" type="text" name="telefono" maxlength="70" required>
+                        <label>Contact Phone</label>
+                        <input class="input" type="text" name="telefono" maxlength="70"  >
                     </div>
                 </div>
                 <div class="column">
@@ -224,31 +224,7 @@ $(document).on('click', '#modificar', function(e) {
 });
 
 
-
-$(document).on('submit', '#formusuario', function(e) {
-    e.preventDefault();
-
-    var formData = new FormData(this);
-    formData.append("save_formulario", true);
-
-    $.ajax({
-        type: "POST",
-        url: "<?php  echo APP_URL.'ajax/usuarioAjax.php' ?>",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-
-
-            $(".loadersacn").fadeOut("slow");
-
-
-            var res = jQuery.parseJSON(response);
-
-        }
-    });
-
-});
+ 
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
@@ -339,7 +315,7 @@ function cargargrid() {
                     },
                     {
                         width: "30%",
-                        title: 'State',
+                        title: 'Status',
                         data: 'u_estado',
                         render: function(data, type, row, meta) {
                             if (row.u_estado == 1) {
@@ -419,7 +395,7 @@ function cargargrid() {
 
 
                                 cadena = cadena +
-                                    '<form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/companyAjax.php" method="POST" autocomplete="off" >' +
+                                    '<form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/companyAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_company" value="activar">' +
                                     '<input type="hidden" name="id_company" value="' +
                                     data + '">' +
@@ -429,7 +405,7 @@ function cargargrid() {
                                     '</form>';
                             } else {
                                 cadena = cadena +
-                                    '<form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/companyAjax.php" method="POST" autocomplete="off" >' +
+                                    '<form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/companyAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_company" value="inactivar">' +
                                     '<input type="hidden" name="id_company" value="' +
                                     data + '">' +

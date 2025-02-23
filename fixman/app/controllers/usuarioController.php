@@ -43,10 +43,10 @@ use PHPMailer\PHPMailer\Exception;
 		public function guardar(){
 			 
 			 
-			$usuario_nombre = $_POST["usuario_nombre"];
-			$usuario_apellido = $_POST["usuario_apellido"];
-			$usuario_usuario = $_POST["usuario_usuario"];
-			$usuario_email = $_POST["usuario_email"];
+			$usuario_nombre = $this->limpiarCadena($_POST["usuario_nombre"]);
+			$usuario_apellido = $this->limpiarCadena($_POST["usuario_apellido"]);
+			$usuario_usuario = $this->limpiarCadena($_POST["usuario_usuario"]);
+			$usuario_email = $this->limpiarCadena($_POST["usuario_email"]);
 			$clave =$this->generatePassword(8);
 			$cmb_rol = $_POST["cmb_rol"];
 

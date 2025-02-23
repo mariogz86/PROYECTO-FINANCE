@@ -258,7 +258,7 @@ function cargargrid() {
                         render: function(data, type, row, meta) {
 
                             if (row.u_estado == 0) {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/catalogoAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/catalogoAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_catalogo" value="activar">' +
                                     '<input type="hidden" name="id_catalogo" value="' +
                                     data + '">' +
@@ -267,7 +267,7 @@ function cargargrid() {
                                     '</button>' +
                                     '</form></td>';
                             } else {
-                                return '<td><form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/catalogoAjax.php" method="POST" autocomplete="off" >' +
+                                return '<td><form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/catalogoAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_catalogo" value="inactivar">' +
                                     '<input type="hidden" name="id_catalogo" value="' +
                                     data + '">' +

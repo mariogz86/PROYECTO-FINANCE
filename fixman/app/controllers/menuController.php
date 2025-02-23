@@ -18,7 +18,7 @@
 			 
 			
 			$hoy = date("Y-m-d");
-			$nombre = trim($_POST["menu"]);					
+			$nombre = $this->limpiarCadena(trim($_POST["menu"]));					
 			$orden = trim($_POST["orden"]);
 			$icono = trim($_POST["icono"]);
 

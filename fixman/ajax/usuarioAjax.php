@@ -43,6 +43,7 @@ require_once "../autoload.php";
 
 		if($buscarUsuario>0){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 				"titulo"=>"Usuario",
 				"texto"=>"El nombre de usuario ya existe en el sistema.",
@@ -56,6 +57,7 @@ require_once "../autoload.php";
 		if($result>0){
 			if ($_POST["idusuario"]=="0"){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"Usuario registrado",
 				"texto"=>"El registro se guardo con éxito",
@@ -63,6 +65,7 @@ require_once "../autoload.php";
 			];}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"Usuario actualizado",
 					"texto"=>"El registro se actualizo con éxito",
@@ -72,6 +75,7 @@ require_once "../autoload.php";
 		}else{
 			if ($_POST["idusuario"]=="0"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el Usuario, por favor intente nuevamente",
@@ -80,6 +84,7 @@ require_once "../autoload.php";
 			}
 				else{
 					$alerta=[
+						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo actualizar el Usuario, por favor intente nuevamente",
@@ -103,6 +108,7 @@ require_once "../autoload.php";
 			$result =$insformulario->bloquear(1);
 
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"Usuario",
 				"texto"=>"El usuario se bloqueo con éxito",
@@ -115,6 +121,7 @@ require_once "../autoload.php";
 			$result =$insformulario->bloquear(0);
 
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"Usuario",
 				"texto"=>"El usuario se desbloqueo con éxito",
@@ -126,9 +133,10 @@ require_once "../autoload.php";
 
 			$result =$insformulario->cambiarestado(0);
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Inactivar registro",
-				"texto"=>"El registro se Inactivo con éxito",
+				"titulo"=>"Deactivate registration",
+				"texto"=>"The registration was successfully deactivated",
 				"icono"=>"success"
 			];
 		}
@@ -138,9 +146,10 @@ require_once "../autoload.php";
 
 			$result =$insformulario->cambiarestado(1);
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Activar registro",
-				"texto"=>"El registro se activo con éxito",
+				"titulo"=>"Activate registration",
+				"texto"=>"Registration was successfully activated",
 				"icono"=>"success"
 			];
 		}

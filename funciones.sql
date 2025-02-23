@@ -1169,7 +1169,7 @@ select
 	(data ->> 'idCompany')::integer as idCompany ,
 	idcliente,
 	idestadojob,
-	null,
+	(data ->> 'cmb_tecnico')::integer as cmb_tecnico ,
 	'#REF', 
 	 	1,
 		CURRENT_DATE,
@@ -1193,6 +1193,7 @@ SELECT
 	T.ID_TRABAJO,
 	T.ID_COMPANY,	
 	T.ID_CLIENTE,
+	T.ID_TECNICO,
 	COM.NOMBRE,
 	T.NUM_REFERENCIA,
 	cve.nombre as Estadojob,
@@ -1282,12 +1283,13 @@ FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data) ) as FOO
  RETURN QUERY  
 UPDATE "SYSTEM".trabajo   
 set
- id_company=foo.idCompany,
+ id_company=foo.idCompany,id_tecnico=cmb_tecnico,
  fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
    FROM (
 	select 
 	(data ->> 'idjob')::integer as idjob ,
-	(data ->> 'idCompany')::integer as idCompany
+	(data ->> 'idCompany')::integer as idCompany,
+	(data ->> 'cmb_tecnico')::integer as cmb_tecnico
 FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO
  WHERE trabajo.id_trabajo = foo.idjob
 

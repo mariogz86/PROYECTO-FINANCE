@@ -17,9 +17,9 @@
 		public function guardar(){
 			 
 			
-			$nombre = trim($_POST["nombre"]);
-            $descripcion = trim($_POST["descripcion"]);	
-            $nombrevista= trim($_POST["nombrevista"]);		
+			$nombre = $this->limpiarCadena(trim($_POST["nombre"]));
+            $descripcion = $this->limpiarCadena(trim($_POST["descripcion"]));	
+            $nombrevista= $this->limpiarCadena(trim($_POST["nombrevista"]));		
 			$menu = trim($_POST["cmb_menu"]);					
 			$orden = trim($_POST["orden"]);
 			$icono = trim($_POST["icono"]);
@@ -41,7 +41,7 @@
         //Funcion para validar que no exista el nombre del menu
         public function Buscaropcion(){
                     
-            $nombre = trim($_POST["nombre"]);			
+            $nombre = $this->limpiarCadena(trim($_POST["nombre"]));			
 
             if ($_POST["idopcion"]=="0"){
                 $sentencia ="select * from \"SYSTEM\".OBTENER_OPCIONMENU where UPPER(nombre)=UPPER('".$nombre."');  ";

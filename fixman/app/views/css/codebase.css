@@ -4074,7 +4074,7 @@ button.close {
   line-break: auto;
   font-size: 0.928571rem;
   word-wrap: break-word;
-  opacity: 0;
+  opacity: 0; 
 }
 
 .tooltip.show {
@@ -4084,7 +4084,7 @@ button.close {
 .tooltip .arrow {
   position: absolute;
   display: block;
-  width: 5px;
+  width: 150px;
   height: 5px;
 }
 

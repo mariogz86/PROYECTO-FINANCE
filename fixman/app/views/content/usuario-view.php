@@ -86,7 +86,7 @@ p {
                         $consulta_datos="select * from \"SYSTEM\".obtener_roles where u_estado=1;"; 
 
                         $datos = $insrol->Ejecutar($consulta_datos); 
-                        echo '<option value=""   >Seleccione un valor </option>';
+                        echo '<option value=""   >Select a value </option>';
                             while($campos_caja=$datos->fetch()){
                                 echo '<option value="'.$campos_caja['id_rol'].'"   > '.$campos_caja['rol'].'</option>';
                             }
@@ -401,7 +401,7 @@ function cargargrid() {
 
 
                                 cadena = cadena +  
-                                    '<form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/usuarioAjax.php" method="POST" autocomplete="off" >' +
+                                    '<form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/usuarioAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_usuario" value="activar">' +
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' +
@@ -411,7 +411,7 @@ function cargargrid() {
                                     '</form>';
                             } else {
                                 cadena = cadena +
-                                    '<form class="FormularioAjax" action="<?php  echo APP_URL?>ajax/usuarioAjax.php" method="POST" autocomplete="off" >' +
+                                    '<form class="FormularioAcciones" action="<?php  echo APP_URL?>ajax/usuarioAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_usuario" value="inactivar">' +
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' + 

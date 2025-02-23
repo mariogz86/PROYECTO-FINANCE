@@ -42,6 +42,7 @@ require_once "../autoload.php";
         $result =$insmenu->Buscarmenu();
         if($result){
             $alerta=[
+				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
                 "titulo"=>"menu duplicado",
                 "texto"=>"El nombre del menu ya existe en el sistema",
@@ -57,6 +58,7 @@ require_once "../autoload.php";
 		if($result){
 			if ($_POST["idmenu"]=="0"){
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
 				"titulo"=>"menu registrado",
 				"texto"=>"El registro se guardo con éxito",
@@ -64,6 +66,7 @@ require_once "../autoload.php";
 			];}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
 					"titulo"=>"menu actualizado",
 					"texto"=>"El registro se actualizo con éxito",
@@ -73,6 +76,7 @@ require_once "../autoload.php";
 		}else{
 			if ($_POST["idmenu"]=="0"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo registrar el menu, por favor intente nuevamente",
@@ -81,6 +85,7 @@ require_once "../autoload.php";
 			}
 				else{
 					$alerta=[
+						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
 					"texto"=>"No se pudo actualizar el menu, por favor intente nuevamente",
@@ -103,6 +108,7 @@ require_once "../autoload.php";
             $result =$insmenu->validar_inactivar();
             if($result){
                 $alerta=[
+					"classform"=>".FormularioAjax",
                     "tipo"=>"limpiar",
                     "titulo"=>"Inactivar",
                     "texto"=>"El menu no se puede inactivar está asignado a uno o más roles.",
@@ -113,9 +119,10 @@ require_once "../autoload.php";
                 $result =$insmenu->cambiarestado(0);
 
                 $alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Inactivar registro",
-					"texto"=>"El registro se Inactivo con éxito",
+					"titulo"=>"Deactivate registration",
+					"texto"=>"The registration was successfully deactivated",
 					"icono"=>"success"
 				];
             }
@@ -130,17 +137,19 @@ require_once "../autoload.php";
 		if($result){
 			if($_POST['modulo_menu']=="activar"){
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Activar registro",
-					"texto"=>"El registro se activo con éxito",
+					"titulo"=>"Activate registration",
+					"texto"=>"Registration was successfully activated",
 					"icono"=>"success"
 				];
 			}
 			else{
 				$alerta=[
+					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Inactivar registro",
-					"texto"=>"El registro se Inactivo con éxito",
+					"titulo"=>"Deactivate registration",
+					"texto"=>"The registration was successfully deactivated",
 					"icono"=>"success"
 				];
 			}
@@ -148,6 +157,7 @@ require_once "../autoload.php";
 
 		}else{
 			$alerta=[
+				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 			"titulo"=>"Error",
 			"texto"=>"No se pudo realizar la acción solicitada, por favor intente nuevamente",
