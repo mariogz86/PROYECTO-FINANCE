@@ -386,5 +386,61 @@ ALTER TABLE "SYSTEM".catalogovalor
 	  create index servicio_id_valservice on "SYSTEM".servicio("id_valservice");   
 	  create index servicio_id_valappliance on "SYSTEM".servicio("id_valappliance");   
 	  create index servicio_id_valbrand on "SYSTEM".servicio("id_valbrand");   
-	  create index servicio_id_valsymptom on "SYSTEM".servicio("id_valsymptom");   
+	  create index servicio_id_valsymptom on "SYSTEM".servicio("id_valsymptom");
+
+  CREATE TABLE "SYSTEM".cita (
+		"id_cita" serial PRIMARY KEY NOT NULL, 
+		"id_trabajo" INTEGER NOT NULL,		
+		"fecha" DATE NOT NULL,		
+		"horaini" VARCHAR(50) NOT NULL,					
+		"minini" VARCHAR(50) NOT NULL,					
+		"tiemponi" VARCHAR(50) NOT NULL,							
+		"horafin" VARCHAR(50) NOT NULL,					
+		"minfin" VARCHAR(50) NOT NULL,					
+		"tiempofin" VARCHAR(50) NOT NULL,					
+		"nota" VARCHAR(2500) NOT NULL,					
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);	
+
+
+	--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".cita
+	   ADD CONSTRAINT fk_id_trabajo
+	   FOREIGN KEY (id_trabajo) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+
+ --CREACION DE INDICES   
+	  create index cita_idtrabajo on "SYSTEM".cita("id_trabajo"); 	
+
+  CREATE TABLE "SYSTEM".payment (
+		"id_payment" serial PRIMARY KEY NOT NULL, 
+		"id_trabajo" INTEGER NOT NULL,		
+		"id_valpayment" INTEGER NOT NULL,
+		"nota" VARCHAR(2500) NULL,		
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);	
+
+
+	--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".payment
+	   ADD CONSTRAINT fk_id_trabajo
+	   FOREIGN KEY (id_trabajo) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+	   
+	   ALTER TABLE "SYSTEM".payment
+	   ADD CONSTRAINT fk_id_valpayment
+	   FOREIGN KEY (id_valpayment) 
+	   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+
+ --CREACION DE INDICES   
+	  create index payment_idtrabajo on "SYSTEM".payment("id_trabajo"); 	   	  
+	  create index payment_idvalpayment on "SYSTEM".payment("id_valpayment"); 
 	 

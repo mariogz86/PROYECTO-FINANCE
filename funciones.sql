@@ -1443,3 +1443,144 @@ RETURNING
 	id_servicio;
 end;
 $$ LANGUAGE PLPGSQL;
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_CITA (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin 
+RETURN QUERY 
+INSERT INTO
+	"SYSTEM".CITA (
+		ID_TRABAJO,
+		FECHA,
+		HORAINI,
+		MININI,
+		TIEMPONI,
+		HORAFIN,
+		MINFIN,
+		TIEMPOFIN,
+		NOTA,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+SELECT
+	(DATA ->> 'id_trabajo')::INTEGER ID_TRABAJO,
+	(DATA ->> 'fechacita')::DATE FECHACITA,
+	(DATA ->> 'horaini')::VARCHAR(250) HORAINI,
+	(DATA ->> 'minini')::VARCHAR(250) MININI,
+	(DATA ->> 'tiempoini')::VARCHAR(250) TIEMPOINI,
+	(DATA ->> 'horafin')::VARCHAR(250) HORAFIN,
+	(DATA ->> 'minfin')::VARCHAR(250) MINFIN,
+	(DATA ->> 'tiempofin')::VARCHAR(250) TIEMPOFIN,
+	(DATA ->> 'problemdetail')::VARCHAR(5000) PROBLEMDETAIL,
+	CURRENT_DATE,
+	IDUSUARIO,
+	NULL,
+	NULL
+FROM
+	JSONB_ARRAY_ELEMENTS(DATOSJSON::JSONB) AS ITEM (DATA)
+RETURNING
+	ID_CITA;
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+		CREATE
+OR REPLACE FUNCTION "SYSTEM".ACTUALIZAR_CITA (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin  
+ RETURN QUERY  
+UPDATE "SYSTEM".CITA   
+set   
+	FECHA = foo.fechacita,
+	HORAINI = foo.horaini,
+	MININI = foo.minini,
+	TIEMPONI = foo.tiempoini,
+	HORAFIN = foo.horafin,
+	MINFIN = foo.minfin,
+	TIEMPOFIN = foo.tiempofin,
+	NOTA = foo.problemdetail, 
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'id_cita')::integer idcita ,
+	(data ->> 'id_trabajo')::integer id_trabajo ,
+	(data ->> 'fechacita')::date fechacita ,
+	(data ->> 'horaini')::varchar(250) horaini ,
+	(data ->> 'minini')::varchar(250) minini ,
+	(data ->> 'tiempoini')::varchar(250) tiempoini,
+	 (data ->> 'horafin')::varchar(250) horafin ,
+	(data ->> 'minfin')::varchar(250)minfin ,
+	(data ->> 'tiempofin')::varchar(250) tiempofin,
+	(data ->> 'problemdetail')::varchar(5000) problemdetail
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO
+ WHERE CITA.id_cita = foo.idcita
+
+RETURNING
+	id_cita; 
+end;
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_PAGO (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin 
+RETURN QUERY 
+INSERT INTO
+	"SYSTEM".PAYMENT (
+		ID_TRABAJO, 
+		ID_VALPAYMENT,
+		NOTA,
+		FECHA_CREACION,
+		USUARIO_CREACION,
+		FECHA_MODIFICA,
+		USUARIO_MODIFICA
+	)
+SELECT
+	(DATA ->> 'id_trabajo')::INTEGER ID_TRABAJO,
+	(DATA ->> 'idvalpago')::INTEGER idvalpago, 
+	(DATA ->> 'nota')::VARCHAR(3500) nota,
+	CURRENT_DATE,
+	IDUSUARIO,
+	NULL,
+	NULL
+FROM
+	JSONB_ARRAY_ELEMENTS(DATOSJSON::JSONB) AS ITEM (DATA)
+RETURNING
+	ID_PAYMENT;
+end;
+$$ LANGUAGE PLPGSQL;
+
+		CREATE
+OR REPLACE FUNCTION "SYSTEM".ACTUALIZAR_PAGO (
+	DATOSJSON JSONB,
+	IDUSUARIO INT
+) RETURNS SETOF INT AS $$ 
+begin  
+ RETURN QUERY  
+UPDATE "SYSTEM".PAYMENT   
+set    
+	ID_VALPAYMENT = foo.idvalpago,
+	NOTA = foo.notapago, 
+ fecha_modifica=CURRENT_DATE,usuario_modifica=IDUSUARIO
+   FROM (
+	select 
+	(data ->> 'id_pago')::integer idpago ,
+		(DATA ->> 'idvalpago')::INTEGER idvalpago, 
+	(DATA ->> 'nota')::VARCHAR(3500) notapago
+FROM jsonb_array_elements(DATOSJSON::jsonb) AS item(data)) as FOO
+ WHERE PAYMENT.id_payment = foo.idpago
+
+RETURNING
+	id_payment; 
+end;
+$$ LANGUAGE PLPGSQL;
