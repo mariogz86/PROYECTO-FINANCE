@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAcciones', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAcciones', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -223,7 +223,13 @@ function alertas_ajax(alerta){
                           break;  
                           case "formservice":
                             cargaformularioservicio(1);
-                          break;                         
+                          break;  
+                          case "formcita":
+                            quedarenpantalla(alerta);
+                          break;    
+                          case "formpago":
+                            quedarenpantalla(alerta);
+                          break;                      
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();

@@ -11750,7 +11750,52 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     color: #fff
 }
 
+.button.is-accionesbloquear.is-hovered,.button.is-accionesbloquear:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
 .bloqueado {
     color: #1e00ff;
 }
 
+
+.button.is-cita {
+    background-color: #6c5bee;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-cita.is-hovered,.button.is-cita:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
+.buttonclock {
+    background-color: #fff;
+    border-color: #dbdbdb;
+    border-width: 1px;
+    border-radius: 0.35rem;
+    color: #363636; 
+    justify-content: center;
+    padding-bottom: calc(.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(.5em - 1px);
+    text-align: center;
+    white-space: nowrap
+}
+
+.buttonclock.clock {
+    background-color: #4ed03e;
+    border-color: transparent;
+    color: #fff
+}
+
+.buttonclock.clockend {
+    background-color: #f16d2e;
+    border-color: transparent;
+    color: #fff
+}

@@ -55,7 +55,7 @@
 		/*----------  Funcion limpiar cadenas  ----------*/
 		public function limpiarCadena($cadena){
 
-			$palabras=["<script>","</script>","<script src","<script type=","SELECT * FROM","SELECT "," SELECT ","DELETE FROM","INSERT INTO","DROP TABLE","DROP DATABASE","TRUNCATE TABLE","SHOW TABLES","SHOW DATABASES","<?php","?>","--","^","<",">","==",";","::","\""];
+			$palabras=["<script>","</script>","<script src","<script type=","SELECT * FROM","SELECT "," SELECT ","DELETE FROM","INSERT INTO","DROP TABLE","DROP DATABASE","TRUNCATE TABLE","SHOW TABLES","SHOW DATABASES","<?php","?>","--","^","<",">","==",";","::","\"","'","\r","\n"];
 
 			$cadena=trim($cadena);
 			$cadena=stripslashes($cadena);

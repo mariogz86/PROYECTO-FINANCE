@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo APP_NAME; ?></title>
 <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/select2.min.css">
+<link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/dataTables.dataTables.css">
 <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/fixedColumns.dataTables.css">
 <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/select.dataTables.css">
@@ -36,7 +37,8 @@
 <script src="<?php echo APP_URL; ?>app/views/js/pdfmake.min.js"></script>
 <script src="<?php echo APP_URL; ?>app/views/js/vfs_fonts.js"></script>
 <script src="<?php echo APP_URL; ?>app/views/js/buttons.html5.min.js"></script>
-<script src="<?php echo APP_URL; ?>app/views/js/buttons.print.min.js"></script>
+<script src="<?php echo APP_URL; ?>app/views/js/buttons.print.min.js"></script> 
+<script src="<?php echo APP_URL; ?>app/views/js/bootstrap-datepicker.min.js"></script>
 
 
 
@@ -50,6 +52,6 @@
 <script src="<?php echo APP_URL; ?>app/views/js/jquery.easing.min.js"></script>
 
 <script src="<?php echo APP_URL; ?>app/views/js/select2.min.js" ></script>
-<div class="loadersacn" style="display: none;" ><div class="loadersacntexto">*** Espere un momento por favor ***</div></div>
+<div class="loadersacn" style="display: none;" ><div class="loadersacntexto">*** Wait a moment please ***</div></div>
 
 	

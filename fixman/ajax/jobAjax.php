@@ -30,7 +30,6 @@ if (isset($_GET['cargagrid'])) {
 	}
 }
 
-//Metodo GET para la carga del grid en la pantalla
 if (isset($_GET['cargagridservicio'])) {
 	//metodo del controlador
 	$result = $insformulario->listarservicios();
@@ -50,6 +49,144 @@ if (isset($_GET['cargagridservicio'])) {
 		echo json_encode($res);
 	}
 }
+
+
+if (isset($_GET['cargadatoscita'])) {
+	//metodo del controlador
+	$result = $insformulario->obtenerdatoscita();
+	//resultado que se envita al Metodo GET invocado
+	if ($result) {
+		$res = array(
+			'status' => 200,
+			'message' => 'carga usuarios correcta',
+			'data' => $result
+		);
+		echo json_encode($res);
+	} else {
+		$res = array(
+			'status' => 404,
+			'message' =>  'No se encontro informacion'
+		);
+		echo json_encode($res);
+	}
+}
+
+if (isset($_GET['cargadatospago'])) {
+	//metodo del controlador
+	$result = $insformulario->obtenerdatospago();
+	//resultado que se envita al Metodo GET invocado
+	if ($result) {
+		$res = array(
+			'status' => 200,
+			'message' => 'carga usuarios correcta',
+			'data' => $result
+		);
+		echo json_encode($res);
+	} else {
+		$res = array(
+			'status' => 404,
+			'message' =>  'No se encontro informacion'
+		);
+		echo json_encode($res);
+	}
+}
+
+//Metodo POST para el registro a guardar en la pantalla
+if (isset($_POST['modulo_Opcion_pago'])) {
+	//se invoca el metodo de guardar del controlador
+	$result = $insformulario->guardarpago();
+	//resultado que se envia al metodo POST
+	if ($result > 0) {
+		if ($_POST["id_pago"] == "0") {
+			$alerta = [
+				"classform" => ".FormularioAjax4",
+				"tipo" => "limpiar",
+				"titulo" => "Payment",
+				"texto" => "The record was saved successfully",
+				"icono" => "success",
+				"idgenerado" => $result
+			];
+		} else {
+			$alerta = [
+				"classform" => ".FormularioAjax4",
+				"tipo" => "limpiar",
+				"titulo" => "Payment",
+				"texto" => "The registry was updated successfully",
+				"icono" => "success",
+				"idgenerado" => $result
+			];
+		}
+	} else {
+		if ($_POST["id_servicio"] == "0") {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "simple",
+				"titulo" => "Error",
+				"texto" => "The record could not be saved, please try again",
+				"icono" => "error"
+			];
+		} else {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "simple",
+				"titulo" => "Error",
+				"texto" => "The record could not be updated, please try again",
+				"icono" => "error"
+			];
+		}
+	}
+	echo json_encode($alerta);
+}
+
+
+//Metodo POST para el registro a guardar en la pantalla
+if (isset($_POST['modulo_Opcion_cita'])) {
+	//se invoca el metodo de guardar del controlador
+	$result = $insformulario->guardarcita();
+	//resultado que se envia al metodo POST
+	if ($result > 0) {
+		if ($_POST["id_cita"] == "0") {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "limpiar",
+				"titulo" => "Schedule",
+				"texto" => "The record was saved successfully",
+				"icono" => "success",
+				"idgenerado" => $result
+			];
+		} else {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "limpiar",
+				"titulo" => "Schedule",
+				"texto" => "The registry was updated successfully",
+				"icono" => "success",
+				"idgenerado" => $result
+			];
+		}
+	} else {
+		if ($_POST["id_servicio"] == "0") {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "simple",
+				"titulo" => "Error",
+				"texto" => "The record could not be saved, please try again",
+				"icono" => "error"
+			];
+		} else {
+			$alerta = [
+				"classform" => ".FormularioAjax3",
+				"tipo" => "simple",
+				"titulo" => "Error",
+				"texto" => "The record could not be updated, please try again",
+				"icono" => "error"
+			];
+		}
+	}
+	echo json_encode($alerta);
+}
+
+ 
 
 //Metodo POST para el registro a guardar en la pantalla
 if (isset($_POST['modulo_Opcion_service'])) {

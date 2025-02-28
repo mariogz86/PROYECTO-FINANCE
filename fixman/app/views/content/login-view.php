@@ -20,7 +20,7 @@
 
  <body>
      <div class="loadersacn" style="display: none;">
-         <div class="loadersacntexto">*** Espere un momento por favor ***</div>
+         <div class="loadersacntexto">*** Wait a moment please ***</div>
      </div>
      <div id="page-container" class="main-content-boxed">
          <main id="main-container">

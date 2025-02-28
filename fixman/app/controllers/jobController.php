@@ -39,6 +39,28 @@ class jobController extends mainModel
 		return $datos;
 	}
 
+	public function obtenerdatoscita()
+	{
+
+		$consulta_datos = "select * from \"SYSTEM\".CITA where id_trabajo =" . $_GET['cargadatoscita'] . ";";
+
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
+	public function obtenerdatospago()
+	{
+
+		$consulta_datos = "select * from \"SYSTEM\".PAYMENT where id_trabajo =" . $_GET['cargadatospago'] . ";";
+
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
 	//funcion para cargar los formularios 
 	public function Buscarusuario()
 	{
@@ -130,6 +152,70 @@ class jobController extends mainModel
 
 		return $total;
 	}
+
+	//Funcion para guardar los datos del formulario
+	public function guardarcita()
+	{
+
+		$datosform[] = array(
+			'id_cita' => $_POST["id_cita"],
+			'id_trabajo' => $_POST["idjob_cita"],
+			'fechacita' => $_POST["fechacita"],
+			'horaini' => $_POST["horaini"],
+			'minini' => $_POST["minini"],
+			'tiempoini' => $_POST["tiempoini"], 
+			'horafin' => $_POST["horafin"],
+			'minfin' => $_POST["minfin"],
+			'tiempofin' => $_POST["tiempofin"], 
+			'problemdetail' => $this->limpiarCadena($_POST["nota"]), 
+		);
+
+		$datos = json_encode($datosform);
+
+
+		if ($_POST["id_cita"] == "0") {
+			$sentencia = "select \"SYSTEM\".INSERTAR_CITA('" . $datos . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		} else {
+			$sentencia = "select \"SYSTEM\".ACTUALIZAR_CITA('" . $datos . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		}
+
+		return $total;
+	}
+
+		//Funcion para guardar los datos del formulario
+		public function guardarpago()
+		{
+	
+			$datosform[] = array(
+				'id_pago' => $_POST["id_pago"],
+				'id_trabajo' => $_POST["idjob_pago"],
+				'idvalpago' => $_POST["cmb_pago"], 
+				'nota' => $this->limpiarCadena($_POST["notapayment"]), 
+			);
+	
+			$datos = json_encode($datosform);
+	
+	
+			if ($_POST["id_pago"] == "0") {
+				$sentencia = "select \"SYSTEM\".INSERTAR_PAGO('" . $datos . "','" . $_SESSION['id'] . "');";
+				$sql = $this->actualizarDatos($sentencia);
+				$sql->execute();
+				$total = (int) $sql->fetchColumn();
+			} else {
+				$sentencia = "select \"SYSTEM\".ACTUALIZAR_PAGO('" . $datos . "','" . $_SESSION['id'] . "');";
+				$sql = $this->actualizarDatos($sentencia);
+				$sql->execute();
+				$total = (int) $sql->fetchColumn();
+			}
+	
+			return $total;
+		}
 
 
 	//Funcion para cambiar de estado al catalogo 

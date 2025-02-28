@@ -217,7 +217,7 @@ $insrol = new FuncionesController();
         <button name="regresar_service" type="reset" class="button is-link is-light is-rounded"><i
                 class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
     </p>
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="accordionExample" style="display: none;">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
@@ -317,7 +317,7 @@ $insrol = new FuncionesController();
                                         $datos = $insrol->Ejecutar($consulta_datos);
                                         echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select name="cmb_symptom" class="form-select" id="select_symptom" required>';
+                                        echo ' <select id="select_symptom" name="cmb_symptom" class="form-select"  required>';
                                         echo '<option value="">Select a value </option>';
                                         while ($campos_caja = $datos->fetch()) {
                                             echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
@@ -369,25 +369,11 @@ $insrol = new FuncionesController();
                                 </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
+
             </div>
         </div>
-        <!-- <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Collapsible Group Item #2
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div> -->
 
     </div>
 
@@ -400,30 +386,284 @@ $insrol = new FuncionesController();
     </div>
 
 
+    <!-- OPCIONES PARA EL FORMULARIO DE CITA DEL TRABAJO -->
+
+    <div class="accordion" id="accordioncita" style="display: none;">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button id="btncollapsecita" class="btn btn-link btn-block text-left" type="button"
+                        data-toggle="collapse" data-target="#collapsecita" aria-expanded="true"
+                        aria-controls="collapsecita">
+                        <i class="far fa-calendar-alt"></i>
+                        Add appoinment Schedule
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapsecita" class="collapse" aria-labelledby="headingOne" data-parent="#accordioncita">
+                <div class="card-body">
+                    <form name="formcita" class="FormularioAjax3" action="<?php echo APP_URL; ?>ajax/jobAjax.php"
+                        method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <input type="hidden" name="id_cita" value="">
+                        <input type="hidden" name="idjob_cita" value="">
+                        <input type="hidden" name="modulo_Opcion_cita" value="registrarcita">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="columns">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="control ">
+                                        <label>Appoinment Date<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                        <input id="select_fechacita" name="fechacita" class="form-control" type="date"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>Start time </label>
+                                        <div class="buttonclock clock">
+                                            <i class="far fa-clock"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>Hour</label>
+                                        <select id="select_horaini" name="horaini" class="form-select">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>Min</label>
+                                        <select id="select_minini" name="minini" class="form-select">
+                                            <option value="00">00</option>
+                                            <option value="05">05</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>AM/PM</label>
+                                        <select id="select_tiempoini" name="tiempoini" class="form-select">
+                                            <option value="AM">AM</option>
+                                            <option value="PM">PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1" style="margin-left: 10px;">
+                                    <div class="control ">
+                                        <label>End time</label>
+                                        <div class="buttonclock clockend">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>Hour</label>
+                                        <select id="select_horafin" name="horafin" class="form-select">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>Min</label>
+                                        <select id="select_minfin" name="minfin" class="form-select">
+                                            <option value="00">00</option>
+                                            <option value="05">05</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-1">
+                                    <div class="control ">
+                                        <label>AM/PM</label>
+                                        <select id="select_tiempofin" name="tiempofin" class="form-select">
+                                            <option value="AM">AM</option>
+                                            <option value="PM">PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Customer Notes</label>
+                                        <textarea name="nota" class="input" style="height: 150px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="has-text-centered">
+
+                            <button type="reset" class="button is-link is-light is-rounded"><i
+                                    class="fas fa-paint-roller"></i> &nbsp;
+                                Clean</button>
+                            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp;
+                                Save</button>
+                        </p>
+                        <p class="has-text-centered pt-1">
+                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
+                                mandatory</small>
+                        </p>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="far fa-money-bill-alt"></i>
+                        Payment Information
+
+                    </button>
+
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form name="formpago" class="FormularioAjax4" action="<?php echo APP_URL; ?>ajax/jobAjax.php"
+                        method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <input type="hidden" name="id_pago" value="">
+                        <input type="hidden" name="idjob_pago" value="">
+                        <input type="hidden" name="modulo_Opcion_pago" value="registrarpago">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control ">
+                                        <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codpayment' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codpayment' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+
+                                        echo ' <select id="select_pago" name="cmb_pago" class="form-select"  required>';
+                                        echo '<option value="">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . ' </option>';
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Payment description</label>
+                                        <textarea name="notapayment" class="input" style="height: 150px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="has-text-centered">
+
+                            <button type="reset" class="button is-link is-light is-rounded"><i
+                                    class="fas fa-paint-roller"></i> &nbsp;
+                                Clean</button>
+                            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i>
+                                &nbsp;
+                                Save</button>
+                        </p>
+                        <p class="has-text-centered pt-1">
+                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
+                                mandatory</small>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
-
-
-
+<script>
+$(document).ready(function() {
+    $('#datepicker, #datepicker2').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+});
+</script>
 <script>
 //JSON.stringify(tabla.rows( { selected: true } ).data().toArray());
 
 const button = document.getElementsByName("agregarcat");
-const idjob = document.getElementsByName("idjob");
-const idjob_service = document.getElementsByName("idjob_service");
-const id_servicio = document.getElementsByName("id_servicio");
-
-const seleccionados = document.getElementsByName("hdf_seleccionados");
-
-const id_detalleactividad = document.getElementsByName("id_detalleactividad");
 const regresar = document.getElementsByName("regresar");
 const regresar_service = document.getElementsByName("regresar_service");
 
+const idjob = document.getElementsByName("idjob");
+const idjob_service = document.getElementsByName("idjob_service");
+const id_servicio = document.getElementsByName("id_servicio");
+const idjob_cita = document.getElementsByName("idjob_cita");
+const id_cita = document.getElementsByName("id_cita");
+const idjob_pago = document.getElementsByName("idjob_pago");
+const id_pago = document.getElementsByName("id_pago");
+
+
+
+
 const formCompany = document.getElementsByName("formCompany");
 const formservice = document.getElementsByName("formservice");
+const formcita = document.getElementsByName("formcita");
+const formpago = document.getElementsByName("formpago");
 
 const accordionExample = document.getElementById("accordionExample")
-
+const accordioncita = document.getElementById("accordioncita")
 
 const gridcat = document.getElementsByName("gridcat");
 const gridservicio = document.getElementsByName("gridservicio");
@@ -431,14 +671,20 @@ const gridservicio = document.getElementsByName("gridservicio");
 function pantallaprincipal() {
     gridcat[0].style.display = "";
     accordionExample.style.display = "none";
+    accordioncita.style.display = "none";
     gridservicio[0].style.display = "none";
     formCompany[0].style.display = "none";
     formservice[0].style.display = "none";
     regresar_service[0].style.display = "none";
     document.getElementsByName("formCompany")[0].reset();
+    document.getElementsByName("formservice")[0].reset();
+    document.getElementsByName("formcita")[0].reset();
+    document.getElementsByName("formpago")[0].reset();
     $("#titulo")[0].innerText = "job list";
     $('.form-select').prop("selectedIndex", 0);
     $('.form-select').change();
+    $('#btncollapsecita').trigger('click');
+    cargargrid();
 }
 
 $(document).ready(function() {
@@ -448,6 +694,7 @@ $(document).ready(function() {
     $('.form-select').change();
     gridservicio[0].style.display = "none";
     accordionExample.style.display = "none"
+    accordioncita.style.display = "none";
     regresar_service[0].style.display = "none";
 
 });
@@ -529,6 +776,96 @@ $(document).on('click', '#servicios', function(e) {
     cargargridservicios(dato.id_trabajo)
 });
 
+$(document).on('click', '#cita', function(e) {
+
+    event.preventDefault();
+    $('#btncollapsecita').trigger('click');
+    regresar_service[0].style.display = "";
+    var row = e.currentTarget.attributes['valor'].value;
+    var dato = $("#myTable").DataTable().data()[row];
+    accordioncita.style.display = "";
+
+    $("#titulo")[0].innerText = "Add to job " + "-> Reference Number: " + dato
+        .num_referencia;
+
+
+    gridcat[0].style.display = "none";
+    formservice[0].style.display = "";
+
+   
+    idjob_cita[0].value = dato.id_trabajo;
+    idjob_pago[0].value = dato.id_trabajo;
+    $(".loadersacn")[0].style.display = "";
+    $.ajax({
+        type: "GET",
+        url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatoscita' ?>=" + dato.id_trabajo,
+        success: function(response) {
+            $(".loadersacn").fadeOut("slow");
+            var res = jQuery.parseJSON(response);
+            var estilo = "";
+
+            var datos = [];
+
+            if (res.status == 200) {
+                datos = res.data;
+                id_cita[0].value = datos[0].id_cita;
+                $("#select_fechacita")[0].value = datos[0].fecha;
+
+                $("#select_horaini").val(datos[0].horaini);
+                $('#select_horaini').change();
+
+                $("#select_horafin").val(datos[0].horafin);
+                $('#select_horafin').change();
+
+                $("#select_minini").val(datos[0].minini);
+                $('#select_minini').change();
+
+                $("#select_minfin").val(datos[0].minfin);
+                $('#select_minfin').change();
+
+                $("#select_tiempofin").val(datos[0].tiempofin);
+                $('#select_tiempofin').change();
+
+                $("#select_tiempoini").val(datos[0].tiemponi);
+                $('#select_tiempoini').change();
+
+                document.getElementsByName("nota")[0].value = datos[0].nota;
+
+            } else {
+                id_cita[0].value = 0;
+            }
+        }
+
+
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatospago' ?>=" + dato.id_trabajo,
+        success: function(response) {
+            $(".loadersacn").fadeOut("slow");
+            var res = jQuery.parseJSON(response);
+            var estilo = "";
+
+            var datos = [];
+
+            if (res.status == 200) {
+                datos = res.data;
+                id_pago[0].value= datos[0].id_payment; 
+                $("#select_pago").val(datos[0].id_valpayment);
+                $('#select_pago').change(); 
+
+                document.getElementsByName("notapayment")[0].value = datos[0].nota;
+
+            } else {
+                id_pago[0].value = 0;
+            }
+        }
+
+
+    });
+});
+
 function cargaformularioservicio(expandirformulario) {
     gridcat[0].style.display = "none";
     formservice[0].style.display = "";
@@ -542,6 +879,16 @@ function cargaformularioservicio(expandirformulario) {
     $('.form-select').prop("selectedIndex", 0);
     $('.form-select').change();
     cargargridservicios(idjob_service[0].value)
+}
+
+function quedarenpantalla(alerta) {
+    if(alerta.classform==".FormularioAjax3"){
+        id_cita[0].value = alerta.idgenerado;
+    }else{
+        id_pago[0].value = alerta.idgenerado;
+    }
+    
+
 }
 
 $(document).on('click', '#editservicios', function(e) {
@@ -925,8 +1272,12 @@ function cargargrid() {
                                 '<div style="margin: 2px;"><a id="servicios" title="Services" href="#" class="button is-services is-rounded is-small" valor="' +
                                 meta.row + '">' +
                                 '<i class="fas fa-tools"></i></a></div> ';
+                            cadena = cadena +
+                                '<div><div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
+                                meta.row + '">' +
+                                '<i class="far fa-calendar-alt"></i></a></div> ';
 
-                            cadena = cadena + '<td>' +
+                            cadena = cadena +
                                 '<div style="">';
                             cadena = cadena + '<div>';
                             if (row.u_estado == 0) {
