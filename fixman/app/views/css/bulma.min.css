@@ -11799,3 +11799,29 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     border-color: transparent;
     color: #fff
 }
+
+.button.is-accept {
+    background-color: #efbd11fa;
+    border-color: transparent;
+    color: #000000
+}
+
+.button.is-accept.is-hovered,.button.is-accept:hover {
+    background-color: #f19617;
+    border-color: transparent;
+    color: #ffffff
+}
+
+
+
+.button.is-history {
+    background-color: #efbd11fa;
+    border-color: transparent;
+    color: #000000
+}
+
+.button.is-history.is-hovered,.button.is-history:hover {
+    background-color: #f19617;
+    border-color: transparent;
+    color: #ffffff
+}

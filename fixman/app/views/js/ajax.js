@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAcciones', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAcciones', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -229,7 +229,11 @@ function alertas_ajax(alerta){
                           break;    
                           case "formpago":
                             quedarenpantalla(alerta);
-                          break;                      
+                          break;       
+                          case "formmovimiento":
+                            cargargridmovimiento_save(alerta);
+                          break;       
+                                         
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();

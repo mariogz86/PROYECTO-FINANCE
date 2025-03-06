@@ -443,4 +443,32 @@ ALTER TABLE "SYSTEM".catalogovalor
  --CREACION DE INDICES   
 	  create index payment_idtrabajo on "SYSTEM".payment("id_trabajo"); 	   	  
 	  create index payment_idvalpayment on "SYSTEM".payment("id_valpayment"); 
+	  
+	  
+	   CREATE TABLE "SYSTEM".movimientotrabajo (
+		"id_movimiento" serial PRIMARY KEY NOT NULL, 
+		"id_trabajo" INTEGER NOT NULL,	
+		"id_estadotrabajo" INTEGER NOT NULL,		
+		"nota" VARCHAR(3000) NULL,		
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL		
+	);	
+	
+		--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".movimientotrabajo
+	   ADD CONSTRAINT fk_id_trabajo
+	   FOREIGN KEY (id_trabajo) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+	   
+	   ALTER TABLE "SYSTEM".movimientotrabajo
+	   ADD CONSTRAINT fk_id_estadotrabajo
+	   FOREIGN KEY (id_estadotrabajo) 
+	   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+	   
+	    --CREACION DE INDICES   
+	  create index mov_idtrabajo on "SYSTEM".movimientotrabajo("id_trabajo"); 	   	  
+	  create index mov_estadotrabajo on "SYSTEM".movimientotrabajo("id_estadotrabajo"); 
+	  
+	   
 	 
