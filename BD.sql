@@ -470,5 +470,29 @@ ALTER TABLE "SYSTEM".catalogovalor
 	  create index mov_idtrabajo on "SYSTEM".movimientotrabajo("id_trabajo"); 	   	  
 	  create index mov_estadotrabajo on "SYSTEM".movimientotrabajo("id_estadotrabajo"); 
 	  
+	  
+	  
+	  
+	  	  CREATE TABLE "SYSTEM".diagnostico (
+		"id_diagnostico" serial PRIMARY KEY NOT NULL, 
+		"id_servicio" INTEGER NOT NULL, 		
+		"serial" VARCHAR(250) NOT NULL, 
+		"nota" VARCHAR(2500) NULL,		
+		"laborfee" DOUBLE PRECISION not null,
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);
+	  
+	   --CREACION DE FOREING KEY 
 	   
+	   ALTER TABLE "SYSTEM".diagnostico
+	   ADD CONSTRAINT fk_id_servicio
+	   FOREIGN KEY (id_servicio) 
+	   REFERENCES "SYSTEM".servicio(id_servicio); 
+	   
+	     --CREACION DE INDICES   
+	  create index diag_id_servicio on "SYSTEM".servicio("id_servicio"); 	   	   
+	  
 	 
