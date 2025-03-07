@@ -30,6 +30,30 @@ if (isset($_GET['cargagrid'])) {
 	}
 }
 
+
+//Metodo GET para la carga del grid en la pantalla
+if (isset($_GET['cargadiagnostico'])) {
+	//metodo del controlador
+	$result = $insformulario->listarcargadiagnostico();
+	//resultado que se envita al Metodo GET invocado
+	if ($result) {
+		$res = array(
+			'status' => 200,
+			'message' => 'carga usuarios correcta',
+			'data' => $result
+		);
+		echo json_encode($res);
+	} else {
+		$res = array(
+			'status' => 404,
+			'message' =>  'No se encontro informacion'
+		);
+		echo json_encode($res);
+	}
+}
+
+
+
 if (isset($_GET['cargagridservicio'])) {
 	//metodo del controlador
 	$result = $insformulario->listarservicios();
@@ -224,6 +248,25 @@ if (isset($_POST['modulo_movimiento'])) {
 				"titulo" => "Job State",
 				"texto" => "The record was saved successfully",
 				"icono" => "success"
+			];
+	  
+		} 
+	echo json_encode($alerta);
+}
+
+//Metodo POST para el registro a guardar en la pantalla
+if (isset($_POST['modulo_diagnostico'])) {
+	//se invoca el metodo de guardar del controlador
+	$result = $insformulario->guardardiagnostico();
+	//resultado que se envia al metodo POST
+	if ($result > 0) { 
+			$alerta = [
+				"classform" => ".FormularioAjax6",
+				"tipo" => "limpiar",
+				"titulo" => "Job State",
+				"texto" => "The record was saved successfully",
+				"icono" => "success",
+				"id_diagnostico"=>$result
 			];
 	  
 		} 

@@ -27,7 +27,7 @@ btn_exit.forEach(exitSystem => {
     });
 });
 
-    var formularios_ajax=document.querySelectorAll(".FormularioAjax");
+    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAcciones");
 
     formularios_ajax.forEach(formularios => {
     
@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAcciones', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6 .FormularioAcciones', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -233,7 +233,9 @@ function alertas_ajax(alerta){
                           case "formmovimiento":
                             cargargridmovimiento_save(alerta);
                           break;       
-                                         
+                          case "formdiagnostico":
+                            quedarenmodaldiagnostico(alerta);
+                          break;         
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();

@@ -163,14 +163,14 @@ class usuarioController extends mainModel
 		$phpmailer->addAddress($_SESSION['correo']);
 		$phpmailer->isHTML(true); // Set email format to plain text
 
-		$phpmailer->Subject = "Cuenta de usuario - SACN";
+		$phpmailer->Subject = "Cuenta de usuario";
 		$phpmailer->Body    = "Estimado(a) <b>" . $nombre . " " . $apellido . "</b>:<br><br>"
 			. "Le informamos que su cuenta de usuario <b>" . $usuario . "</b> del sistema <b> FIXMAN </b> ha sido creada, "
 			. "su clave temporal para ingresar al sistema es la siguiente <b>" . $clave . "</b> se recomienda cambiar la clave	.<br><br>";
 
 		if (!$phpmailer->send()) {
 			echo  'Error en el envío de correo electrónico, Error: ' . $phpmailer->ErrorInfo .
-				' Para mayor información pongase en contacto con la Gerencia de sistemas informáticos';
+				' Para mayor información pongase en contacto con el administrador del sistema';
 		}
 	}
 }

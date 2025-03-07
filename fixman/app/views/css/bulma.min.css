@@ -11825,3 +11825,15 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     border-color: transparent;
     color: #ffffff
 }
+
+.button.is-diagnosticar {
+    background-color: #3396d5;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-diagnosticar.is-hovered,.button.is-diagnosticar:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}

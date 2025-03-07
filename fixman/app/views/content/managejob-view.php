@@ -15,6 +15,146 @@ use app\controllers\FuncionesController;
 
 $insrol = new FuncionesController();
 ?>
+<!-- modal diagnosticar servicios-->
+<div class="modal fade" id="modaldiagnostico">
+    <div class="modal-dialog modal-lx">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="titulomodaldiagnostico" class="modal-title modal-title-h4"></h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #f3f3f3;">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formdatosservicio" action="#" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="control ">
+                                    <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codservice' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codservice' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+
+                                        echo ' <select name="cmb_service" class="form-select" id="select_service" required>';
+                                        echo '<option value="">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                            </option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control ">
+                                    <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codappliance' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codappliance' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+
+                                        echo ' <select name="cmb_appliance" class="form-select" id="select_appliance" required>';
+                                        echo '<option value="">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                            </option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control ">
+                                    <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codbrand' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codbrand' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+
+                                        echo ' <select name="cmb_brand" class="form-select" id="select_brand" required>';
+                                        echo '<option value="">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                            </option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control">
+                                    <label>Model<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <input class="input" type="text" name="model" maxlength="200" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="control">
+                                    <label>Problem Detail<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <textarea name="problemdetail" class="input" style="height: 100px;"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form name="formdiagnostico" class="FormularioAjax6"
+                    action="<?php echo APP_URL; ?>ajax/managejobAjax.php" method="POST" autocomplete="off"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="id_diagnostico" value="">
+                    <input type="hidden" name="id_servicio" value="">
+                    <input type="hidden" name="idjob_service" value="">
+                    <input type="hidden" name="modulo_diagnostico" value="registrardiagnostico">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="control">
+                                    <label>Serial #</label>
+                                    <input class="input" type="text" name="serial" maxlength="70" required>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control">
+                                    <label>Labor fee</label>
+                                    <input class="input" type="text" name="laborfee" value="0.00" pattern="[0-9.]{1,25}"
+                                        required maxlength="25">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="control ">
+                                    <label>Job description<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <textarea name="diagnostico" class="input" style="height: 100px;"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="has-text-centered">
+                        <button type="reset" class="button is-link is-light is-rounded"><i
+                                class="fas fa-paint-roller"></i> &nbsp;
+                            Clean</button>
+                        <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i>
+                            &nbsp;
+                            Save</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <h1 class="title">Jobs</h1>
 
@@ -210,166 +350,6 @@ $insrol = new FuncionesController();
         <button name="regresar_service" type="reset" class="button is-link is-light is-rounded"><i
                 class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
     </p>
-    <div class="accordion" id="accordionExample" style="display: none;">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                    <button id="btncollapseOne" class="btn btn-link btn-block text-left" type="button"
-                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                        aria-controls="collapseOne">
-                        Add service information
-                    </button>
-                </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <form name="formservice" class="FormularioAjax2"
-                        action="<?php echo APP_URL; ?>ajax/managejobAjax.php" method="POST" autocomplete="off"
-                        enctype="multipart/form-data" style="display:none">
-                        <input type="hidden" name="id_servicio" value="">
-                        <input type="hidden" name="idjob_service" value="">
-                        <input type="hidden" name="modulo_Opcion_service" value="registrarservicio">
-
-                        <div class="col-sm-12 col-md-12">
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="control ">
-                                        <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codservice' ");
-
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codservice' ) where estado=1;";
-
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
-
-                                        echo ' <select name="cmb_service" class="form-select" id="select_service" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
-                            </option>';
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control ">
-                                        <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codappliance' ");
-
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codappliance' ) where estado=1;";
-
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
-
-                                        echo ' <select name="cmb_appliance" class="form-select" id="select_appliance" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
-                            </option>';
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control ">
-                                        <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codbrand' ");
-
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codbrand' ) where estado=1;";
-
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
-
-                                        echo ' <select name="cmb_brand" class="form-select" id="select_brand" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
-                            </option>';
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control">
-                                        <label>Model<?php echo CAMPO_OBLIGATORIO; ?></label>
-                                        <input class="input" type="text" name="model" maxlength="200" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="control ">
-                                        <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codsymptom' ");
-
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codsymptom' ) where estado=1;";
-
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
-
-                                        echo ' <select id="select_symptom" name="cmb_symptom" class="form-select"  required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
-                            </option>';
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control">
-                                        <label>Service Fee<?php echo CAMPO_OBLIGATORIO; ?> </label>
-                                        <input class="input" type="text" name="servicefee" value="0.00"
-                                            pattern="[0-9.]{1,25}" maxlength="25" required>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control">
-                                        <label>Covered</label>
-                                        <input class="input" type="text" name="covered" value="0.00"
-                                            pattern="[0-9.]{1,25}" maxlength="25">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="control">
-                                        <label>Problem Detail<?php echo CAMPO_OBLIGATORIO; ?></label>
-                                        <textarea name="problemdetail" class="input" style="height: 100px;"
-                                            required></textarea>
-                                    </div>
-                                </div>
-                                <div class="column">
-                                    <div class="control">
-                                        <p class="has-text-centered">
-
-                                            <button type="reset" class="button is-link is-light is-rounded"><i
-                                                    class="fas fa-paint-roller"></i> &nbsp;
-                                                Clean</button>
-                                            <button type="submit" class="button is-info is-rounded"><i
-                                                    class="far fa-save"></i> &nbsp;
-                                                Save</button>
-                                        </p>
-                                        <p class="has-text-centered pt-1">
-                                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
-                                                mandatory</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
 
 
 
@@ -390,15 +370,16 @@ $insrol = new FuncionesController();
                         data-toggle="collapse" data-target="#collapsecita" aria-expanded="true"
                         aria-controls="collapsecita">
                         <i class="far fa-calendar-alt"></i>
-                        Add appoinment Schedule
+                        Appoinment Schedule
                     </button>
                 </h2>
             </div>
 
             <div id="collapsecita" class="collapse" aria-labelledby="headingOne" data-parent="#accordioncita">
                 <div class="card-body">
-                    <form name="formcita" class="FormularioAjax3" action="<?php echo APP_URL; ?>ajax/managejobAjax.php"
-                        method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <form name="formcita" id="formcitajob" class="FormularioAjax3"
+                        action="<?php echo APP_URL; ?>ajax/managejobAjax.php" method="POST" autocomplete="off"
+                        enctype="multipart/form-data">
                         <input type="hidden" name="id_cita" value="">
                         <input type="hidden" name="idjob_cita" value="">
                         <input type="hidden" name="modulo_Opcion_cita" value="registrarcita">
@@ -534,18 +515,6 @@ $insrol = new FuncionesController();
                                 </div>
                             </div>
                         </div>
-                        <p class="has-text-centered">
-
-                            <button type="reset" class="button is-link is-light is-rounded"><i
-                                    class="fas fa-paint-roller"></i> &nbsp;
-                                Clean</button>
-                            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp;
-                                Save</button>
-                        </p>
-                        <p class="has-text-centered pt-1">
-                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
-                                mandatory</small>
-                        </p>
                     </form>
 
 
@@ -564,10 +533,11 @@ $insrol = new FuncionesController();
 
                 </h2>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordioncita">
                 <div class="card-body">
-                    <form name="formpago" class="FormularioAjax4" action="<?php echo APP_URL; ?>ajax/managejobAjax.php"
-                        method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <form name="formpago" id="formpagojob" class="FormularioAjax4"
+                        action="<?php echo APP_URL; ?>ajax/managejobAjax.php" method="POST" autocomplete="off"
+                        enctype="multipart/form-data">
                         <input type="hidden" name="id_pago" value="">
                         <input type="hidden" name="idjob_pago" value="">
                         <input type="hidden" name="modulo_Opcion_pago" value="registrarpago">
@@ -602,19 +572,6 @@ $insrol = new FuncionesController();
                                 </div>
                             </div>
                         </div>
-                        <p class="has-text-centered">
-
-                            <button type="reset" class="button is-link is-light is-rounded"><i
-                                    class="fas fa-paint-roller"></i> &nbsp;
-                                Clean</button>
-                            <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i>
-                                &nbsp;
-                                Save</button>
-                        </p>
-                        <p class="has-text-centered pt-1">
-                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
-                                mandatory</small>
-                        </p>
                     </form>
 
                 </div>
@@ -690,6 +647,8 @@ $insrol = new FuncionesController();
         </div>
     </div>
 </div>
+<!-- Fin modal de movimientos -->
+
 <script>
 $(document).ready(function() {
     $('#datepicker, #datepicker2').datepicker({
@@ -718,17 +677,16 @@ const id_cita = document.getElementsByName("id_cita");
 const idjob_pago = document.getElementsByName("idjob_pago");
 const id_pago = document.getElementsByName("id_pago");
 const idjob_movimiento = document.getElementsByName("idjob_movimiento");
+const id_diagnostico = document.getElementsByName("id_diagnostico");
 
 
 
 
 
 const formCompany = document.getElementsByName("formCompany");
-const formservice = document.getElementsByName("formservice");
 const formcita = document.getElementsByName("formcita");
 const formpago = document.getElementsByName("formpago");
 
-const accordionExample = document.getElementById("accordionExample")
 const accordioncita = document.getElementById("accordioncita")
 
 const gridcat = document.getElementsByName("gridcat");
@@ -736,20 +694,18 @@ const gridservicio = document.getElementsByName("gridservicio");
 
 function pantallaprincipal() {
     gridcat[0].style.display = "";
-    accordionExample.style.display = "none";
     accordioncita.style.display = "none";
     gridservicio[0].style.display = "none";
     formCompany[0].style.display = "none";
-    formservice[0].style.display = "none";
+
     regresar_service[0].style.display = "none";
     document.getElementsByName("formCompany")[0].reset();
-    document.getElementsByName("formservice")[0].reset();
+
     document.getElementsByName("formcita")[0].reset();
     document.getElementsByName("formpago")[0].reset();
     $("#titulo")[0].innerText = "job list";
     $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-    $('#btncollapsecita').trigger('click');
+    $('.form-select').change();    
     cargargrid();
 }
 
@@ -759,7 +715,6 @@ $(document).ready(function() {
     $('.form-select').prop("selectedIndex", 0);
     $('.form-select').change();
     gridservicio[0].style.display = "none";
-    accordionExample.style.display = "none"
     accordioncita.style.display = "none";
     regresar_service[0].style.display = "none";
 
@@ -822,6 +777,8 @@ $(document).on('click', '#modificar', function(e) {
 
     let inputs = document.querySelectorAll("#formtrabajo input,#formtrabajo textarea, #formtrabajo select");
     inputs.forEach(input => input.disabled = true);
+
+
 
 
 });
@@ -909,31 +866,31 @@ function cargargridmovimientos(datos) {
                 data: 'estadojob',
 
             },
-            // {
-            //     title: 'reason',
-            //     className: "text-center",
-            //     data: 'nota',
+            {
+                className: "text-center",
+                title: 'Reason',
+                data: 'nota',
+                render: function(data, type, row, meta) {
+                    cadena =
+                        '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
+                        'title="' +
+                        data + '">' +
+                        '<i class="fas fa-info-circle"></i></button></td>';
+                    return cadena;
+                }
 
-            // },
-            { 
-                        className: "text-center",
-                        title: 'Reason',
-                        data: 'nota',
-                        render: function(data, type, row, meta) {
-                            cadena =
-                                '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
-                                'title="' +
-                                data + '">' +
-                                '<i class="fas fa-info-circle"></i></button></td>';
-                            return cadena;
-                        }
-
-                    },
+            },
             {
                 width: "20%",
                 title: 'Date',
                 data: 'fecha_creacion',
 
+
+            },
+            {
+                title: 'User',
+                className: "text-center",
+                data: 'usuario',
 
             },
 
@@ -951,7 +908,6 @@ function cargargridmovimientos(datos) {
 $(document).on('click', '#servicios', function(e) {
 
     event.preventDefault();
-    accordionExample.style.display = "";
     regresar_service[0].style.display = "";
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
@@ -960,12 +916,12 @@ $(document).on('click', '#servicios', function(e) {
 
 
     gridcat[0].style.display = "none";
-    formservice[0].style.display = "";
 
     id_servicio[0].value = 0;
     idjob_service[0].value = dato.id_trabajo;
 
     cargargridservicios(dato.id_trabajo)
+
 });
 
 $(document).on('click', '#cita', function(e) {
@@ -982,7 +938,6 @@ $(document).on('click', '#cita', function(e) {
 
 
     gridcat[0].style.display = "none";
-    formservice[0].style.display = "";
 
 
     idjob_cita[0].value = dato.id_trabajo;
@@ -1056,12 +1011,16 @@ $(document).on('click', '#cita', function(e) {
 
 
     });
+
+    let inputs = document.querySelectorAll(
+        "#formcitajob input,#formcitajob textarea, #formcitajob select,#formpagojob input,#formpagojob textarea, #formpagojob select"
+    );
+    inputs.forEach(input => input.disabled = true);
+
 });
 
 function cargaformularioservicio(expandirformulario) {
     gridcat[0].style.display = "none";
-    formservice[0].style.display = "";
-    accordionExample.style.display = "";
     regresar_service[0].style.display = "";
     if (expandirformulario == 1) {
         $('#btncollapseOne').trigger('click');
@@ -1089,14 +1048,41 @@ $(document).on('click', '#editservicios', function(e) {
     $('#btncollapseOne').trigger('click');
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTableservicio").DataTable().data()[row];
+    document.getElementsByName("formdiagnostico")[0].reset();
 
-
+    
     id_servicio[0].value = dato.id_servicio;
     idjob_service[0].value = dato.id_trabajo;
 
+  
+
+    $.ajax({
+        type: "GET",
+        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadiagnostico' ?>=" + dato.id_servicio,
+        success: function(response) {
+            $(".loadersacn").fadeOut("slow");
+            var res = jQuery.parseJSON(response);
+            var estilo = "";
+
+            var datos = [];
+
+            if (res.status == 200) {
+                datos = res.data;
+                id_diagnostico[0].value=datos[0].id_diagnostico;
+
+                document.getElementsByName("diagnostico")[0].value = datos[0].nota;
+                document.getElementsByName("laborfee")[0].value = datos[0].laborfee;
+                document.getElementsByName("serial")[0].value = datos[0].serial;
+
+            } else {
+                id_diagnostico[0].value = 0;
+            }
+        }
+
+
+    });
+
     document.getElementsByName("model")[0].value = dato.model;
-    document.getElementsByName("servicefee")[0].value = dato.servicefee;
-    document.getElementsByName("covered")[0].value = dato.covered;
     document.getElementsByName("problemdetail")[0].value = dato.problemdetail;
 
     $("#select_service").val(dato.id_valservice);
@@ -1108,22 +1094,34 @@ $(document).on('click', '#editservicios', function(e) {
     $("#select_brand").val(dato.id_valbrand);
     $('#select_brand').change();
 
-    $("#select_symptom").val(dato.id_valsymptom);
-    $('#select_symptom').change();
+    let inputs = document.querySelectorAll(
+        "#formdatosservicio input,#formdatosservicio textarea, #formdatosservicio select");
+    inputs.forEach(input => input.disabled = true);
+
+
+    $("#titulomodaldiagnostico")[0].innerHTML = ' Diagnosis for service';
+    // para mostrar modal
+    $("#modaldiagnostico").modal({
+        backdrop: "static",
+        keyboard: false
+    });
 
 
 });
 
-
+function quedarenmodaldiagnostico(alerta){
+    id_diagnostico[0].value=alerta.id_diagnostico;
+    
+}
 
 
 function cargargridservicios(idtrabajo) {
     $(".loadersacn")[0].style.display = "";
     gridcat[0].style.display = "none";
     formCompany[0].style.display = "none";
-    formservice[0].style.display = "";
+
     gridservicio[0].style.display = "";
-    document.getElementsByName("formservice")[0].reset();
+
     $.ajax({
         type: "GET",
         url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagridservicio' ?>=" + idtrabajo,
@@ -1253,27 +1251,12 @@ function cargargridservicios(idtrabajo) {
                         title: 'Actions',
                         data: 'id_servicio',
                         render: function(data, type, row, meta) {
-                            cadena =
-                                '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Edit Service" href="#" class="button is-services is-rounded is-small" valor="' +
+                            cadena ='<td>'+
+                                '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Diagnosis" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
                                 meta.row + '">' +
-                                '<i class="far fa-edit"></i></a></div> ';
+                                '<i class="fas fa-diagnoses"></i></a></div> '; 
 
-                            cadena = cadena + '<td>' +
-                                '<div style="float: left;">';
-                            cadena = cadena + '<div>';
-                            cadena = cadena +
-                                '<form name="accionservicio" class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
-                                '<input type="hidden" name="modulo_jobservice" value="eliminar">' +
-                                '<input type="hidden" name="id_servicio" value="' +
-                                data + '">' +
-                                '<button type="submit" title="Eliminate" class="button is-acciones is-rounded is-small">' +
-                                '<i class="far fa-trash-alt"></i>' +
-                                '</button>' +
-                                '</form>';
-
-                            cadena = cadena + '</div>';
-                            cadena = cadena + '</div></td>';
-                            return cadena;
+                            return cadena + '</td>';
 
                         }
 
@@ -1453,7 +1436,7 @@ function cargargrid() {
                             if (row.estadojob == "Booked") {
                                 cadena = '<td><div style=""><div>';
                                 cadena = cadena +
-                                    '<form class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
+                                    '<form class="FormularioAjax" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
                                     '<input type="hidden" name="modulo_job" value="aceptar">' +
                                     '<input type="hidden" name="id_trabajo" value="' +
                                     data + '">' +

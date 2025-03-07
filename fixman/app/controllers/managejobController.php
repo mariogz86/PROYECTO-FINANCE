@@ -19,14 +19,32 @@ class managejobController extends mainModel
 	//funcion para cargar los formularios 
 	public function listar()
 	{
-
-		$consulta_datos = "select * from \"SYSTEM\".OBTENER_JOBS;";
+		if( $_SESSION['rol']!="Administrator"){
+			$consulta_datos = "select * from \"SYSTEM\".OBTENER_JOBS where id_tecnico='".$_SESSION['id']."'";
+		}else{
+			$consulta_datos = "select * from \"SYSTEM\".OBTENER_JOBS;";
+		}
+		
 
 		$datos = $this->ejecutarConsulta($consulta_datos);
 		$datos = $datos->fetchAll();
 
 		return $datos;
 	}
+
+	//funcion para cargar los formularios 
+	public function listarcargadiagnostico()
+	{
+
+		$consulta_datos = "select * from \"SYSTEM\".DIAGNOSTICO where id_servicio =" . $_GET['cargadiagnostico'] . ";";
+
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
+	
 
 	public function listarservicios()
 	{
@@ -64,7 +82,8 @@ class managejobController extends mainModel
 	public function obtenermovimientosjob()
 	{
 
-		$consulta_datos = "select m.*,cv.nombre as estadojob from \"SYSTEM\".movimientotrabajo m
+		$consulta_datos = "select m.*,cv.nombre as estadojob, UU.Usuario as Usuario from \"SYSTEM\".movimientotrabajo m
+				INNER JOIN \"SYSTEM\".USUARIOS UU ON UU.ID_USUARIO = m.USUARIO_CREACION
 				inner join \"SYSTEM\".catalogovalor cv on cv.id_catalogovalor=m.id_estadotrabajo where m.id_trabajo =" . $_GET['obtenermovimientosjob'] . " order by id_movimiento asc;";
 
 		$datos = $this->ejecutarConsulta($consulta_datos);
@@ -88,6 +107,24 @@ class managejobController extends mainModel
 		$datos = $this->ContarRegistros($consulta_datos);
 
 		return $datos;
+	}
+
+	//Funcion para guardar los datos del formulario
+	public function guardardiagnostico()
+	{ 
+		if ($_POST["id_diagnostico"] == "0") {
+			$sentencia = "select \"SYSTEM\".GUARDARDIAGNOSTICO('" . $_POST["id_servicio"] . "','" . $_POST["serial"] . "','" . $_POST["diagnostico"] . "','" . $_POST["laborfee"] . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		} else {
+			$sentencia = "select \"SYSTEM\".ACTUALIZARDIAGNOSTICO('" . $_POST["id_diagnostico"] . "','" . $_POST["id_servicio"] . "','" . $_POST["serial"] . "','" . $_POST["diagnostico"] . "','" . $_POST["laborfee"] . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		}
+
+		return $total;
 	}
 
 	//Funcion para guardar los datos del formulario
