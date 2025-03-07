@@ -570,7 +570,7 @@ $insrol = new FuncionesController();
 
                 </h2>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordioncita">
                 <div class="card-body">
                     <form name="formpago" class="FormularioAjax4" action="<?php echo APP_URL; ?>ajax/jobAjax.php"
                         method="POST" autocomplete="off" enctype="multipart/form-data">
@@ -1317,7 +1317,7 @@ function cargargrid() {
                     [2, 'asc']
                 ],
                 //paging: false,
-                scrollCollapse: true,
+                //scrollCollapse: true,
                 scrollX: false,
                 scrollY: 400,
                 select: {

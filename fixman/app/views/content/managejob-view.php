@@ -160,13 +160,7 @@ $insrol = new FuncionesController();
 
     <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
 
-    <div name="gridcat">
-
-
-        <p class="has-text-left pt-1 pb-1">
-            <a name="agregarcat" href="#" class="button is-link is-rounded btn-back"><i class="fas fa-plus"></i> &nbsp;
-                Add record</a>
-        </p>
+    <div name="gridcat"> 
         <table id="myTable" class="table table-striped table-bordered">
 
         </table>
@@ -664,8 +658,7 @@ $(document).ready(function() {
 </script>
 <script>
 //JSON.stringify(tabla.rows( { selected: true } ).data().toArray());
-
-const button = document.getElementsByName("agregarcat");
+ 
 const regresar = document.getElementsByName("regresar");
 const regresar_service = document.getElementsByName("regresar_service");
 
@@ -732,15 +725,7 @@ regresar[0].addEventListener("click", (event) => {
     pantallaprincipal();
 });
 
-button[0].addEventListener("click", (event) => {
-    event.preventDefault();
-    $("#titulo")[0].innerText = "New job";
-    gridcat[0].style.display = "none";
-    formCompany[0].style.display = "";
-    idjob[0].value = 0;
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-});
+ 
 $(document).on('click', '#modificar', function(e) {
 
     event.preventDefault();
