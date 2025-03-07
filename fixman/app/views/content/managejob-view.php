@@ -603,7 +603,7 @@ $insrol = new FuncionesController();
                                         $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codjob' ) where estado=1;";
 
                                         $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+                                        echo '<label>Job State' . CAMPO_OBLIGATORIO . '</label><br>';
 
                                         echo ' <select id="select_estadojob" name="cmb_estadojob" class="form-select"  required>';
                                         echo '<option value="">Select a value </option>';
