@@ -1,0 +1,185 @@
+Aquí tienes un ejemplo de cómo generar una factura en PDF con TCPDF en PHP.
+
+Pasos previos:
+
+1. Descarga e instala TCPDF desde su repositorio oficial.
+
+
+2. Incluye la librería en tu proyecto.
+
+
+
+Código PHP para generar la factura:
+
+<?php
+require_once('tcpdf/tcpdf.php'); // Asegúrate de que la ruta es correcta
+
+// Crear un nuevo documento PDF
+$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('Tu Empresa');
+$pdf->SetTitle('Factura');
+$pdf->SetMargins(10, 10, 10);
+$pdf->SetAutoPageBreak(TRUE, 10);
+$pdf->AddPage();
+
+// Encabezado de la factura
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'FACTURA', 0, 1, 'C');
+
+// Información de la empresa
+$pdf->SetFont('helvetica', '', 12);
+$pdf->Cell(0, 5, 'Nombre de la Empresa', 0, 1, 'L');
+$pdf->Cell(0, 5, 'Dirección: Calle Ejemplo 123', 0, 1, 'L');
+$pdf->Cell(0, 5, 'Teléfono: +123456789', 0, 1, 'L');
+$pdf->Ln(5);
+
+// Información del cliente
+$pdf->Cell(0, 5, 'Cliente: Juan Pérez', 0, 1, 'L');
+$pdf->Cell(0, 5, 'Dirección: Av. Cliente 456', 0, 1, 'L');
+$pdf->Cell(0, 5, 'Teléfono: +987654321', 0, 1, 'L');
+$pdf->Ln(5);
+
+// Tabla de productos
+$pdf->SetFont('helvetica', 'B', 12);
+$pdf->Cell(80, 7, 'Descripción', 1, 0, 'C');
+$pdf->Cell(30, 7, 'Cantidad', 1, 0, 'C');
+$pdf->Cell(40, 7, 'Precio Unitario', 1, 0, 'C');
+$pdf->Cell(40, 7, 'Total', 1, 1, 'C');
+
+$pdf->SetFont('helvetica', '', 12);
+$productos = [
+    ['Producto 1', 2, 10.00],
+    ['Producto 2', 1, 15.50],
+    ['Producto 3', 3, 7.75],
+];
+
+$total = 0;
+foreach ($productos as $producto) {
+    $subtotal = $producto[1] * $producto[2];
+    $total += $subtotal;
+    $pdf->Cell(80, 7, $producto[0], 1);
+    $pdf->Cell(30, 7, $producto[1], 1, 0, 'C');
+    $pdf->Cell(40, 7, '$' . number_format($producto[2], 2), 1, 0, 'C');
+    $pdf->Cell(40, 7, '$' . number_format($subtotal, 2), 1, 1, 'C');
+}
+
+// Total
+$pdf->SetFont('helvetica', 'B', 12);
+$pdf->Cell(150, 7, 'Total:', 1, 0, 'R');
+$pdf->Cell(40, 7, '$' . number_format($total, 2), 1, 1, 'C');
+
+// Salida del PDF
+$pdf->Output('factura.pdf', 'I');
+?>
+
+Explicación:
+
+Se configura la página y los márgenes.
+
+Se agregan los datos de la empresa y el cliente.
+
+Se genera una tabla con los productos, cantidad, precio unitario y total.
+
+Se calcula y muestra el total de la factura.
+
+Finalmente, se genera y muestra el PDF en el navegador.
+
+
+Si necesitas ajustes, dime qué más te gustaría agregar.
+
+
+Si quieres generar una factura con TCPDF usando código HTML, puedes hacerlo con el método writeHTML().
+
+Aquí tienes un ejemplo completo:
+
+Código PHP con TCPDF y HTML
+
+<?php
+require_once('tcpdf/tcpdf.php'); // Asegúrate de que la ruta es correcta
+
+// Crear un nuevo documento PDF
+$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('Tu Empresa');
+$pdf->SetTitle('Factura');
+$pdf->SetMargins(10, 10, 10);
+$pdf->SetAutoPageBreak(TRUE, 10);
+$pdf->AddPage();
+
+// HTML para la factura
+$html = '
+<h1 style="text-align: center;">FACTURA</h1>
+<h3>Datos de la Empresa</h3>
+<p><strong>Nombre:</strong> Mi Empresa S.A.</p>
+<p><strong>Dirección:</strong> Calle Ejemplo 123</p>
+<p><strong>Teléfono:</strong> +123456789</p>
+
+<h3>Datos del Cliente</h3>
+<p><strong>Nombre:</strong> Juan Pérez</p>
+<p><strong>Dirección:</strong> Av. Cliente 456</p>
+<p><strong>Teléfono:</strong> +987654321</p>
+
+<h3>Detalle de la Factura</h3>
+<table border="1" cellpadding="5">
+    <tr style="background-color: #f2f2f2;">
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Total</th>
+    </tr>';
+
+// Datos de productos
+$productos = [
+    ['Producto 1', 2, 10.00],
+    ['Producto 2', 1, 15.50],
+    ['Producto 3', 3, 7.75],
+];
+
+$total = 0;
+foreach ($productos as $producto) {
+    $subtotal = $producto[1] * $producto[2];
+    $total += $subtotal;
+    $html .= '
+    <tr>
+        <td>' . $producto[0] . '</td>
+        <td style="text-align: center;">' . $producto[1] . '</td>
+        <td style="text-align: center;">$' . number_format($producto[2], 2) . '</td>
+        <td style="text-align: center;">$' . number_format($subtotal, 2) . '</td>
+    </tr>';
+}
+
+// Total
+$html .= '
+    <tr>
+        <td colspan="3" style="text-align: right; font-weight: bold;">Total:</td>
+        <td style="text-align: center; font-weight: bold;">$' . number_format($total, 2) . '</td>
+    </tr>
+</table>';
+
+// Agregar el HTML al PDF
+$pdf->writeHTML($html, true, false, true, false, '');
+
+// Salida del PDF
+$pdf->Output('factura.pdf', 'I');
+?>
+
+
+---
+
+Explicación:
+
+1. Se usa HTML para estructurar la factura.
+
+
+2. Se incluyen estilos en línea para mejorar la presentación.
+
+
+3. La tabla muestra la lista de productos, cantidad, precio y total.
+
+
+4. Se usa writeHTML() para escribir el HTML dentro del PDF.
+
+
+
+Esto permite una mejor personalización y un diseño más flexible. ¿Quieres agregarle más estilos o algún otro dato?
