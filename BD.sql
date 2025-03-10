@@ -493,6 +493,33 @@ ALTER TABLE "SYSTEM".catalogovalor
 	   REFERENCES "SYSTEM".servicio(id_servicio); 
 	   
 	     --CREACION DE INDICES   
-	  create index diag_id_servicio on "SYSTEM".servicio("id_servicio"); 	   	   
+	  create index diag_id_servicio on "SYSTEM".servicio("id_servicio"); 
+
+	  	  CREATE TABLE "SYSTEM".parte (
+		"id_parte" serial PRIMARY KEY NOT NULL, 
+		"id_servicio" INTEGER NOT NULL, 		
+		"id_valorparte" INTEGER NOT NULL,
+		"cantidad" INTEGER NOT NULL, 		 		
+		"serial" VARCHAR(250)  NULL, 		
+		"costo" DOUBLE PRECISION not null,
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL		
+	);	  
+	
+		--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".parte
+	   ADD CONSTRAINT fk_id_servicio
+	   FOREIGN KEY (id_servicio) 
+	   REFERENCES "SYSTEM".servicio(id_servicio); 
+	   
+	   ALTER TABLE "SYSTEM".parte
+	   ADD CONSTRAINT fk_id_valorparte
+	   FOREIGN KEY (id_valorparte) 
+	   REFERENCES "SYSTEM".catalogovalor(id_catalogovalor);
+	   
+	    --CREACION DE INDICES   
+	  create index parte_idservicio on "SYSTEM".parte("id_servicio"); 	   	  
+	  create index parte_valorparte on "SYSTEM".parte("id_valorparte"); 
 	  
 	 
