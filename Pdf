@@ -183,3 +183,59 @@ Explicación:
 
 
 Esto permite una mejor personalización y un diseño más flexible. ¿Quieres agregarle más estilos o algún otro dato?
+Para personalizar el encabezado en TCPDF, debes extender la clase y sobrescribir el método Header(). De esta forma, puedes controlar la imagen, el tamaño y el texto de forma precisa.
+
+
+---
+
+Ejemplo de Personalización del Header en TCPDF
+
+class MYPDF extends TCPDF {
+    // Personalizar el encabezado
+    public function Header() {
+        // Definir posición, tamaño y ruta de la imagen
+        $imageFile = 'ruta/a/tu/imagen.png'; // Ruta de la imagen
+        $x = 10;  // Posición X
+        $y = 10;  // Posición Y
+        $width = 40; // Ancho deseado
+        $height = 15; // Alto deseado (ajustado automáticamente si se omite)
+        
+        // Agregar la imagen al encabezado
+        $this->Image($imageFile, $x, $y, $width, $height);
+        
+        // Definir fuente para el título
+        $this->SetFont('helvetica', 'B', 12);
+        $this->SetXY(55, 15); // Ajustar posición del texto
+        $this->Cell(0, 10, 'Título del Documento', 0, 1, 'L');
+
+        // Subtítulo opcional
+        $this->SetFont('helvetica', '', 10);
+        $this->SetXY(55, 20);
+        $this->Cell(0, 10, 'Subtítulo o información adicional', 0, 1, 'L');
+    }
+}
+
+// Crear instancia del PDF con el nuevo header
+$pdf = new MYPDF();
+$pdf->AddPage();
+$pdf->Output('archivo.pdf', 'I');
+
+
+---
+
+Explicación del código:
+
+1. Extiende TCPDF y sobrescribe Header() para un control total.
+
+
+2. Usa $this->Image() para agregar una imagen con el tamaño y posición deseados.
+
+
+3. Ajusta la posición del texto con $this->SetXY() y usa $this->Cell() para mostrar el título y subtítulo.
+
+
+4. Puedes combinar texto e imagen en el header para personalizar completamente el diseño.
+
+
+
+Con este método, cada página tendrá el encabezado personalizado. ¿Necesitas más ajustes?
