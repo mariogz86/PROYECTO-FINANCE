@@ -21,7 +21,7 @@ require_once "../autoload.php";
 		{ 
 			$res = array (
 				'status' => 200,
-				'message' => 'carga usuarios correcta',
+				'message' => 'Successful data upload',
 				'data' => $result
 					);
 			echo json_encode($res);

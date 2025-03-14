@@ -69,7 +69,7 @@ define ('K_PATH_IMAGES', dirname(__FILE__).'/../images/');
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', 'logobcn1.jpg');
+define ('PDF_HEADER_LOGO', 'fixman.jpg');
 
 /**
  * Header logo image width in user units.
@@ -111,12 +111,12 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'SACN Reporte');
+define ('PDF_HEADER_TITLE', 'Report');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "Sistema Nacional de Cuentas Nacionales");
+define ('PDF_HEADER_STRING', "Fixman Appliances");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].

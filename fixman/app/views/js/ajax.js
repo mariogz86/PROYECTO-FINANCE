@@ -27,7 +27,7 @@ btn_exit.forEach(exitSystem => {
     });
 });
 
-    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAcciones");
+    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes");
 
     formularios_ajax.forEach(formularios => {
     
@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6 .FormularioAcciones', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -235,6 +235,12 @@ function alertas_ajax(alerta){
                           break;       
                           case "formdiagnostico":
                             quedarenmodaldiagnostico(alerta);
+                          break;
+                          case "formpartes":
+                            quedarenmodalparte(alerta);
+                          break;   
+                          case "accionpartes":
+                            quedarenmodalparte(alerta);
                           break;         
                         default:
                             document.querySelector(".FormularioAjax").reset();

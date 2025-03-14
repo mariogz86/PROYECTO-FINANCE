@@ -155,12 +155,84 @@ $insrol = new FuncionesController();
         </div>
     </div>
 </div>
+<!-- modal partes-->
+<div class="modal fade" id="modalpartes">
+    <div class="modal-dialog modal-lx">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="titulomodalpartes" class="modal-title modal-title-h4"></h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #f3f3f3;">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="formpartes" class="FormularioAjax7" action="<?php echo APP_URL; ?>ajax/managejobAjax.php"
+                    method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <input type="hidden" name="id_parte" value="">
+                    <input type="hidden" name="id_servicio_parte" value="">
+                    <input type="hidden" name="modulo_parte" value="registrarparte">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="control">
+                                    <label>Qty<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <input class="input" type="number" name="cantidad" required>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control ">
+                                    <?php 
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codparts' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>Part Name ' . CAMPO_OBLIGATORIO . '</label><br>';
+
+                                        echo ' <select name="cmb_part" class="form-select" id="select_part" required>';
+                                        echo '<option value="">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                            </option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control">
+                                    <label>Serial #<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <input class="input" type="text" name="serialparte" maxlength="70" required>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control">
+                                    <label>Amount<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                    <input class="input" type="text" name="costo" value="0.00" pattern="[0-9.]{1,25}"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="has-text-centered">
+                        <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i>
+                            &nbsp;
+                            Save</button>
+                    </p>
+                    
+                </form>
+                <table id="myTablepartes" class="table table-striped table-bordered"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--fin modal partes-->
 <div class="container">
     <h1 class="title">Jobs</h1>
 
     <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
 
-    <div name="gridcat"> 
+    <div name="gridcat">
         <table id="myTable" class="table table-striped table-bordered">
 
         </table>
@@ -658,7 +730,7 @@ $(document).ready(function() {
 </script>
 <script>
 //JSON.stringify(tabla.rows( { selected: true } ).data().toArray());
- 
+
 const regresar = document.getElementsByName("regresar");
 const regresar_service = document.getElementsByName("regresar_service");
 
@@ -671,6 +743,10 @@ const idjob_pago = document.getElementsByName("idjob_pago");
 const id_pago = document.getElementsByName("id_pago");
 const idjob_movimiento = document.getElementsByName("idjob_movimiento");
 const id_diagnostico = document.getElementsByName("id_diagnostico");
+
+
+const id_parte = document.getElementsByName("id_parte");
+const id_servicio_parte = document.getElementsByName("id_servicio_parte");
 
 
 
@@ -698,7 +774,7 @@ function pantallaprincipal() {
     document.getElementsByName("formpago")[0].reset();
     $("#titulo")[0].innerText = "job list";
     $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();    
+    $('.form-select').change();
     cargargrid();
 }
 
@@ -725,7 +801,7 @@ regresar[0].addEventListener("click", (event) => {
     pantallaprincipal();
 });
 
- 
+
 $(document).on('click', '#modificar', function(e) {
 
     event.preventDefault();
@@ -806,6 +882,8 @@ $(document).on('click', '#movimientos', function(e) {
 
 });
 
+
+
 function cargargridmovimiento_save(alerta) {
     $.ajax({
         type: "GET",
@@ -831,10 +909,7 @@ function cargargridmovimiento_save(alerta) {
 function cargargridmovimientos(datos) {
 
     $('#griddmovimiento').DataTable({
-        data: datos,
-        language: {
-            "url": "<?php  echo APP_URL?>config/es-MX.json"
-        },
+        data: datos, 
         destroy: true,
         responsive: true,
         columns: [{
@@ -897,7 +972,7 @@ $(document).on('click', '#servicios', function(e) {
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
 
-    $("#titulo")[0].innerText = "Add service to job " + "-> Reference Number: " + dato.num_referencia;
+    $("#titulo")[0].innerText = "Reference Number: " + dato.num_referencia;
 
 
     gridcat[0].style.display = "none";
@@ -1035,11 +1110,11 @@ $(document).on('click', '#editservicios', function(e) {
     var dato = $("#myTableservicio").DataTable().data()[row];
     document.getElementsByName("formdiagnostico")[0].reset();
 
-    
+
     id_servicio[0].value = dato.id_servicio;
     idjob_service[0].value = dato.id_trabajo;
 
-  
+
 
     $.ajax({
         type: "GET",
@@ -1053,7 +1128,7 @@ $(document).on('click', '#editservicios', function(e) {
 
             if (res.status == 200) {
                 datos = res.data;
-                id_diagnostico[0].value=datos[0].id_diagnostico;
+                id_diagnostico[0].value = datos[0].id_diagnostico;
 
                 document.getElementsByName("diagnostico")[0].value = datos[0].nota;
                 document.getElementsByName("laborfee")[0].value = datos[0].laborfee;
@@ -1094,10 +1169,200 @@ $(document).on('click', '#editservicios', function(e) {
 
 });
 
-function quedarenmodaldiagnostico(alerta){
-    id_diagnostico[0].value=alerta.id_diagnostico;
-    
+function quedarenmodaldiagnostico(alerta) {
+    id_diagnostico[0].value = alerta.id_diagnostico;
+
 }
+
+$(document).on('click', '#agregarpartes', function(e) {
+
+    event.preventDefault();
+    id_parte[0].value = 0;
+    $(".loadersacn")[0].style.display = "";
+    var row = e.currentTarget.attributes['valor'].value;
+    var dato = $("#myTableservicio").DataTable().data()[row];
+
+
+    id_servicio_parte[0].value = dato.id_servicio;
+    $("#titulomodalpartes")[0].innerHTML = 'Add parts to the service';
+
+    // para mostrar modal
+    $("#modalpartes").modal({
+        backdrop: "static",
+        keyboard: false
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + dato.id_servicio,
+        success: function(response) {
+            $(".loadersacn").fadeOut("slow");
+            var res = jQuery.parseJSON(response);
+            var estilo = "";
+
+            var datos = [];
+
+            if (res.status == 200) {
+                datos = res.data;                
+                cargargridpartes(datos);
+
+            } else {
+                cargargridpartes(datos);
+            }
+        }
+
+
+    });
+
+});
+
+$(document).on('click', '#editparte', function(e) {
+
+event.preventDefault();
+$('#btncollapseOne').trigger('click');
+var row = e.currentTarget.attributes['valor'].value;
+var dato = $("#myTablepartes").DataTable().data()[row];
+
+
+id_servicio_parte[0].value = dato.id_servicio;
+id_parte[0].value = dato.id_parte;
+
+ 
+
+document.getElementsByName("cantidad")[0].value = dato.cantidad;
+document.getElementsByName("serialparte")[0].value = dato.serial;
+document.getElementsByName("costo")[0].value = dato.costo;
+
+$("#select_part").val(dato.id_valorparte);
+$('#select_part').change();
+ 
+ 
+
+});
+
+
+
+
+function quedarenmodalparte(alerta) {
+
+    document.getElementsByName("formpartes")[0].reset();
+    $('.form-select').prop("selectedIndex", 0);
+    $('.form-select').change();
+
+    $.ajax({
+        type: "GET",
+        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + id_servicio_parte[0].value,
+        success: function(response) {
+            $(".loadersacn").fadeOut("slow");
+            var res = jQuery.parseJSON(response);
+            var estilo = "";
+
+            var datos = [];
+
+            if (res.status == 200) {
+                datos = res.data;
+                cargargridpartes(datos);
+                // para mostrar modal
+
+            } else {
+                cargargridpartes(datos);
+            }
+        }
+
+
+    });
+
+}
+
+
+
+function cargargridpartes(datos) {
+
+    $('#myTablepartes').DataTable({
+        data: datos,
+        destroy: true,
+        responsive: true,
+        columns: [{
+                data: 'id_parte',
+                visible: false,
+            },
+            {
+                data: 'id_servicio',
+                visible: false,
+            },
+            {
+                data: 'id_valorparte',
+                visible: false,
+            },
+            {
+                title: 'Part name',
+                className: "text-center",
+                data: 'nombre',
+
+            },
+            {
+                title: 'Qty',
+                className: "text-center",
+                data: 'cantidad',
+
+            },
+            {
+                title: 'Serial #',
+                className: "text-center",
+                data: 'serial',
+
+            },
+            {
+                title: 'Amount',
+                className: "text-center",
+                data: 'costo',
+                render: $.fn.dataTable.render.number(',', '.', 2)
+
+            },
+            {
+
+                className: "text-center",
+                title: 'Actions',
+                data: 'id_parte',
+                render: function(data, type, row, meta) {
+                    cadena =
+                        '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editparte" title="Edit part" href="#" class="button is-services is-rounded is-small" valor="' +
+                        meta.row + '">' +
+                        '<i class="far fa-edit"></i></a></div> ';
+
+                    cadena = cadena + '<td>' +
+                        '<div style="float: left;">';
+                    cadena = cadena + '<div>';
+                    cadena = cadena +
+                        '<form name="accionpartes" class="FormularioAccionespartes" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
+                        '<input type="hidden" name="modulo_serviceparte" value="eliminar">' +
+                        '<input type="hidden" name="id_servicioparte" value="' +
+                        data + '">' +
+                        '<button type="submit" title="Eliminate" class="button is-acciones is-rounded is-small">' +
+                        '<i class="far fa-trash-alt"></i>' +
+                        '</button>' +
+                        '</form>';
+
+                    cadena = cadena + '</div>';
+                    cadena = cadena + '</div></td>';
+                    return cadena;
+
+                }
+
+            },
+
+        ],
+        // order: [
+        //     [0, 'desc']
+        // ],
+        //paging: false,
+
+    });
+
+    cargarfunciones();
+
+}
+
 
 
 function cargargridservicios(idtrabajo) {
@@ -1236,12 +1501,15 @@ function cargargridservicios(idtrabajo) {
                         title: 'Actions',
                         data: 'id_servicio',
                         render: function(data, type, row, meta) {
-                            cadena ='<td>'+
-                                '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Diagnosis" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
+                            cadena = '<td><div style="width: 105px;">' +
+                                '<div ><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Diagnosis" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
                                 meta.row + '">' +
-                                '<i class="fas fa-diagnoses"></i></a></div> '; 
+                                '<i class="fas fa-diagnoses"></i></a></div> ' +
+                                '<div><div style="margin-right: 2px;"><a id="agregarpartes" title="Add Parts" href="#" class="button is-partes is-rounded is-small" valor="' +
+                                meta.row + '">' +
+                                '<i class="fas fa-toolbox"></i></a></div> ';
 
-                            return cadena + '</td>';
+                            return cadena + '</div></td>';
 
                         }
 
@@ -1438,7 +1706,7 @@ function cargargrid() {
                                     '</a>' +
                                     '<div class="dropdown-menu">';
                                 cadena = cadena +
-                                    '<div><div style="margin: 2px;"><a id="modificar" title="Job details" href="#" class="button is-info is-rounded is-small" valor="' +
+                                    '<div style="margin: 2px;"><a id="modificar" title="Job details" href="#" class="button is-info is-rounded is-small" valor="' +
                                     meta.row + '">' +
                                     '<i class="fas fa-sync fa-fw"></i></a></div> ';
 
@@ -1447,14 +1715,15 @@ function cargargrid() {
                                     meta.row + '">' +
                                     '<i class="fas fa-tools"></i></a></div> ';
                                 cadena = cadena +
-                                    '<div><div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
+                                    '<div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
                                     meta.row + '">' +
-                                    '<i class="far fa-calendar-alt"></i></a></div> ';
+                                    '<i class="fas fa-calendar-alt"></i></a></div> ';
 
                                 cadena = cadena +
-                                    '<div><div style="margin: 2px;"><a id="movimientos" title="Status history" href="#" class="button is-history is-rounded is-small" valor="' +
+                                    '<div style="margin: 2px;"><a id="movimientos" title="Status history" href="#" class="button is-history is-rounded is-small" valor="' +
                                     meta.row + '">' +
                                     '<i class="fas fa-history"></i></a></div> ';
+ 
 
                                 // cadena = cadena +
                                 //     '<div style="">';

@@ -1430,12 +1430,20 @@ ORDER BY
 	CREATE
 OR REPLACE FUNCTION "SYSTEM".cambiarestado_service (IDservicio INTEGER, ESTADO INT, IDUSUARIO INT) RETURNS SETOF INT AS $$
 begin
+DELETE FROM "SYSTEM".diagnostico
+WHERE
+	id_servicio = IDservicio;
+	
+	DELETE FROM "SYSTEM".parte
+WHERE
+	id_servicio = IDservicio;
+
 RETURN QUERY
 DELETE FROM "SYSTEM".servicio
 WHERE
 	id_servicio = IDservicio
 RETURNING
-	id_servicio;
+	id_servicio; 
 end;
 $$ LANGUAGE PLPGSQL;
 
@@ -1805,3 +1813,18 @@ RETURNING
 
 end;
 $$ LANGUAGE PLPGSQL;
+
+
+para calcular la suma total de todo el TRABAJO
+SELECT SUM(
+	S.SERVICEFEE+
+	D.LABORFEE+
+	(select sum((p.cantidad * p.costo))  from "SYSTEM".servicio s 
+inner join "SYSTEM".parte p on p.id_servicio=s.id_servicio
+where s.id_trabajo=T.ID_TRABAJO)) totaltrabajo
+FROM
+	"SYSTEM".TRABAJO T
+	INNER JOIN "SYSTEM".SERVICIO S ON S.ID_TRABAJO = T.ID_TRABAJO
+	INNER JOIN "SYSTEM".DIAGNOSTICO D ON D.ID_SERVICIO = S.ID_SERVICIO
+WHERE
+	T.ID_TRABAJO = 1

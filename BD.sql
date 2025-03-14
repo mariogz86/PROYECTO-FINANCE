@@ -522,4 +522,6 @@ ALTER TABLE "SYSTEM".catalogovalor
 	  create index parte_idservicio on "SYSTEM".parte("id_servicio"); 	   	  
 	  create index parte_valorparte on "SYSTEM".parte("id_valorparte"); 
 	  
+	  
+	  
 	 

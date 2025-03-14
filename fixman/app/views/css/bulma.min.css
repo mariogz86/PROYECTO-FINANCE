@@ -11837,3 +11837,27 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     border-color: transparent;
     color: #000000
 }
+
+.button.is-partes {
+    background-color: #ad2daa;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-partes.is-hovered,.button.is-partes:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
+.button.is-factura {
+    background-color: #ac4f17;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-factura.is-hovered,.button.is-factura:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}

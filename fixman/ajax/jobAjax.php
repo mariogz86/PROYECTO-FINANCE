@@ -17,7 +17,7 @@ if (isset($_GET['cargagrid'])) {
 	if ($result) {
 		$res = array(
 			'status' => 200,
-			'message' => 'carga usuarios correcta',
+			'message' => 'Successful data upload',
 			'data' => $result
 		);
 		echo json_encode($res);
@@ -37,7 +37,7 @@ if (isset($_GET['cargagridservicio'])) {
 	if ($result) {
 		$res = array(
 			'status' => 200,
-			'message' => 'carga usuarios correcta',
+			'message' => 'Successful data upload',
 			'data' => $result
 		);
 		echo json_encode($res);
@@ -58,7 +58,7 @@ if (isset($_GET['cargadatoscita'])) {
 	if ($result) {
 		$res = array(
 			'status' => 200,
-			'message' => 'carga usuarios correcta',
+			'message' => 'Successful data upload',
 			'data' => $result
 		);
 		echo json_encode($res);
@@ -78,7 +78,7 @@ if (isset($_GET['cargadatospago'])) {
 	if ($result) {
 		$res = array(
 			'status' => 200,
-			'message' => 'carga usuarios correcta',
+			'message' => 'Successful data upload',
 			'data' => $result
 		);
 		echo json_encode($res);
