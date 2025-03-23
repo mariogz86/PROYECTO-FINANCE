@@ -28,6 +28,18 @@ class jobController extends mainModel
 		return $datos;
 	}
 
+		//funcion para cargar los formularios 
+		public function listardashboard()
+		{
+	
+			$consulta_datos = "select * from \"SYSTEM\".dashboardjobs";
+	
+			$datos = $this->ejecutarConsulta($consulta_datos);
+			$datos = $datos->fetchAll();
+	
+			return $datos;
+		}
+
 	public function listarservicios()
 	{
 

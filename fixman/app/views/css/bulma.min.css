@@ -11861,3 +11861,15 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     border-color: transparent;
     color: #000000
 }
+
+.button.is-mail {
+    background-color: #1769ac;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-mail.is-hovered,.button.is-mail:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}

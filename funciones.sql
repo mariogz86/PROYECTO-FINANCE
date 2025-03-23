@@ -1229,7 +1229,8 @@ SELECT
 	C.VALOR_NTE,
 	C.CUSTOMER_FEE,
 	UM.USUARIO AS USUARIOM,
-	UU.Usuario as Usuario
+	UU.Usuario as Usuario,
+	    com.email AS correocompany
 FROM
 	"SYSTEM".TRABAJO T
 	INNER JOIN "SYSTEM".catalogovalor cve on CVE.id_catalogovalor=T.id_estadotrabajo	
@@ -1828,3 +1829,37 @@ FROM
 	INNER JOIN "SYSTEM".DIAGNOSTICO D ON D.ID_SERVICIO = S.ID_SERVICIO
 WHERE
 	T.ID_TRABAJO = 1
+	
+	 CREATE OR REPLACE VIEW "SYSTEM".dashboardjobs AS
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Booked'
+group by  cv.nombre,cv.id_catalogovalor 
+union all
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Accepted'
+group by  cv.nombre,cv.id_catalogovalor 
+union all
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Pending'
+group by  cv.nombre,cv.id_catalogovalor 
+union all
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Diagnosed'
+group by  cv.nombre,cv.id_catalogovalor 
+union all
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='complete'
+group by  cv.nombre,cv.id_catalogovalor 
+union all
+select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Cancelled'
+group by  cv.nombre,cv.id_catalogovalor
+
+para buscar iconos
+https://www.flaticon.com/search?word=Cancelled 

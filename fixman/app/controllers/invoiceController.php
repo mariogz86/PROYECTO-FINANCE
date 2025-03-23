@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\mainModel;
 
-if (isset($_POST['modulo_Opcion'])) {
+if (isset($_POST['enviarfactura'])) {
     require_once '../phpmailer/src/PHPMailer.php';
     require_once '../phpmailer/src/SMTP.php';
     require_once '../phpmailer/src/Exception.php';
@@ -73,4 +73,45 @@ class invoiceController extends mainModel
 
         return $datos;
     }
+
+    public function usuariocreado($correo,$numref, $pdf)
+	{
+		$phpmailer = new PHPMailer(true);
+		$phpmailer->SMTPOptions = array(
+			'ssl' => array(
+				'verify_peer' => false,
+				'verify_peer_name' => false,
+				'allow_self_signed' => true,
+			)
+		);
+		$phpmailer->isSMTP();
+		$phpmailer->Host       = 'smtp-relay.sendinblue.com';
+		$phpmailer->SMTPAuth   = true;
+		$phpmailer->Username   = '854a84002@smtp-brevo.com';  // Tu correo registrado en Sendinblue
+		$phpmailer->Password   = '7DJzMZct3NVwC8X1';  // API Key proporcionada por Sendinblue
+		$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$phpmailer->Port       = 587;
+		$phpmailer->SMTPDebug = APP_SMTPDebug;
+
+	 
+
+		$phpmailer->setFrom(APP_Username);
+		$phpmailer->addAddress($correo);
+
+        // Adjuntar el PDF desde la variable
+        $phpmailer->addStringAttachment($pdf, $numref.'.pdf', 'base64', 'application/pdf');
+                
+
+		$phpmailer->isHTML(true); // Set email format to plain text
+
+		$phpmailer->Subject = "Invoice sending";
+        $phpmailer->Body    = '<p>Greetings, attached is the invoice for the services performed on your behalf.</p>';
+
+		if (!$phpmailer->send()) {
+			echo  'Error en el envío de correo electrónico, Error: ' . $phpmailer->ErrorInfo .
+				' Para mayor información pongase en contacto con el administrador del sistema';
+		}else{
+            return 1;
+        }
+	}
 }

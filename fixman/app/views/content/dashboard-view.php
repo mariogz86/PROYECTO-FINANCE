@@ -21,10 +21,42 @@
          <h2 class="subtitle">¡Bienvenido <?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?>!</h2>
      </div>
 
+	 <div class="container mt-5">
+        <!-- <h2 class="text-center">Property Management</h2> -->
+        <div class="row" id="dashboard"></div>
+    </div>
+
 	 <div class="columns is-flex is-justify-content-center" style="opacity: 60%;"> 
 	 <img src="app/views/img/logo.png" alt="">
 	 </div>
 
+
+
  </div>
+
+
+
+    <script>
+        fetch("<?php echo APP_URL . 'ajax/dashboardAjax.php?cargarestadostrabajo' ?>")
+            .then(response => response.json())
+            .then(data => {
+                const dashboard = document.getElementById('dashboard');
+                data.data.forEach(item => { 
+                    const estado = item.estadojob.toLowerCase(); // Convertir en minúscula para buscar imagen
+                    const card = `
+                        <div class="col-md-2">
+                            <div class="card text-center">
+							
+                                <img src=" <?php echo APP_URL .'app/views/img/' ?>${item.estadojob}.png" class="card-img-top" alt="${item.estadojob}" style="height:50px; object-fit:contain;">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.estadojob}</h5>
+                                    <p class="card-text fs-3 fw-bold">${item.cantidad}</p>
+                                </div>
+                            </div>
+                        </div>`;
+                    dashboard.innerHTML += card;
+                });
+            });
+    </script>
  
  
