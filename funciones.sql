@@ -1828,9 +1828,9 @@ FROM
 	INNER JOIN "SYSTEM".SERVICIO S ON S.ID_TRABAJO = T.ID_TRABAJO
 	INNER JOIN "SYSTEM".DIAGNOSTICO D ON D.ID_SERVICIO = S.ID_SERVICIO
 WHERE
-	T.ID_TRABAJO = 1
+	T.ID_TRABAJO = 1;
 	
-	 CREATE OR REPLACE VIEW "SYSTEM".dashboardjobs AS
+CREATE OR REPLACE VIEW "SYSTEM".dashboardjobs AS
 select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
 where t.u_Estado=1 and cv.nombre='Booked'
