@@ -1816,7 +1816,7 @@ end;
 $$ LANGUAGE PLPGSQL;
 
 
-para calcular la suma total de todo el TRABAJO
+--para calcular la suma total de todo el TRABAJO
 SELECT SUM(
 	S.SERVICEFEE+
 	D.LABORFEE+
