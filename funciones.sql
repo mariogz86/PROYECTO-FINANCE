@@ -1831,35 +1831,75 @@ WHERE
 	T.ID_TRABAJO = 1;
 	
 CREATE OR REPLACE VIEW "SYSTEM".dashboardjobs AS
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'Booked' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Booked'
-group by  cv.nombre,cv.id_catalogovalor 
+where t.u_Estado=1 and cv.nombre='Booked' 
 union all
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'Accepted' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Accepted'
-group by  cv.nombre,cv.id_catalogovalor 
+where t.u_Estado=1 and cv.nombre='Accepted' 
 union all
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'Pending' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Pending'
-group by  cv.nombre,cv.id_catalogovalor 
+where t.u_Estado=1 and cv.nombre='Pending' 
 union all
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'Diagnosed' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Diagnosed'
-group by  cv.nombre,cv.id_catalogovalor 
+where t.u_Estado=1 and cv.nombre='Diagnosed' 
 union all
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'complete' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='complete'
-group by  cv.nombre,cv.id_catalogovalor 
+where t.u_Estado=1 and cv.nombre='complete' 
 union all
-select cv.nombre as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+select 'Cancelled' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Cancelled'
-group by  cv.nombre,cv.id_catalogovalor
+where t.u_Estado=1 and cv.nombre='Cancelled' 
+
+CREATE OR REPLACE FUNCTION "SYSTEM".verdashboard(idusario INT)
+RETURNS TABLE(estadojob TEXT, cantidad bigint ) AS $$
+BEGIN
+    RETURN QUERY 
+    select 'Booked' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Booked' and t.id_tecnico=idusario 
+union all
+select 'Accepted' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Accepted' and t.id_tecnico=idusario 
+union all
+select 'Pending' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Pending' and t.id_tecnico=idusario 
+union all
+select 'Diagnosed' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Diagnosed' and t.id_tecnico=idusario 
+union all
+select 'complete' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='complete' and t.id_tecnico=idusario 
+union all
+select 'Cancelled' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
+inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
+where t.u_Estado=1 and cv.nombre='Cancelled' and t.id_tecnico=idusario; 
+END;
+$$ LANGUAGE plpgsql;
+
+   CREATE
+OR REPLACE FUNCTION "SYSTEM".INSERTAR_IMAGEN ( 	
+	trabajo_id INT,
+	nombre VARCHAR(255),
+	ruta TEXT
+) RETURNS SETOF INT AS $$
+begin
+RETURN QUERY
+INSERT INTO
+	"SYSTEM".JOBIMAGENES (TRABAJO_ID, NOMBRE, RUTA)
+VALUES (trabajo_id,nombre,ruta)
+RETURNING
+	ID_IMAGEN;
+end;
+$$ LANGUAGE PLPGSQL;
 
 para buscar iconos
 https://www.flaticon.com/search?word=Cancelled 

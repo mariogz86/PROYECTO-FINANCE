@@ -524,4 +524,19 @@ ALTER TABLE "SYSTEM".catalogovalor
 	  
 	  
 	  
-	 
+	   CREATE TABLE "SYSTEM".jobimagenes (
+		"id_imagen" SERIAL PRIMARY KEY NOT NULL,  
+	    "trabajo_id" INTEGER NOT NULL, 
+	    "nombre" VARCHAR(255),
+	    "ruta" TEXT,
+	    "fecha_subida" TIMESTAMP DEFAULT CURRENT_TIMESTAMP		
+	);	  
+		--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".jobimagenes
+	   ADD CONSTRAINT fk_trabajo_id
+	     FOREIGN KEY (trabajo_id) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+
+	       --CREACION DE INDICES   
+	  create index trabajo_id on "SYSTEM".jobimagenes("trabajo_id"); 	
