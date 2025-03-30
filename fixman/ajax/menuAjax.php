@@ -29,7 +29,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    
@@ -44,8 +44,8 @@ require_once "../autoload.php";
             $alerta=[
 				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
-                "titulo"=>"menu duplicado",
-                "texto"=>"El nombre del menu ya existe en el sistema",
+                "titulo"=>"duplicate menu",
+                "texto"=>"The menu name already exists in the system",
                 "icono"=>"warning"
             ];	
 
@@ -60,16 +60,16 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"menu registrado",
-				"texto"=>"El registro se guardo con éxito",
+				"titulo"=>"registered menu",
+				"texto"=>"The record was saved successfully",
 				"icono"=>"success"
 			];}
 			else{
 				$alerta=[
 					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"menu actualizado",
-					"texto"=>"El registro se actualizo con éxito",
+					"titulo"=>"updated menu",
+					"texto"=>"The record was updated successfully.",
 					"icono"=>"success"
 				];	
 			}
@@ -79,7 +79,7 @@ require_once "../autoload.php";
 					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo registrar el menu, por favor intente nuevamente",
+					"texto"=>"The menu could not be registered, please try again.",
 					"icono"=>"error"
 				];
 			}
@@ -88,7 +88,7 @@ require_once "../autoload.php";
 						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar el menu, por favor intente nuevamente",
+					"texto"=>"The menu could not be updated, please try again.",
 					"icono"=>"error"
 					];	
 				}
@@ -110,8 +110,8 @@ require_once "../autoload.php";
                 $alerta=[
 					"classform"=>".FormularioAjax",
                     "tipo"=>"limpiar",
-                    "titulo"=>"Inactivar",
-                    "texto"=>"El menu no se puede inactivar está asignado a uno o más roles.",
+                    "titulo"=>"Inactivate",
+                    "texto"=>"The menu cannot be inactivated if it is assigned to one or more roles.",
                     "icono"=>"warning"
                 ];	
     
@@ -160,7 +160,7 @@ require_once "../autoload.php";
 				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 			"titulo"=>"Error",
-			"texto"=>"No se pudo realizar la acción solicitada, por favor intente nuevamente",
+			"texto"=>"The requested action could not be performed, please try again.",
 			"icono"=>"error"
 			];	
 		} 

@@ -27,7 +27,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    

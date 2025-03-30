@@ -16,6 +16,9 @@
 
 
 
+<!-- Lightbox2 -->
+<link href="<?php echo APP_URL; ?>app/views/css/lightbox.min.css" rel="stylesheet">
+
 
 
 <script src="<?php echo APP_URL; ?>app/views/js/jquery-3.7.1.js"></script>
@@ -39,7 +42,7 @@
 <script src="<?php echo APP_URL; ?>app/views/js/buttons.html5.min.js"></script>
 <script src="<?php echo APP_URL; ?>app/views/js/buttons.print.min.js"></script> 
 <script src="<?php echo APP_URL; ?>app/views/js/bootstrap-datepicker.min.js"></script>
-
+<script src="<?php echo APP_URL; ?>app/views/js/lightbox.min.js"></script>
 
 
 

@@ -792,7 +792,7 @@ $(document).on('click', '#cita', function(e) {
     gridcat[0].style.display = "none";
     formservice[0].style.display = "";
 
-   
+
     idjob_cita[0].value = dato.id_trabajo;
     idjob_pago[0].value = dato.id_trabajo;
     $(".loadersacn")[0].style.display = "";
@@ -851,9 +851,9 @@ $(document).on('click', '#cita', function(e) {
 
             if (res.status == 200) {
                 datos = res.data;
-                id_pago[0].value= datos[0].id_payment; 
+                id_pago[0].value = datos[0].id_payment;
                 $("#select_pago").val(datos[0].id_valpayment);
-                $('#select_pago').change(); 
+                $('#select_pago').change();
 
                 document.getElementsByName("notapayment")[0].value = datos[0].nota;
 
@@ -882,12 +882,12 @@ function cargaformularioservicio(expandirformulario) {
 }
 
 function quedarenpantalla(alerta) {
-    if(alerta.classform==".FormularioAjax3"){
+    if (alerta.classform == ".FormularioAjax3") {
         id_cita[0].value = alerta.idgenerado;
-    }else{
+    } else {
         id_pago[0].value = alerta.idgenerado;
     }
-    
+
 
 }
 
@@ -1250,6 +1250,12 @@ function cargargrid() {
                             }
 
                         }
+
+                    },
+                    {
+                        width: "30%",
+                        title: 'Date',
+                        data: 'fecha_creacion',
 
                     },
                     {

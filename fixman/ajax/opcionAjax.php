@@ -29,7 +29,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    
@@ -44,8 +44,8 @@ require_once "../autoload.php";
             $alerta=[
 				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
-                "titulo"=>"opcion de menú",
-                "texto"=>"El nombre de la opcion ya existe en el sistema",
+                "titulo"=>"menu option",
+                "texto"=>"The option name already exists in the system",
                 "icono"=>"warning"
             ];	
 
@@ -60,16 +60,16 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"opción de menú",
-				"texto"=>"El registro se guardo con éxito",
+				"titulo"=>"menu option",
+				"texto"=>"The record was saved successfully",
 				"icono"=>"success"
 			];}
 			else{
 				$alerta=[
 					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"opción de menú",
-					"texto"=>"El registro se actualizo con éxito",
+					"titulo"=>"menu option",
+					"texto"=>"The record was updated successfully.",
 					"icono"=>"success"
 				];	
 			}
@@ -79,7 +79,7 @@ require_once "../autoload.php";
 					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo registrar el opcion, por favor intente nuevamente",
+					"texto"=>"The option could not be registered, please try again.",
 					"icono"=>"error"
 				];
 			}
@@ -88,7 +88,7 @@ require_once "../autoload.php";
 						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar el opcion, por favor intente nuevamente",
+					"texto"=>"The option could not be updated, please try again.",
 					"icono"=>"error"
 					];	
 				}

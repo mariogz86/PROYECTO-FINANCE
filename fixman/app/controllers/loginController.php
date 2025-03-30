@@ -37,7 +37,7 @@ use PHPMailer\PHPMailer\Exception;
 				echo '<article class="message is-danger">
 				  <div class="message-body">
 				    <strong>Ocurrió un error </strong><br>
-				    No has llenado todos los campos que son obligatorios
+				    You have not filled in all the required fields.
 				  </div>
 				</article>';
 		    }else{

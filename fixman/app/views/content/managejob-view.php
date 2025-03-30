@@ -219,7 +219,7 @@ $insrol = new FuncionesController();
                             &nbsp;
                             Save</button>
                     </p>
-                    
+
                 </form>
                 <table id="myTablepartes" class="table table-striped table-bordered"></table>
             </div>
@@ -643,10 +643,49 @@ $insrol = new FuncionesController();
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header" id="heading3">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse3" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="far fa-images"></i>
+                        Add image of the visit
+
+                    </button>
+
+                </h2>
+            </div>
+            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordioncita">
+                <div class="card-body">
+                    <form name="formpago" id="imgservicio" class="FormularioAjax4"
+                        action="<?php echo APP_URL; ?>ajax/subirimagenAjax.php" method="POST" autocomplete="off"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="idservicio_imagen" value="">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control ">
+                                        <input type="file" id="archivos" name="imagen" accept="image/*"
+                                            class="form-control mb-2" required>
+                                        <button type="submit" class="btn btn-primary">Subir Imagen</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container mt-5">
+                        <div class="row" id="cargarimagenes"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 
 </div>
+
+
 
 <!-- MODAL GESTION DE EMPLEADOS-->
 <div class="modal fade" id="modalmovimiento">
@@ -743,6 +782,7 @@ const idjob_pago = document.getElementsByName("idjob_pago");
 const id_pago = document.getElementsByName("id_pago");
 const idjob_movimiento = document.getElementsByName("idjob_movimiento");
 const id_diagnostico = document.getElementsByName("id_diagnostico");
+const idservicio_imagen = document.getElementsByName("idservicio_imagen");
 
 
 const id_parte = document.getElementsByName("id_parte");
@@ -909,7 +949,7 @@ function cargargridmovimiento_save(alerta) {
 function cargargridmovimientos(datos) {
 
     $('#griddmovimiento').DataTable({
-        data: datos, 
+        data: datos,
         destroy: true,
         responsive: true,
         columns: [{
@@ -1002,6 +1042,8 @@ $(document).on('click', '#cita', function(e) {
 
     idjob_cita[0].value = dato.id_trabajo;
     idjob_pago[0].value = dato.id_trabajo;
+    idservicio_imagen[0].value = dato.id_trabajo;
+
     $(".loadersacn")[0].style.display = "";
     $.ajax({
         type: "GET",
@@ -1072,11 +1114,76 @@ $(document).on('click', '#cita', function(e) {
 
     });
 
+
+    fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + dato.id_trabajo)
+        .then(response => response.json())
+        .then(data => {
+            const dashboard = document.getElementById('cargarimagenes');
+            dashboard.innerHTML = "";
+            if (data.status == 200) {
+                data.data.forEach(item => {
+                    const estado = item.ruta
+                        .toLowerCase(); // Convertir en minúscula para buscar imagen
+                    const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                    dashboard.innerHTML += card;
+                });
+            }
+        });
+
     let inputs = document.querySelectorAll(
         "#formcitajob input,#formcitajob textarea, #formcitajob select,#formpagojob input,#formpagojob textarea, #formpagojob select"
     );
     inputs.forEach(input => input.disabled = true);
 
+});
+
+$(document).on('click', '#eliminimg', function(e) {
+    event.preventDefault();
+    $(".loadersacn")[0].style.display = "";
+    $.ajax({
+        type: "GET",
+        url: e.currentTarget.href,
+        success: function(response) {
+            var res = jQuery.parseJSON(response);
+            if (res.status == 200) {
+                $(".loadersacn").fadeOut("slow");
+                fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" +
+                        idservicio_imagen[0].value)
+                    .then(response => response.json())
+                    .then(data => {
+                        const dashboard = document.getElementById('cargarimagenes');
+                        dashboard.innerHTML = "";
+                        if (data.status == 200) {
+                            data.data.forEach(item => {
+                                const estado = item.ruta
+                                    .toLowerCase(); // Convertir en minúscula para buscar imagen
+                                const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                                dashboard.innerHTML += card;
+                            });
+                        }
+                    });
+
+            } else {
+
+            }
+        }
+
+
+    });
 });
 
 function cargaformularioservicio(expandirformulario) {
@@ -1098,6 +1205,31 @@ function quedarenpantalla(alerta) {
     } else {
         id_pago[0].value = alerta.idgenerado;
     }
+
+    var inputImage = document.getElementById("archivos");
+    inputImage.value = '';
+
+    fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + idservicio_imagen[0].value)
+        .then(response => response.json())
+        .then(data => {
+            const dashboard = document.getElementById('cargarimagenes');
+            dashboard.innerHTML = "";
+            if (data.status == 200) {
+                data.data.forEach(item => {
+                    const estado = item.ruta
+                        .toLowerCase(); // Convertir en minúscula para buscar imagen
+                    const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                    dashboard.innerHTML += card;
+                });
+            }
+        });
 
 
 }
@@ -1203,7 +1335,7 @@ $(document).on('click', '#agregarpartes', function(e) {
             var datos = [];
 
             if (res.status == 200) {
-                datos = res.data;                
+                datos = res.data;
                 cargargridpartes(datos);
 
             } else {
@@ -1218,25 +1350,25 @@ $(document).on('click', '#agregarpartes', function(e) {
 
 $(document).on('click', '#editparte', function(e) {
 
-event.preventDefault();
-$('#btncollapseOne').trigger('click');
-var row = e.currentTarget.attributes['valor'].value;
-var dato = $("#myTablepartes").DataTable().data()[row];
+    event.preventDefault();
+    $('#btncollapseOne').trigger('click');
+    var row = e.currentTarget.attributes['valor'].value;
+    var dato = $("#myTablepartes").DataTable().data()[row];
 
 
-id_servicio_parte[0].value = dato.id_servicio;
-id_parte[0].value = dato.id_parte;
+    id_servicio_parte[0].value = dato.id_servicio;
+    id_parte[0].value = dato.id_parte;
 
- 
 
-document.getElementsByName("cantidad")[0].value = dato.cantidad;
-document.getElementsByName("serialparte")[0].value = dato.serial;
-document.getElementsByName("costo")[0].value = dato.costo;
 
-$("#select_part").val(dato.id_valorparte);
-$('#select_part').change();
- 
- 
+    document.getElementsByName("cantidad")[0].value = dato.cantidad;
+    document.getElementsByName("serialparte")[0].value = dato.serial;
+    document.getElementsByName("costo")[0].value = dato.costo;
+
+    $("#select_part").val(dato.id_valorparte);
+    $('#select_part').change();
+
+
 
 });
 
@@ -1723,7 +1855,7 @@ function cargargrid() {
                                     '<div style="margin: 2px;"><a id="movimientos" title="Status history" href="#" class="button is-history is-rounded is-small" valor="' +
                                     meta.row + '">' +
                                     '<i class="fas fa-history"></i></a></div> ';
- 
+
 
                                 // cadena = cadena +
                                 //     '<div style="">';

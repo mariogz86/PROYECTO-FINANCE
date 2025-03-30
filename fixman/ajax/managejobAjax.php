@@ -25,7 +25,7 @@ if (isset($_GET['cargagrid'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -46,7 +46,7 @@ if (isset($_GET['cargarpartes'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -67,7 +67,7 @@ if (isset($_GET['cargadiagnostico'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -89,7 +89,7 @@ if (isset($_GET['cargagridservicio'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -110,7 +110,7 @@ if (isset($_GET['cargadatoscita'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -130,7 +130,7 @@ if (isset($_GET['cargadatospago'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}
@@ -150,7 +150,7 @@ if (isset($_GET['obtenermovimientosjob'])) {
 	} else {
 		$res = array(
 			'status' => 404,
-			'message' =>  'No se encontro informacion'
+			'message' =>  'No information found'
 		);
 		echo json_encode($res);
 	}

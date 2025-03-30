@@ -14,7 +14,7 @@ p {
 	 $insrol = new FuncionesController();  
 ?>
 <div class="container">
-    <h1 class="title">Usuario</h1>
+    <h1 class="title">User</h1>
 
     <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
 
@@ -23,7 +23,7 @@ p {
 
         <p class="has-text-left pt-4 pb-4">
             <a name="agregarcat" href="#" class="button is-link is-rounded btn-back"><i class="fas fa-plus"></i> &nbsp;
-                Agregar registro</a>
+                Add record</a>
         </p>
         <table id="myTable" class="table table-striped table-bordered">
 
@@ -40,21 +40,21 @@ p {
         <input type="hidden" name="idusuario" value=""> 
         <p class="has-text-right pt-4 pb-4">
             <button name="regresar" type="reset" class="button is-link is-light is-rounded"><i
-                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Regresar</button>
+                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
         </p>
         <input type="hidden" name="modulo_Opcion" value="registrar">
         <div class="col-sm-12 col-md-12">
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Nombres <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Names <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="usuario_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}"
                             maxlength="40" required>
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Apellidos <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Surnames <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="usuario_apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}"
                             maxlength="40" required>
                     </div>
@@ -63,7 +63,7 @@ p {
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Usuario <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>User <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="usuario_usuario" pattern="[a-zA-Z0-9]{4,20}"
                             maxlength="20" required>
                     </div>
@@ -106,12 +106,12 @@ p {
         <p class="has-text-centered">
             <button type="reset" class="button is-link is-light is-rounded"><i class="fas fa-paint-roller"></i>
                 &nbsp;
-                Limpiar</button>
+                Clean</button>
             <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp;
-                Guardar</button>
+                Save</button>
         </p>
         <p class="has-text-centered pt-6">
-            <small>Los campos marcados con <?php echo CAMPO_OBLIGATORIO; ?> son obligatorios</small>
+            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are mandatory</small>
         </p>
 
 
@@ -149,7 +149,7 @@ regresar[0].addEventListener("click", (event) => {
     gridcat[0].style.display = "";
     formusuario[0].style.display = "none";
     document.getElementsByName("formusuario")[0].reset();
-    $("#titulo")[0].innerText = "Lista de Usuarios";
+    $("#titulo")[0].innerText = "User List";
     $('.form-select').prop("selectedIndex", 0);
     $('.form-select').change(); 
 
@@ -159,7 +159,7 @@ regresar[0].addEventListener("click", (event) => {
 
 button[0].addEventListener("click", (event) => {
     event.preventDefault();
-    $("#titulo")[0].innerText = "Nuevo Usuario";
+    $("#titulo")[0].innerText = "New User";
     gridcat[0].style.display = "none";
     formusuario[0].style.display = "";
     idusuario[0].value = 0; 
@@ -169,7 +169,7 @@ button[0].addEventListener("click", (event) => {
 $(document).on('click', '#modificar', function(e) {
 
     event.preventDefault();
-    $("#titulo")[0].innerText = "Modificar Usuario";
+    $("#titulo")[0].innerText = "Modify User";
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
     gridcat[0].style.display = "none";
@@ -219,7 +219,7 @@ $(document).on('submit', '#formusuario', function(e) {
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
-    $("#titulo")[0].innerText = "Lista de Usuarios";
+    $("#titulo")[0].innerText = "User List";
 
     gridcat[0].style.display = "";
     formusuario[0].style.display = "none";
@@ -274,27 +274,27 @@ function cargargrid() {
                     },
 
                     {
-                        width: "100%",
-                        title: 'Nombres',
+                        //width: "100%",
+                        title: 'Names',
                         className: "text-center",
                         data: 'u_nombre_completo',
                     },
 
                     {
                         // width: "30%",
-                        title: 'Apellidos',
+                        title: 'Surnames',
                         className: "text-center",
                         data: 'u_apellido_completo',
                     },
                     {
                         // width: "30%",
-                        title: 'Login Usuario',
+                        title: 'User Login',
                         data: 'usuario',
 
                     },
                     {
                         // width: "30%",
-                        title: 'Correo',
+                        title: 'Mail',
                         data: 'u_email',
 
                     },
@@ -306,13 +306,13 @@ function cargargrid() {
                     },
                     {
                         // width: "30%",
-                        title: 'Usuario bloqueado',
+                        title: 'Blocked user',
                         data: 'u_bloqueado',
                         render: function(data, type, row, meta) {
                             if (row.u_bloqueado == 1) {
-                                return "Si";
+                                return "YEs";
                             } else {
-                                return "No";
+                                return "Not";
                             }
 
                         }
@@ -320,53 +320,53 @@ function cargargrid() {
                     },
                     {
                         // width: "30%",
-                        title: 'Estado',
+                        title: 'Estate',
                         data: 'u_estado',
                         render: function(data, type, row, meta) {
                             if (row.u_estado == 1) {
-                                return "Activo";
+                                return "Active";
                             } else {
-                                return "Inactivo";
+                                return "Inactive";
                             }
 
                         }
 
                     },
-                    {
-                        // width: "30%",
-                        title: 'Usuario creación',
-                        data: 'usuario',
+                    // {
+                    //     // width: "30%",
+                    //     title: 'Usuario creación',
+                    //     data: 'usuario',
 
 
-                    },
-                    {
-                        // width: "30%",
-                        title: 'Fecha creación',
-                        data: 'fecha_creacion',
+                    // },
+                    // {
+                    //     // width: "30%",
+                    //     title: 'Fecha creación',
+                    //     data: 'fecha_creacion',
 
 
-                    },
-                    {
-                        // width: "30%",
-                        title: 'Usuario modificación',
-                        data: 'usuariom',
+                    // },
+                    // {
+                    //     // width: "30%",
+                    //     title: 'Usuario modificación',
+                    //     data: 'usuariom',
 
 
-                    },
-                    {
-                        // width: "30%",
-                        title: 'Fecha modificación',
-                        data: 'fecha_modifica',
+                    // },
+                    // {
+                    //     // width: "30%",
+                    //     title: 'Fecha modificación',
+                    //     data: 'fecha_modifica',
 
 
-                    }, 
+                    // }, 
                     {
 
                         className: "text-center",
-                        title: 'Acciónes',
+                        title: 'Action',
                         data: 'id_usuario',
                         render: function(data, type, row, meta) {
-                            cadena = '<div style="width: 150px;"><div style="float: left;margin-right: 2px;"><a id="modificar" title="Editar" href="#" class="button is-info is-rounded is-small" valor="' +
+                            cadena = '<div style="width: 150px;"><div style="float: left;margin-right: 2px;"><a id="modificar" title="Edit" href="#" class="button is-info is-rounded is-small" valor="' +
                             meta.row  + '">' +
                                 '<i class="fas fa-sync fa-fw"></i></a></div> ';
 
@@ -380,7 +380,7 @@ function cargargrid() {
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' +
 
-                                    '<button type="submit" title="Bloquear" class="button is-accionesbloquear is-rounded is-small">' +
+                                    '<button type="submit" title="Block" class="button is-accionesbloquear is-rounded is-small">' +
                                     '<i class="fas fa-lock"></i>' +
                                     '</button>' +
                                     '</form>';
@@ -390,7 +390,7 @@ function cargargrid() {
                                     '<input type="hidden" name="modulo_usuario" value="desbloquear">' +
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Desbloquear" class="button is-accionesbloquear is-rounded is-small">' +
+                                    '<button type="submit" title="Unlock" class="button is-accionesbloquear is-rounded is-small">' +
                                     '<i class="fas fa-unlock"></i>' +
                                     '</button>' +
                                     '</form>';
@@ -405,7 +405,7 @@ function cargargrid() {
                                     '<input type="hidden" name="modulo_usuario" value="activar">' +
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Activar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Activate" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-check-circle"></i>' +
                                     '</button>' +
                                     '</form>';
@@ -415,7 +415,7 @@ function cargargrid() {
                                     '<input type="hidden" name="modulo_usuario" value="inactivar">' +
                                     '<input type="hidden" name="id_usuario" value="' +
                                     data + '">' + 
-                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Inactivate" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +                                 
                                     '</form>';

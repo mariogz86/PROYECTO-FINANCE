@@ -30,7 +30,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    
@@ -47,16 +47,16 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Valor de catálogo",
-				"texto"=>"El registro se guardo con éxito",
+				"titulo"=>"Catalog value",
+				"texto"=>"The record was saved successfully",
 				"icono"=>"success"
 			];}
 			else{
 				$alerta=[
 					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Valor de catálogo",
-					"texto"=>"El registro se actualizo con éxito",
+					"titulo"=>"Catalog value",
+					"texto"=>"The record was updated successfully.",
 					"icono"=>"success"
 				];	
 			}
@@ -66,7 +66,7 @@ require_once "../autoload.php";
 					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo registrar el valor para el  catálogo, por favor intente nuevamente",
+					"texto"=>"The value could not be registered for the catalog, please try again.",
 					"icono"=>"error"
 				];
 			}
@@ -75,7 +75,7 @@ require_once "../autoload.php";
 						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar el valor para el catálogo, por favor intente nuevamente",
+					"texto"=>"The value for the catalog could not be updated, please try again.",
 					"icono"=>"error"
 					];	
 				}
@@ -120,7 +120,7 @@ require_once "../autoload.php";
 				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
 			"titulo"=>"Error",
-			"texto"=>"No se pudo realizar la acción solicitada, por favor intente nuevamente",
+			"texto"=>"The requested action could not be performed, please try again.",
 			"icono"=>"error"
 			];	
 		} 

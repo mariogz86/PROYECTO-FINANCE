@@ -14,7 +14,7 @@ p {
 	 $insrol = new FuncionesController();  
 ?>
 <div class="container">
-    <h1 class="title">Opción de menú</h1>
+    <h1 class="title">Menu option</h1>
 
     <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
 
@@ -23,7 +23,7 @@ p {
 
         <p class="has-text-left pt-4 pb-4">
             <a name="agregarcat" href="#" class="button is-link is-rounded btn-back"><i class="fas fa-plus"></i> &nbsp;
-                Agregar registro</a>
+                Add record</a>
         </p>
         <table id="myTable" class="table table-striped table-bordered"></table>
     </div>
@@ -33,20 +33,20 @@ p {
         <input type="hidden" name="idopcion" value="">
         <p class="has-text-right pt-4 pb-4">
             <button name="regresar" type="reset" class="button is-link is-light is-rounded"><i
-                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Regresar</button>
+                    class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
         </p>
         <input type="hidden" name="modulo_Opcionmenu" value="registrar">
         <div class="col-sm-12 col-md-10">
             <div class="columns ">
                 <div class="column ">
                     <div class="control ">
-                        <label>Nombre opción <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Name option <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="nombre" maxlength="250" required>
                     </div>
                 </div>
                 <div class="column">
                     <div class="control ">
-                        <label>Menú <?php echo CAMPO_OBLIGATORIO; ?></label><br>
+                        <label>Menu<?php echo CAMPO_OBLIGATORIO; ?></label><br>
 
                         <select name="cmb_menu" class="form-select" id="select_box" required>
                             <?php
@@ -68,7 +68,7 @@ p {
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Orden opción <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Order opction <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="number" name="orden" pattern="[0-9]{1,22}" maxlength="22" required>
                     </div>
                 </div>
@@ -77,14 +77,14 @@ p {
             <div class="columns ">
                 <div class="column">
                     <div class="control">
-                        <label>Icono <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Icon <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="icono" maxlength="255" required>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="control">
-                        <label>Nombre vista <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>View name<?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="nombrevista" maxlength="255" required>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ p {
             <div class="columns ">
                 <div class="column">
                     <div class="control">
-                        <label>Descripción <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <label>Description <?php echo CAMPO_OBLIGATORIO; ?></label>
                         <input class="input" type="text" name="descripcion" maxlength="2000">
                     </div>
                 </div>
@@ -103,11 +103,11 @@ p {
 
 <p class="has-text-centered">
     <button type="reset" class="button is-link is-light is-rounded"><i class="fas fa-paint-roller"></i> &nbsp;
-        Limpiar</button>
-    <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp; Guardar</button>
+        Clean</button>
+    <button type="submit" class="button is-info is-rounded"><i class="far fa-save"></i> &nbsp; Save</button>
 </p>
 <p class="has-text-centered pt-6">
-    <small>Los campos marcados con <?php echo CAMPO_OBLIGATORIO; ?> son obligatorios</small>
+    <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are mandatory</small>
 </p>
 
 </form>
@@ -139,13 +139,13 @@ regresar[0].addEventListener("click", (event) => {
     gridcat[0].style.display = "";
     foropcion[0].style.display = "none";
     document.getElementsByName("foropcion")[0].reset();
-    $("#titulo")[0].innerText = "Lista de Opciones de menú";
+    $("#titulo")[0].innerText = "List of Menu Options";
 
 });
 
 button[0].addEventListener("click", (event) => {
     event.preventDefault();
-    $("#titulo")[0].innerText = "Nueva opción de menú";
+    $("#titulo")[0].innerText = "New menu option";
     gridcat[0].style.display = "none";
     foropcion[0].style.display = "";
     idopcion[0].value = 0;
@@ -154,7 +154,7 @@ button[0].addEventListener("click", (event) => {
 $(document).on('click', '#modificar', function(e) {
 
     event.preventDefault();
-    $("#titulo")[0].innerText = "Modificar opción de menú";
+    $("#titulo")[0].innerText = "Modify menu option";
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
     gridcat[0].style.display = "none";
@@ -198,7 +198,7 @@ $(document).on('submit', '#foropcion', function(e) {
 
 function cargargrid() {
     $(".loadersacn")[0].style.display = "";
-    $("#titulo")[0].innerText = "Lista de Opciones de menú";
+    $("#titulo")[0].innerText = "List of Menu Options";
 
     gridcat[0].style.display = "";
     foropcion[0].style.display = "none";
@@ -238,81 +238,81 @@ function cargargrid() {
                     },
                     {
                         width: "30%",
-                        title: 'Menú',
+                        title: 'Menu',
                         data: 'menu',
 
                     },
                     {
                         width: "30%",
-                        title: 'Opción',
+                        title: 'Option',
                         data: 'nombre',
 
                     },
                     {
                         width: "10%",
-                        title: 'Orden',
+                        title: 'Order',
                         data: 'orden',
                         className: 'text-center'
                     },
                     {
                         width: "15%",
-                        title: 'Nombre vista',
+                        title: 'View name',
                         data: 'nombrevista',
                         className: 'text-center'
                     },
                     {
                         width: "15%",
-                        title: 'Icono',
+                        title: 'Icon',
                         data: 'icono',
                         className: 'text-center'
                     },
                     {
                         width: "10%",
-                        title: 'Estado',
+                        title: 'Estate',
                         data: 'u_estado',
                         className: 'text-center',
                         render: function(data, type, row, meta) {
                             if (row.u_estado == 1) {
-                                return "Activo";
+                                return "Active";
                             } else {
-                                return "Inactivo";
+                                return "Inactive";
                             }
 
                         }
 
                     },
 
-                    {
-                        width: "20%",
-                        title: 'Usuario creación',
-                        data: 'usuario',
+                    // {
+                    //     width: "20%",
+                    //     title: 'Usuario creación',
+                    //     data: 'usuario',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Fecha creación',
-                        data: 'fecha_creacion',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Fecha creación',
+                    //     data: 'fecha_creacion',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Usuario modificación',
-                        data: 'usuariom',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Usuario modificación',
+                    //     data: 'usuariom',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Fecha modificación',
-                        data: 'fecha_modifica',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Fecha modificación',
+                    //     data: 'fecha_modifica',
 
 
-                    },
+                    // },
                     {
                         className: "text-center",
-                        title: 'Editar',
+                        title: 'Edit',
                         data: 'id_opcion',
                         render: function(data, type, row, meta) {
                             return '<td><a id="modificar" title="Editar" href="#" class="button is-info is-rounded is-small" valor="' +
@@ -323,7 +323,7 @@ function cargargrid() {
                     },
                     {
                         className: "text-center",
-                        title: 'Acción',
+                        title: 'Action',
                         data: 'id_opcion',
                         render: function(data, type, row, meta) {
 
@@ -341,7 +341,7 @@ function cargargrid() {
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
                                     '<input type="hidden" name="id_opcion" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Inactivate" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +
                                     '</form></td>';

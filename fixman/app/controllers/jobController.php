@@ -32,7 +32,14 @@ class jobController extends mainModel
 		public function listardashboard()
 		{
 	
+			if ($_SESSION['rol'] == "Administrator") {
 			$consulta_datos = "select * from \"SYSTEM\".dashboardjobs";
+
+		}
+			else {
+				$consulta_datos = "SELECT * FROM \"SYSTEM\".verdashboard(" . $_SESSION['id'] . ");";
+			}
+	
 	
 			$datos = $this->ejecutarConsulta($consulta_datos);
 			$datos = $datos->fetchAll();
@@ -252,6 +259,45 @@ class jobController extends mainModel
 		$sql = $this->actualizarDatos($sentencia);
 		$sql->execute();
 
+		return $sql;
+	}
+
+
+	//Funcion para cambiar de estado al catalogo 
+	public function subirimagen($tarea_id, $nombreImagen, $rutaImagen)
+	{ 
+		$sentencia = "select \"SYSTEM\".INSERTAR_IMAGEN('" . $tarea_id . "','" . $nombreImagen . "','" .$rutaImagen . "');";
+		$sql = $this->actualizarDatos($sentencia);
+		$sql->execute();
+		$total = (int) $sql->fetchColumn();
+
+		return $total;
+	}
+
+	//Funcion para cambiar de estado al catalogo 
+	public function listarimagenes()
+	{
+
+		$id = $_GET['cargarimagenes'];
+		$consulta_datos = "select * from \"SYSTEM\".JOBIMAGENES where trabajo_id=" . $id . ";";
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
+
+	public function eliminarimagen() {
+		$consulta_datos = "SELECT ruta FROM \"SYSTEM\".JOBIMAGENES WHERE id_imagen =" . $_GET['eliminar'] . ";";
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+	
+		if ($datos) {
+			unlink($datos[0]['ruta']); // Eliminar archivo físico
+			$sentencia = " delete FROM \"SYSTEM\".JOBIMAGENES WHERE id_imagen =" . $_GET['eliminar'] . "; ";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+		}
 		return $sql;
 	}
 }

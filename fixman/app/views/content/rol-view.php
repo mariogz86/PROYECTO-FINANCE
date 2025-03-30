@@ -190,34 +190,34 @@ function cargargrid() {
 
                     },
 
-                    {
-                        width: "30%",
-                        title: 'User creation',
-                        data: 'usuario',
+                    // {
+                    //     width: "30%",
+                    //     title: 'User creation',
+                    //     data: 'usuario',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Creation date',
-                        data: 'fecha_creacion',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Creation date',
+                    //     data: 'fecha_creacion',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'User modification',
-                        data: 'usuariom',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'User modification',
+                    //     data: 'usuariom',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Modification date',
-                        data: 'fecha_modifica',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Modification date',
+                    //     data: 'fecha_modifica',
 
 
-                    },
+                    // },
                     {
                         className: "text-center",
                         title: 'Edit',
@@ -249,7 +249,7 @@ function cargargrid() {
                                     '<input type="hidden" name="modulo_rol" value="inactivar">' +
                                     '<input type="hidden" name="id_rol" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Inactivate" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +
                                     '</form></td>';

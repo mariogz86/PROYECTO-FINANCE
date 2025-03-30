@@ -29,7 +29,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    
@@ -44,8 +44,8 @@ require_once "../autoload.php";
             $alerta=[
 				"classform"=>".FormularioAjax",
                 "tipo"=>"limpiar",
-                "titulo"=>"opcion rol",
-                "texto"=>"Opción ya se encuentra asociada al rol.	",
+                "titulo"=>"role option",
+                "texto"=>"Option is already associated with the role",
                 "icono"=>"warning"
             ];	
 
@@ -59,8 +59,8 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"opción de menú",
-				"texto"=>"El registro se guardo con éxito",
+				"titulo"=>"menu option",
+				"texto"=>"The record was saved successfully",
 				"icono"=>"success"
 			];
 
@@ -80,7 +80,7 @@ require_once "../autoload.php";
 					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo registrar el opcion, por favor intente nuevamente",
+					"texto"=>"The option could not be registered, please try again.",
 					"icono"=>"error"
 				];
 		 
@@ -105,8 +105,8 @@ require_once "../autoload.php";
                 $alerta=[
 					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Eliminar registro",
-					"texto"=>"El registro se elimino con éxito",
+					"titulo"=>"Delete record",
+					"texto"=>"The record was successfully deleted",
 					"icono"=>"success"
 				];
             }

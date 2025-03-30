@@ -24,7 +24,7 @@ if (isset($_GET['cargagrid'])) {
     } else {
         $res = array(
             'status' => 404,
-            'message' =>  'No se encontro informacion'
+            'message' =>  'No information found'
         );
         echo json_encode($res);
     }
@@ -580,7 +580,7 @@ if (isset($_POST['enviarfactura'])) {
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		} 

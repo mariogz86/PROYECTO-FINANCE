@@ -14,7 +14,7 @@ p {
 	 $insrol = new FuncionesController();  
 ?>
 <div class="container">
-    <h1 class="title">Opción por rol</h1>
+    <h1 class="title">Option by role</h1>
     <form name="formopcionrol" class="FormularioAjax " action="<?php echo APP_URL; ?>ajax/opcionrolAjax.php"
         method="POST" autocomplete="off" enctype="multipart/form-data">
         <input type="hidden" name="idopcionrol" value="">
@@ -23,7 +23,7 @@ p {
             <div class="columns ">
                 <div class="column">
                     <div class="control ">
-                        <label>Roles <?php echo CAMPO_OBLIGATORIO; ?></label><br>
+                        <label>Rol <?php echo CAMPO_OBLIGATORIO; ?></label><br>
 
                         <select name="cmb_rol" class="form-select" id="select_rol" required>
                             <?php
@@ -42,7 +42,7 @@ p {
 
                 <div class="column">
                 <div class="control ">
-                        <label>Opción <?php echo CAMPO_OBLIGATORIO; ?></label><br>
+                        <label>Option <?php echo CAMPO_OBLIGATORIO; ?></label><br>
 
                         <select name="cmb_opcion" class="form-select" id="select_opcion" required>
                             <?php
@@ -64,7 +64,7 @@ p {
                         <button name="btnmostrar" type="submit" class="button is-info is-rounded"><i
                                 class="far fa-save"></i>
                             &nbsp;
-                            Asociar opción al rol</button>
+                            Associate option to the role</button>
                     </div>
 
                 </div>
@@ -84,7 +84,7 @@ p {
     </div>
 
     <p class="has-text-centered pt-6">
-        <small>Los campos marcados con <?php echo CAMPO_OBLIGATORIO; ?> son obligatorios</small>
+        <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are mandatory</small>
     </p>
 </div>
 </div>
@@ -192,57 +192,57 @@ function llenargird(datos){
                     },
                     {
                         width: "30%",
-                        title: 'Opción',
+                        title: 'Option',
                         data: 'opcion',
 
                     },                    
                     {
                         width: "10%",
-                        title: 'Estado',
+                        title: 'Estate',
                         data: 'u_estado',
                         className: 'text-center',
                         render: function(data, type, row, meta) {
                             if (row.u_estado == 1) {
-                                return "Activo";
+                                return "Active";
                             } else {
-                                return "Inactivo";
+                                return "Inactive";
                             }
 
                         }
 
                     },
 
-                    {
-                        width: "20%",
-                        title: 'Usuario creación',
-                        data: 'usuario',
+                    // {
+                    //     width: "20%",
+                    //     title: 'Usuario creación',
+                    //     data: 'usuario',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Fecha creación',
-                        data: 'fecha_creacion',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Fecha creación',
+                    //     data: 'fecha_creacion',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Usuario modificación',
-                        data: 'usuariom',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Usuario modificación',
+                    //     data: 'usuariom',
 
 
-                    },
-                    {
-                        width: "30%",
-                        title: 'Fecha modificación',
-                        data: 'fecha_modifica',
+                    // },
+                    // {
+                    //     width: "30%",
+                    //     title: 'Fecha modificación',
+                    //     data: 'fecha_modifica',
 
 
-                    },
+                    // },
                     {
                         className: "text-center",
-                        title: 'Acción',
+                        title: 'Action',
                         data: 'rolopcion_id',
                         render: function(data, type, row, meta) {
 
@@ -260,7 +260,7 @@ function llenargird(datos){
                                     '<input type="hidden" name="modulo_opcion" value="inactivar">' +
                                     '<input type="hidden" name="rolopcion_id" value="' +
                                     data + '">' +
-                                    '<button type="submit" title="Inactivar" class="button is-acciones is-rounded is-small">' +
+                                    '<button type="submit" title="Inactivate" class="button is-acciones is-rounded is-small">' +
                                     '<i class="fas fa-times-circle"></i>' +
                                     '</button>' +
                                     '</form></td>';

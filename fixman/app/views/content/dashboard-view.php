@@ -18,7 +18,7 @@
 
    
 	 <div class="columns is-flex is-justify-content-center"> 
-         <h2 class="subtitle">¡Bienvenido <?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?>!</h2>
+         <h2 class="subtitle">Welcome <?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?>!</h2>
      </div>
 
 	 <div class="container mt-5">

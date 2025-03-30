@@ -417,7 +417,7 @@
 											<i class="fas fa-clipboard-list fa-fw"></i>
 										</div>
 										<div class="navLateral-body-cr">
-											Lista de Menu
+											Menu List
 										</div>
 									</a>
 								</li> 

@@ -35,9 +35,8 @@
 	const MONEDA_SEPARADOR_MILLAR=",";
 	const MONEDA_SEPARADOR_DECIMAL=".";
 
-	const VISTAS=["dashboard","logOut","catalogo","valcatalogo","rol","menu","opcionmenu","opcionrol","usuario","company"];
-
-
+	const VISTAS=["dashboard","logOut","catalogo","valcatalogo","rol","menu","opcionmenu","opcionrol","usuario","company","job",
+	"managejob","invoice","reportjob"];
 	/*----------  Marcador de campos obligatorios (Font Awesome) ----------*/
 	const CAMPO_OBLIGATORIO='&nbsp; <i class="fas fa-edit"></i> &nbsp;';
 

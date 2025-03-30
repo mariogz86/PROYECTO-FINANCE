@@ -27,7 +27,7 @@ require_once "../autoload.php";
 		{
 			$res = array (
 				'status' => 404,
-				'message' =>  'No se encontro informacion'
+				'message' =>  'No information found'
 				);
 			echo json_encode($res); 
 		}    
@@ -45,8 +45,8 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"simple",
-				"titulo"=>"Usuario",
-				"texto"=>"El nombre de usuario ya existe en el sistema.",
+				"titulo"=>"User",
+				"texto"=>"The username already exists in the system.",
 				"icono"=>"warning"
 			];	
 		}
@@ -59,16 +59,16 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Usuario registrado",
-				"texto"=>"El registro se guardo con éxito",
+				"titulo"=>"Registered user",
+				"texto"=>"The record was saved successfully",
 				"icono"=>"success"
 			];}
 			else{
 				$alerta=[
 					"classform"=>".FormularioAjax",
 					"tipo"=>"limpiar",
-					"titulo"=>"Usuario actualizado",
-					"texto"=>"El registro se actualizo con éxito",
+					"titulo"=>"Updated user",
+					"texto"=>"The record was updated successfully.",
 					"icono"=>"success"
 				];	
 			}
@@ -78,7 +78,7 @@ require_once "../autoload.php";
 					"classform"=>".FormularioAjax",
 					"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo registrar el Usuario, por favor intente nuevamente",
+					"texto"=>"User registration failed, please try again.",
 					"icono"=>"error"
 				];
 			}
@@ -87,7 +87,7 @@ require_once "../autoload.php";
 						"classform"=>".FormularioAjax",
 						"tipo"=>"simple",
 					"titulo"=>"Error",
-					"texto"=>"No se pudo actualizar el Usuario, por favor intente nuevamente",
+					"texto"=>"Failed to update User, please try again",
 					"icono"=>"error"
 					];	
 				}
@@ -110,8 +110,8 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Usuario",
-				"texto"=>"El usuario se bloqueo con éxito",
+				"titulo"=>"User",
+				"texto"=>"The user was successfully blocked",
 				"icono"=>"success"
 			];
 		}
@@ -123,8 +123,8 @@ require_once "../autoload.php";
 			$alerta=[
 				"classform"=>".FormularioAjax",
 				"tipo"=>"limpiar",
-				"titulo"=>"Usuario",
-				"texto"=>"El usuario se desbloqueo con éxito",
+				"titulo"=>"User",
+				"texto"=>"The user was successfully unlocked",
 				"icono"=>"success"
 			];
 		}
