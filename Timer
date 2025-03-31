@@ -1,0 +1,49 @@
+Para ejecutar código en un formulario de VB.NET Windows Forms cada 30 segundos, puedes usar un Timer. Aquí tienes los pasos:
+
+Instrucciones
+
+1. Agrega un Timer al formulario desde el Toolbox o créalo en código.
+
+
+2. Configura el Timer:
+
+Interval = 30000 (30 segundos).
+
+Enabled = True.
+
+
+
+3. Escribe el código a ejecutar en el evento Tick del Timer.
+
+
+
+Ejemplo de código
+
+Public Class Form1
+    ' Declara el Timer
+    Private WithEvents myTimer As New Timer()
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Configura el Timer
+        myTimer.Interval = 30000 ' 30 segundos
+        myTimer.Enabled = True
+        myTimer.Start()
+    End Sub
+
+    ' Evento que se ejecuta cada 30 segundos
+    Private Sub myTimer_Tick(sender As Object, e As EventArgs) Handles myTimer.Tick
+        MessageBox.Show("Ejecutando código cada 30 segundos")
+        ' Aquí va el código que quieres ejecutar
+    End Sub
+End Class
+
+Explicación
+
+El Timer se inicia cuando el formulario carga.
+
+Cada 30 segundos se ejecuta el código dentro de myTimer_Tick.
+
+En este ejemplo, muestra un MessageBox, pero puedes reemplazarlo con el código que necesites.
+
+
+¿Necesitas algo más específico?
