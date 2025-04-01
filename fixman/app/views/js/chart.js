@@ -11,15 +11,15 @@ function drawChart() {
 	
 	// Add Chart data
    	var chartData = [
-	  ['venta_fecha','Ventas',{ role: 'annotation'}],
+	  ['fecha','quantity',{ role: 'annotation'}],
 	];
 
     for (var key in obj) {
 	  	if (obj.hasOwnProperty(key)) {
 		    var val = obj[key];
 
-		    var city = val.venta_fecha;
-		    var totalusers = Number(val.Ventas);
+		    var city = val.fecha;
+		    var totalusers = Number(val.quantity);
 
 		    // Add to Array
 		    chartData.push([city,totalusers,totalusers]);
@@ -31,14 +31,19 @@ function drawChart() {
 
 	// Options 
 	var options = {
-		title:'Cantidad de ventas en el mes',
-		colors: ['#d03d1d']
+		
+		height: 240,
+		title:'Number of jobs in the month',
+		colors: ['#ec8f6e']
+		
+		//colors: ['#d03d1d']
 	};
 
-	// Initialize 
-	var chart = new google.visualization.ColumnChart(document.getElementById('ciudadChart'));
+	
+	var chart = new google.visualization.ColumnChart(document.getElementById('trabajos'));
 	chart.draw(data, options);
-
+// Initialize 
+	/*
 	  chartData_json = document.getElementById('charttotalventa').value;
 
 	  obj = JSON.parse(chartData_json) ; 
@@ -73,5 +78,5 @@ function drawChart() {
 
 	var chart1 = new google.visualization.BarChart(document.getElementById('ventaschart'));
 	chart1.draw(data, options);
-	
+	*/
 }
