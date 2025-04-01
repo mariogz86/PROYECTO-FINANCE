@@ -1853,7 +1853,7 @@ where t.u_Estado=1 and cv.nombre='complete'
 union all
 select 'Cancelled' as estadojob ,count(t.id_trabajo) as cantidad from "SYSTEM".trabajo t
 inner join "SYSTEM".catalogovalor cv on cv.id_catalogovalor=t.id_estadotrabajo
-where t.u_Estado=1 and cv.nombre='Cancelled' 
+where t.u_Estado=1 and cv.nombre='Cancelled'; 
 
 CREATE OR REPLACE FUNCTION "SYSTEM".verdashboard(idusario INT)
 RETURNS TABLE(estadojob TEXT, cantidad bigint ) AS $$
@@ -1962,6 +1962,9 @@ FROM
 	LEFT JOIN "SYSTEM".USUARIOS U ON U.ID_USUARIO = T.ID_TECNICO
 ORDER BY
 	T.ID_TRABAJO DESC
+
+ 
+
 
 para buscar iconos
 https://www.flaticon.com/search?word=Cancelled 
