@@ -132,7 +132,15 @@ function llenardatos(data) {
             topStart: {
                 buttons: [{
                     extend: 'excel',
-                    text: 'download excel'
+                    text: 'download excel',
+                    exportOptions: {
+                            columns: function(column, data, node) { 
+                                if (column <= 0) {
+                                    return false;
+                                }
+                                return true;
+                            },
+                        }
                 }]
             }
         },

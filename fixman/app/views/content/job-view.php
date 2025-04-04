@@ -1319,9 +1319,9 @@ function cargargrid() {
 
                     },
                 ],
-                order: [
-                    [2, 'asc']
-                ],
+                // order: [
+                //     [0, 'desc']
+                // ],
                 //paging: false,
                 //scrollCollapse: true,
                 scrollX: false,
