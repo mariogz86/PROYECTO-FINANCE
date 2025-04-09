@@ -74,7 +74,7 @@ class usuarioController extends mainModel
 			$sql->execute();
 			$total = (int) $sql->fetchColumn();
 
-			$this->usuariocreado($usuario_nombre, $usuario_apellido, $usuario_usuario, $clave);
+			$this->usuariocreado($usuario_nombre, $usuario_apellido, $usuario_usuario, $clave,$usuario_email);
 		} else {
 			$sentencia = "select \"SYSTEM\".ACTUALIZAR_USUARIO('" . $_POST["idusuario"] . "','" . $usuario_nombre . "','" . $usuario_apellido . "','" . $usuario_usuario . "','" . $usuario_email . "','" . $clave . "','" . $cmb_rol . "','" . $fechavencimiento . "','" . $_SESSION['id'] . "');";
 			$sql = $this->actualizarDatos($sentencia);
@@ -123,7 +123,7 @@ class usuarioController extends mainModel
 
 
 	//funcion para enviar correo cuando la cuenta esta bloqueada por varios intentos
-	public function usuariocreado($nombre, $apellido, $usuario, $clave)
+	public function usuariocreado($nombre, $apellido, $usuario, $clave,$usuario_email)
 	{
 		$phpmailer = new PHPMailer(true);
 		$phpmailer->SMTPOptions = array(
@@ -141,26 +141,9 @@ class usuarioController extends mainModel
 		$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$phpmailer->Port       = 587;
 		$phpmailer->SMTPDebug = APP_SMTPDebug;
-
-		// $phpmailer->SMTPOptions = array(
-		// 	'ssl' => array(
-		// 		'verify_peer' => false,
-		// 		'verify_peer_name' => false,
-		// 		'allow_self_signed' => true,
-		// 	)
-		//   );	
-		// $phpmailer->isSMTP();
-		// $phpmailer->CharSet = APP_CharSet;
-		// $phpmailer->Host = APP_Host;
-		// $phpmailer->SMTPAuth = APP_SMTPAuth;
-		// $phpmailer->Port = APP_Port;
-		// $phpmailer->Username = APP_Username;
-		// $phpmailer->Password = APP_Password;
-		// $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		// $phpmailer->SMTPDebug = APP_SMTPDebug;
-
+ 
 		$phpmailer->setFrom(APP_Username);
-		$phpmailer->addAddress($_SESSION['correo']);
+		$phpmailer->addAddress($usuario_email);
 		$phpmailer->isHTML(true); // Set email format to plain text
 
 		$phpmailer->Subject = "Cuenta de usuario";
