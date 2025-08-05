@@ -30,6 +30,153 @@ if (isset($_GET['cargagrid'])) {
     }
 }
 
+if (isset($_POST['generarreporteservicio'])) {
+    $idtrabajo = $_POST['generarreporteservicio'];
+    $reportes = $insformulario->obtenerreporteserviciosporidtrabajo($idtrabajo);
+    $trabajo = $insformulario->obtenerjobporid($idtrabajo); 
+
+class MYPDF extends TCPDF {
+
+    public function Header() {
+        // Mostrar solo en la primera página
+        if ($this->page == 1) {
+             // Definir posición, tamaño y ruta de la imagen
+            $refri = '../tcpdf/examples/images/refri.jpg'; // Ruta de la imagen
+            $x = 10;  // Posición X
+            $y = 2;  // Posición Y
+            $width = 25; // Ancho deseado
+            $height = 40; // Alto deseado (ajustado automáticamente si se omite)
+
+            // Agregar la imagen al encabezado
+            $this->Image($refri, $x, $y, $width, $height);
+
+            // Definir posición, tamaño y ruta de la imagen
+            $labadora = '../tcpdf/examples/images/labadora.jpg'; // Ruta de la imagen
+            $x = 175;  // Posición X
+            $y = 3;  // Posición Y
+            $width = 25; // Ancho deseado
+            $height = 39; // Alto deseado (ajustado automáticamente si se omite)
+
+            // Agregar la imagen al encabezado
+            $this->Image($labadora, $x, $y, $width, $height);
+
+            // Definir posición, tamaño y ruta de la imagen
+            $titulo = '../tcpdf/examples/images/titulo.jpg'; // Ruta de la imagen
+            $x = 50;  // Posición X
+            $y = 3;  // Posición Y
+            $width = 110; // Ancho deseado
+            $height = 15; // Alto deseado (ajustado automáticamente si se omite)
+
+            // Agregar la imagen al encabezado
+            $this->Image($titulo, $x, $y, $width, $height);
+ 
+
+            $this->setLineWidth(0.2);
+            $this->Line(10, 45, 200, 45);
+        }
+    }
+
+    public function Footer() {
+        // Pie de página en todas las páginas
+        $this->SetY(-15);
+        $this->SetFont('helvetica', 'I', 8);
+        $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . ' of ' . $this->getAliasNbPages(), 0, false, 'C');
+    }
+}
+
+    // Crear nuevo PDF con TCPDF
+$pdf = new MYPDF();
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetAuthor('FIXMAN');
+$pdf->SetTitle('Service Report');
+$pdf->AddPage();
+$pdf->SetFont('helvetica', '', 10);
+
+ // // Definir fuente para el título
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->SetXY(80, 18); // Ajustar posición del texto
+    $pdf->Cell(0, 10, 'Technician\'s diagnosis', 0, 1, '');
+    $pdf->SetFont('helvetica', 'B', 10);
+    $pdf->SetXY(93, 25); // Ajustar posición del texto
+    $pdf->Cell(0, 10, $trabajo[0]["num_referencia"], 0, 1, '');
+    $fecha = date('d-m-Y');
+
+    $pdf->SetXY(96, 30); // Ajustar posición del texto
+    $pdf->Cell(0, 10, $fecha, 0, 1, '');
+
+$pdf->SetXY(15, 25);
+// Título
+//$pdf->Write(0, 'Reporte de Servicio', '', 0, 'C', true, 0, false, false, 0);
+//$pdf->Ln(5);
+
+$pdf->SetXY(10, 50);
+
+
+// Iterar registros
+foreach ($reportes as $reporte) {
+    $pdf->SetFont('', 'B');
+    $pdf->Write(0, "Appliance: " . $reporte['appliance']." ----- Brand: " . $reporte['brand'], '', 0, 'L', true, 0, false, false, 0);
+    $pdf->SetFont('', '');
+
+    // Tabla de datos principales
+    $html = '<table border="1" cellpadding="4">
+        <tr><th>Model</th><td>' . $reporte['model'] . '</td></tr>
+        <tr><th>Serial</th><td>' . $reporte['serial'] . '</td></tr>
+        <tr><th>Describe the problem</th><td>' . $reporte['problemdetail'] . '</td></tr>
+        <tr><th>Labor Cost</th><td>' . $reporte['laborcost'] . '</td></tr>
+        <tr><th>Type of Power Cord</th><td>' . $reporte['tipocable'] . '</td></tr>
+        <tr><th>Other</th><td>' . $reporte['otrotipocable'] . '</td></tr>
+        <tr><th>Potential factors</th><td>' . $reporte['falla'] . '</td></tr>
+        <tr><th>Other</th><td>' . $reporte['otrofactorfalla'] . '</td></tr>
+    </table><br>';
+
+    $pdf->writeHTML($html, true, false, false, false, '');
+
+    // Detalle del campo JSONB: datopartes
+    if (!empty($reporte['datopartes'])) {
+        $partes = json_decode($reporte['datopartes'], true);
+
+        if (json_last_error() === JSON_ERROR_NONE && is_array($partes)) {
+            $pdf->SetFont('', 'B');
+            $pdf->Write(0, 'Detail of parts to be repaired', '', 0, 'L', true, 0, false, false, 0);
+            $pdf->SetFont('', '');
+
+            $html = '<table border="1" cellpadding="4">
+                <thead>
+                    <tr style="background-color:#cccccc;">
+                        <th>Part Name</th>
+                        <th>Part Number</th>
+                        <th>Part Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead><tbody>';
+
+            foreach ($partes as $parte) {
+                $html .= '<tr>
+                <td>' . htmlspecialchars($parte['cantidad']) . '</td>
+                    <td>' . htmlspecialchars($parte['nombre']) . '</td>
+                    <td>' . htmlspecialchars($parte['numero']) . '</td>
+                    <td>' . htmlspecialchars($parte['precio']) . '</td>                    
+                </tr>';
+            }
+
+            $html .= '</tbody></table><br>';
+            $pdf->writeHTML($html, true, false, false, false, '');
+        } else {
+            $pdf->Write(0, 'Error al decodificar el campo JSON.', '', 0, 'L', true, 0, false, false, 0);
+        }
+    } else {
+        $pdf->Write(0, 'No parts were registered.', '', 0, 'L', true, 0, false, false, 0);
+    }
+
+    $pdf->Ln(5); // Espacio entre reportes
+}
+
+// Salida del PDF
+$pdf->Output('reporte_servicio.pdf', 'I');
+
+}
+
 if (isset($_POST['generarfactura'])) {
     $idtrabajo = $_POST['generarfactura'];
     $trabajo = $insformulario->obtenerjobporid($idtrabajo);

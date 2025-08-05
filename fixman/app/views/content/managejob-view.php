@@ -1,13 +1,13 @@
 <style>
-.has-text-centered {
-    text-align: center !important;
+    .has-text-centered {
+        text-align: center !important;
 
-}
+    }
 
-p {
-    margin-top: 5px !important;
-    margin-bottom: 1rem !important;
-}
+    p {
+        margin-top: 5px !important;
+        margin-bottom: 1rem !important;
+    }
 </style>
 <?php
 
@@ -33,60 +33,60 @@ $insrol = new FuncionesController();
                             <div class="column">
                                 <div class="control ">
                                     <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codservice' ");
+                                    $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codservice' ");
 
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codservice' ) where estado=1;";
+                                    $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codservice' ) where estado=1;";
 
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+                                    $datos = $insrol->Ejecutar($consulta_datos);
+                                    echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select name="cmb_service" class="form-select" id="select_service" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                    echo ' <select name="cmb_service" class="form-select" id="select_service" required>';
+                                    echo '<option value="">Select a value </option>';
+                                    while ($campos_caja = $datos->fetch()) {
+                                        echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
                             </option>';
-                                        }
-                                        ?>
+                                    }
+                                    ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="control ">
                                     <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codappliance' ");
+                                    $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codappliance' ");
 
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codappliance' ) where estado=1;";
+                                    $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codappliance' ) where estado=1;";
 
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+                                    $datos = $insrol->Ejecutar($consulta_datos);
+                                    echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select name="cmb_appliance" class="form-select" id="select_appliance" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                    echo ' <select name="cmb_appliance" class="form-select" id="select_appliance" required>';
+                                    echo '<option value="">Select a value </option>';
+                                    while ($campos_caja = $datos->fetch()) {
+                                        echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
                             </option>';
-                                        }
-                                        ?>
+                                    }
+                                    ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="control ">
                                     <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codbrand' ");
+                                    $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codbrand' ");
 
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codbrand' ) where estado=1;";
+                                    $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codbrand' ) where estado=1;";
 
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
+                                    $datos = $insrol->Ejecutar($consulta_datos);
+                                    echo '<label>' . $catalogo[0]['nombre'] . ' ' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select name="cmb_brand" class="form-select" id="select_brand" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                    echo ' <select name="cmb_brand" class="form-select" id="select_brand" required>';
+                                    echo '<option value="">Select a value </option>';
+                                    while ($campos_caja = $datos->fetch()) {
+                                        echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
                             </option>';
-                                        }
-                                        ?>
+                                    }
+                                    ?>
                                     </select>
                                 </div>
                             </div>
@@ -182,19 +182,19 @@ $insrol = new FuncionesController();
                             </div>
                             <div class="column">
                                 <div class="control ">
-                                    <?php 
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codparts' ) where estado=1;";
+                                    <?php
+                                    $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codparts' ) where estado=1;";
 
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>Part Name ' . CAMPO_OBLIGATORIO . '</label><br>';
+                                    $datos = $insrol->Ejecutar($consulta_datos);
+                                    echo '<label>Part Name ' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select name="cmb_part" class="form-select" id="select_part" required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                    echo ' <select name="cmb_part" class="form-select" id="select_part" required>';
+                                    echo '<option value="">Select a value </option>';
+                                    while ($campos_caja = $datos->fetch()) {
+                                        echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
                             </option>';
-                                        }
-                                        ?>
+                                    }
+                                    ?>
                                     </select>
                                 </div>
                             </div>
@@ -226,11 +226,15 @@ $insrol = new FuncionesController();
         </div>
     </div>
 </div>
+
 <!--fin modal partes-->
 <div class="container">
     <h1 class="title">Jobs</h1>
 
-    <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label></h2>
+    <h2 class="subtitle"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; <label id="titulo"></label>
+        <br>
+        <label id="titulo2"></label>
+    </h2>
 
     <div name="gridcat">
         <table id="myTable" class="table table-striped table-bordered">
@@ -366,7 +370,7 @@ $insrol = new FuncionesController();
                 <div class="column">
                     <div class="control ">
 
-                        <?php 
+                        <?php
                         $consulta_datos = "select * from  \"SYSTEM\".usuarios where id_rol in (select id_rol from \"SYSTEM\".roles  where rol='Technical' )and u_estado=1";
 
                         $datos = $insrol->Ejecutar($consulta_datos);
@@ -374,9 +378,9 @@ $insrol = new FuncionesController();
 
                         echo ' <select name="cmb_tecnico" class="form-select" id="select_tecnico">';
                         echo '<option value="0">Select a value </option>';
-                        while ($campos_caja = $datos->fetch()) { 
-                                echo '<option value="' . $campos_caja['id_usuario'] . '"> ' . $campos_caja['u_nombre_completo'] . '
-                            </option>'; 
+                        while ($campos_caja = $datos->fetch()) {
+                            echo '<option value="' . $campos_caja['id_usuario'] . '"> ' . $campos_caja['u_nombre_completo'] . '
+                            </option>';
                         }
                         ?>
                         </select>
@@ -418,9 +422,236 @@ $insrol = new FuncionesController();
     </p>
 
 
+    <div class="accordion" id="accordionservicio" style="display: none;">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button id="btncollapseOne" class="btn btn-link btn-block text-left" type="button"
+                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        Add service information
+                    </button>
+                </h2>
+            </div>
 
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionservicio">
+                <div class="card-body">
+                    <form name="formreporteservicio" class="FormularioAjax2" action="<?php echo APP_URL; ?>ajax/managejobAjax.php"
+                        method="POST" autocomplete="off" enctype="multipart/form-data">
+
+                        <input type="hidden" name="id_reporteservicio" value="">
+                        <input type="hidden" name="idjob_reporteservicio" value="">
+                        <input type="hidden" name="modulo_reporteservicio" value="registrarreporteservicio">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control ">
+                                        <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codappliance' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codappliance' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . '</label><br>';
+
+                                        echo ' <select name="cmb_appliancereporte" class="form-select" id="cmb_appliancereporte">';
+                                        echo '<option value="0">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                      </option>';
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control ">
+                                        <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codbrand' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codbrand' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . '</label><br>';
+
+                                        echo ' <select name="cmb_brandreporte" class="form-select" id="cmb_brandreporte" >';
+                                        echo '<option value="0">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                          </option>';
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Model # <?php echo CAMPO_OBLIGATORIO; ?></label>
+                                        <input class="input" type="text" name="modelreporte" maxlength="250" required>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Serial #</label>
+                                        <input class="input" type="text" name="serialreporte" maxlength="250">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Describe the problem and the work completed OR required. If the appliance is beyond repair, provide a detailed explanation.<?php echo CAMPO_OBLIGATORIO; ?></label>
+                                        <textarea name="problemdetailreporte"  id="problemdetailreporte" class="input" style="height: 100px;"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control ">
+                                        <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='tipocable' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('tipocable' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . '</label><br>';
+
+                                        echo ' <select id="cmb_tipocable" name="cmb_tipocable" class="form-select">';
+                                        echo '<option value="0">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                        </option>';
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Other</label>
+                                        <input class="input" type="text" name="otrocable" maxlength="500">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control ">
+                                        <?php
+                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='factores' ");
+
+                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('factores' ) where estado=1;";
+
+                                        $datos = $insrol->Ejecutar($consulta_datos);
+                                        echo '<label>' . $catalogo[0]['nombre'] . '</label><br>';
+
+                                        echo ' <select id="cmb_factores" name="cmb_factores" class="form-select">';
+                                        echo '<option value="0">Select a value </option>';
+                                        while ($campos_caja = $datos->fetch()) {
+                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . '
+                                        </option>';
+                                        }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Other</label>
+                                        <input class="input" type="text" name="otrofactor" maxlength="500">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Labor cost<?php echo CAMPO_OBLIGATORIO; ?> </label>
+                                        <input class="input" type="text" name="laborcosto" value="0.00"
+                                            pattern="[0-9.]{1,25}" maxlength="25" required>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Are parts required?</label>
+                                        <select id="cmb_requiereparte" name="cmb_requiereparte" class="form-select">
+                                            <option value="2">Select a value </option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="control">
+                                        <label>Was this repair completed?</label>
+                                        <select id="cmb_reparado" name="cmb_reparado" class="form-select">
+                                            <option value="2">Select a value </option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No, we need to request approval. </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="columns">
+                            <div class="column">
+                                    <div class="control">
+                                        <table id="miTablapartes" class="table  table-bordered" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Quantity</th>
+                                                    <th>Part Name</th>
+                                                    <th>Part Number</th>
+                                                    <th>Part Price</th>
+                                                     <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input class="input" type="number" name="cantidad[]"></td>
+                                                    <td><input class="input" type="text" name="nombre[]"></td>
+                                                    <td><input class="input" type="text" name="numero[]"></td>
+                                                    <td><input class="input" type="number" step="0.01" name="precio[]"></td>
+                                                      <td><button class="button is-info is-rounded" type="button" onclick="eliminarFila(this)"><i class="fas fa-trash"></i></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                        <button  class="button is-info is-rounded" type="button" onclick="agregarFila()">+ Add Row</button>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="columns">
+                                
+                                <div class="column">
+                                    <div class="control">
+                                        <p class="has-text-centered">
+
+                                            <button type="reset" class="button is-link is-light is-rounded"><i
+                                                    class="fas fa-paint-roller"></i> &nbsp;
+                                                Clean</button>
+                                            <button type="submit" class="button is-info is-rounded"><i
+                                                    class="far fa-save"></i> &nbsp;
+                                                Save</button>
+                                        </p>
+                                        <p class="has-text-centered pt-1">
+                                            <small>Fields marked with <?php echo CAMPO_OBLIGATORIO; ?> are
+                                                mandatory</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
     <div name="gridservicio">
         <table id="myTableservicio" class="table table-striped table-bordered">
+
+        </table>
+    </div>
+    <div name="gridreporteservicio">
+        <table id="myTablereporteservicio" class="table table-striped table-bordered">
 
         </table>
     </div>
@@ -709,19 +940,19 @@ $insrol = new FuncionesController();
                             <div class="column">
                                 <div class="control ">
                                     <?php
-                                        $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codjob' ");
+                                    $catalogo = $insrol->ejecutarconsultaarreglo("select c.* from  \"SYSTEM\".catalogo c  where c.codigo='codjob' ");
 
-                                        $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codjob' ) where estado=1;";
+                                    $consulta_datos = "select * from \"SYSTEM\".obtener_valor_porcatalogo('codjob' ) where estado=1;";
 
-                                        $datos = $insrol->Ejecutar($consulta_datos);
-                                        echo '<label>Job State' . CAMPO_OBLIGATORIO . '</label><br>';
+                                    $datos = $insrol->Ejecutar($consulta_datos);
+                                    echo '<label>Job State' . CAMPO_OBLIGATORIO . '</label><br>';
 
-                                        echo ' <select id="select_estadojob" name="cmb_estadojob" class="form-select"  required>';
-                                        echo '<option value="">Select a value </option>';
-                                        while ($campos_caja = $datos->fetch()) {
-                                            echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . ' </option>';
-                                        }
-                                        ?>
+                                    echo ' <select id="select_estadojob" name="cmb_estadojob" class="form-select"  required>';
+                                    echo '<option value="">Select a value </option>';
+                                    while ($campos_caja = $datos->fetch()) {
+                                        echo '<option value="' . $campos_caja['id_catalogovalor'] . '"> ' . $campos_caja['nombre'] . ' </option>';
+                                    }
+                                    ?>
                                     </select>
                                 </div>
                             </div>
@@ -755,166 +986,1333 @@ $insrol = new FuncionesController();
 <!-- Fin modal de movimientos -->
 
 <script>
-$(document).ready(function() {
-    $('#datepicker, #datepicker2').datepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true,
-        todayHighlight: true
-    });
+    <?php
+    if ($_SESSION['rol'] == "Administrator") {
+        echo "var esadmin=1;";
+    } else {
+        echo "var esadmin=0;";
+    }
+    ?>
+    $(document).ready(function() {
+        $('#datepicker, #datepicker2').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
 
-    $('#modalmovimiento').on('hidden.bs.modal', function(event) {
-        pantallaprincipal();
-    })
-});
+        $('#modalmovimiento').on('hidden.bs.modal', function(event) {
+            pantallaprincipal();
+        })
+    });
 </script>
 <script>
-//JSON.stringify(tabla.rows( { selected: true } ).data().toArray());
+    //JSON.stringify(tabla.rows( { selected: true } ).data().toArray());
 
-const regresar = document.getElementsByName("regresar");
-const regresar_service = document.getElementsByName("regresar_service");
+    const regresar = document.getElementsByName("regresar");
+    const regresar_service = document.getElementsByName("regresar_service");
 
-const idjob = document.getElementsByName("idjob");
-const idjob_service = document.getElementsByName("idjob_service");
-const id_servicio = document.getElementsByName("id_servicio");
-const idjob_cita = document.getElementsByName("idjob_cita");
-const id_cita = document.getElementsByName("id_cita");
-const idjob_pago = document.getElementsByName("idjob_pago");
-const id_pago = document.getElementsByName("id_pago");
-const idjob_movimiento = document.getElementsByName("idjob_movimiento");
-const id_diagnostico = document.getElementsByName("id_diagnostico");
-const idservicio_imagen = document.getElementsByName("idservicio_imagen");
-
-
-const id_parte = document.getElementsByName("id_parte");
-const id_servicio_parte = document.getElementsByName("id_servicio_parte");
+    const idjob = document.getElementsByName("idjob");
+    const idjob_service = document.getElementsByName("idjob_service");
+    const id_servicio = document.getElementsByName("id_servicio");
+    const idjob_cita = document.getElementsByName("idjob_cita");
+    const id_cita = document.getElementsByName("id_cita");
+    const idjob_pago = document.getElementsByName("idjob_pago");
+    const id_pago = document.getElementsByName("id_pago");
+    const idjob_movimiento = document.getElementsByName("idjob_movimiento");
+    const id_diagnostico = document.getElementsByName("id_diagnostico");
+    const idservicio_imagen = document.getElementsByName("idservicio_imagen");
 
 
+    const id_parte = document.getElementsByName("id_parte");
+    const id_servicio_parte = document.getElementsByName("id_servicio_parte");
+
+
+    const id_reporteservicio = document.getElementsByName("id_reporteservicio");
+    const idjob_reporteservicio = document.getElementsByName("idjob_reporteservicio");
+ 
 
 
 
-const formCompany = document.getElementsByName("formCompany");
-const formcita = document.getElementsByName("formcita");
-const formpago = document.getElementsByName("formpago");
 
-const accordioncita = document.getElementById("accordioncita")
+    const formCompany = document.getElementsByName("formCompany");
+    const formcita = document.getElementsByName("formcita");
+    const formpago = document.getElementsByName("formpago");
 
-const gridcat = document.getElementsByName("gridcat");
-const gridservicio = document.getElementsByName("gridservicio");
+    const accordioncita = document.getElementById("accordioncita")
+    const accordionservicio = document.getElementById("accordionservicio")
 
-function pantallaprincipal() {
-    gridcat[0].style.display = "";
-    accordioncita.style.display = "none";
-    gridservicio[0].style.display = "none";
-    formCompany[0].style.display = "none";
+    const gridcat = document.getElementsByName("gridcat");
+    const gridservicio = document.getElementsByName("gridservicio");
+    const gridreporteservicio = document.getElementsByName("gridreporteservicio");
 
-    regresar_service[0].style.display = "none";
-    document.getElementsByName("formCompany")[0].reset();
 
-    document.getElementsByName("formcita")[0].reset();
-    document.getElementsByName("formpago")[0].reset();
-    $("#titulo")[0].innerText = "job list";
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-    cargargrid();
+function agregarFila() {
+  const tabla = document.getElementById("miTablapartes").getElementsByTagName('tbody')[0];
+  const fila = tabla.insertRow();
+
+  const columnas = ['cantidad[]', 'nombre[]', 'numero[]', 'precio[]'];
+  columnas.forEach(col => {
+    const celda = fila.insertCell();
+    let input = document.createElement("input");
+    input.name = col;
+    input.className = "input";
+    input.type = (col === "cantidad[]" || col === "precio[]") ? "number" : "text";
+    if (col === "precio[]") input.step = "0.01";
+    celda.appendChild(input);
+  });
+
+  // Columna de acción: botón eliminar
+  const celdaAccion = fila.insertCell();
+  const boton = document.createElement("button");
+  boton.type = "button";
+  boton.innerHTML = '<i class="fas fa-trash"></i>';
+  boton.className = "button is-info is-rounded";
+  
+  boton.onclick = function() {
+    eliminarFila(boton);
+  };
+  celdaAccion.appendChild(boton);
 }
 
-$(document).ready(function() {
-    $('.form-select').select2();
-    //para dejar sin seleccion el combo
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-    gridservicio[0].style.display = "none";
-    accordioncita.style.display = "none";
-    regresar_service[0].style.display = "none";
-
-});
+function eliminarFila(boton) {
+  const fila = boton.closest("tr");
+  fila.remove();
+}
 
 
-regresar_service[0].addEventListener("click", (event) => {
+    function pantallaprincipal() {
+        gridcat[0].style.display = "";
+        accordioncita.style.display = "none";
+        accordionservicio.style.display = "none";
+        gridservicio[0].style.display = "none";
+        gridreporteservicio[0].style.display = "none";
+        formCompany[0].style.display = "none";
+
+        regresar_service[0].style.display = "none";
+        document.getElementsByName("formCompany")[0].reset();
+
+        document.getElementsByName("formcita")[0].reset();
+        document.getElementsByName("formpago")[0].reset();
+        $("#titulo")[0].innerText = "job list";
+        $("#titulo2")[0].innerText = "";
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+        cargargrid();
+    }
+
+    $(document).ready(function() {
+        $('.form-select').select2();
+        //para dejar sin seleccion el combo
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+        gridservicio[0].style.display = "none";
+        gridreporteservicio[0].style.display = "none";
+        accordioncita.style.display = "none";
+        regresar_service[0].style.display = "none";
+
+    });
+
+
+    regresar_service[0].addEventListener("click", (event) => {
+        event.preventDefault();
+        pantallaprincipal();
+
+    });
+
+    regresar[0].addEventListener("click", (event) => {
+        event.preventDefault();
+        pantallaprincipal();
+    });
+
+
+    $(document).on('click', '#modificar', function(e) {
+
+        event.preventDefault();
+        $("#titulo")[0].innerText = "Job details";
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTable").DataTable().data()[row];
+        gridcat[0].style.display = "none";
+        formCompany[0].style.display = "";
+
+        idjob[0].value = dato.id_trabajo;
+
+        document.getElementsByName("fullname")[0].value = dato.full_name;
+        document.getElementsByName("city")[0].value = dato.city;
+        document.getElementsByName("direccion")[0].value = dato.address;
+        document.getElementsByName("codigozip")[0].value = dato.codigozip;
+        document.getElementsByName("email")[0].value = dato.email;
+        document.getElementsByName("phone")[0].value = dato.phone;
+        document.getElementsByName("telefono")[0].value = dato.phone_movil;
+        document.getElementsByName("companyname")[0].value = dato.company_name;
+        document.getElementsByName("contactinfo")[0].value = dato.contact_info;
+        document.getElementsByName("contactphone")[0].value = dato.contact_phone;
+        document.getElementsByName("contactmail")[0].value = dato.contact_email;
+        document.getElementsByName("nte")[0].value = dato.valor_nte;
+        document.getElementsByName("fee")[0].value = dato.customer_fee;
+
+        $("#select_company").val(dato.id_company);
+        $('#select_company').change();
+
+        $("#select_state").val(dato.estadocliente);
+        $('#select_state').change();
+
+        $("#select_tecnico").val(dato.id_tecnico);
+        $('#select_tecnico').change();
+
+        let inputs = document.querySelectorAll("#formtrabajo input,#formtrabajo textarea, #formtrabajo select");
+        inputs.forEach(input => input.disabled = true);
+
+
+
+
+    });
+
+
+    $(document).on('click', '#diagnosticar', function(e) {
+
+        event.preventDefault();
+        regresar_service[0].style.display = "";
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTable").DataTable().data()[row];
+
+        $("#titulo")[0].innerText = "Reference Number: " + dato.num_referencia;
+        $("#titulo2")[0].innerText = "Provide an evaluation of the appliance's condition, reporting any issues, damages, or wear. Include a visual inspection, functionality assessment, repair recommendations, and relevant photos.";
+
+
+        gridcat[0].style.display = "none";
+        accordionservicio.style.display = "";
+
+         idjob_reporteservicio[0].value = dato.id_trabajo;
+         id_reporteservicio[0].value = 0;
+
+           let inputs = document.querySelectorAll(
+            "#formreporteservicio input,#formreporteservicio textarea, #formreporteservicio select");
+        inputs.forEach(input => input.disabled = true);
+
+
+           document.querySelector('.FormularioAjax2').reset();
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+        const tabla = document.getElementById('miTablapartes');
+           inputs = tabla.querySelectorAll('input');
+
+            inputs.forEach(input => {
+                input.value = '';
+            });
+    
+
+        cargargridreporteservicios(idjob_reporteservicio[0].value);
+
+
+    });
+
+    $(document).on('click', '#movimientos', function(e) {
+
+        event.preventDefault();
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTable").DataTable().data()[row];
+        idjob_movimiento[0].value = dato.id_trabajo;
+
+        $("#titulomodal")[0].innerHTML = ' Job Reference: ' + dato.num_referencia;
+        //para ocultar
+        //$("#modalvalidaciones").modal("hide");
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php' ?>",
+            data: "obtenermovimientosjob=" + dato.id_trabajo,
+            success: function(response) {
+
+                var res = jQuery.parseJSON(response);
+                if (res.status == 200) {
+
+                    cargargridmovimientos(res.data);
+
+
+                    // para mostrar modal
+                    $("#modalmovimiento").modal({
+                        backdrop: "static",
+                        keyboard: false
+                    });
+
+                }
+
+            }
+        })
+
+
+    });
+
+
+
+    function cargargridmovimiento_save(alerta) {
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php' ?>",
+            data: "obtenermovimientosjob=" + idjob_movimiento[0].value,
+            success: function(response) {
+
+                var res = jQuery.parseJSON(response);
+                if (res.status == 200) {
+
+                    cargargridmovimientos(res.data);
+
+                }
+
+            }
+        })
+        document.querySelector('.FormularioAjax5').reset();
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+
+    }
+
+    function cargargridmovimientos(datos) {
+
+        $('#griddmovimiento').DataTable({
+            data: datos,
+            destroy: true,
+            responsive: true,
+            columns: [{
+                    data: 'id_movimiento',
+                    visible: false,
+                },
+                {
+                    data: 'id_trabajo',
+                    visible: false,
+                },
+                {
+                    title: 'Job state',
+                    className: "text-center",
+                    data: 'estadojob',
+
+                },
+                {
+                    className: "text-center",
+                    title: 'Reason',
+                    data: 'nota',
+                    render: function(data, type, row, meta) {
+                        cadena =
+                            '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
+                            'title="' +
+                            data + '">' +
+                            '<i class="fas fa-info-circle"></i></button></td>';
+                        return cadena;
+                    }
+
+                },
+                {
+                    width: "20%",
+                    title: 'Date',
+                    data: 'fecha_creacion',
+
+
+                },
+                {
+                    title: 'User',
+                    className: "text-center",
+                    data: 'usuario',
+
+                },
+
+            ],
+            order: [
+                [0, 'desc']
+            ],
+            //paging: false,
+
+        });
+
+    }
+
+
+    $(document).on('click', '#servicios', function(e) {
+
+        event.preventDefault();
+        regresar_service[0].style.display = "";
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTable").DataTable().data()[row];
+
+        $("#titulo")[0].innerText = "Reference Number: " + dato.num_referencia;
+
+
+        gridcat[0].style.display = "none";
+
+        id_servicio[0].value = 0;
+        idjob_service[0].value = dato.id_trabajo;
+
+        cargargridservicios(dato.id_trabajo)
+
+    });
+
+    $(document).on('click', '#cita', function(e) {
+
+        event.preventDefault();
+        $('#btncollapsecita').trigger('click');
+        regresar_service[0].style.display = "";
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTable").DataTable().data()[row];
+        accordioncita.style.display = "";
+
+        $("#titulo")[0].innerText = "Add to job " + "-> Reference Number: " + dato
+            .num_referencia;
+
+
+        gridcat[0].style.display = "none";
+
+
+        idjob_cita[0].value = dato.id_trabajo;
+        idjob_pago[0].value = dato.id_trabajo;
+        idservicio_imagen[0].value = dato.id_trabajo;
+
+        $(".loadersacn")[0].style.display = "";
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadatoscita' ?>=" + dato.id_trabajo,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                    id_cita[0].value = datos[0].id_cita;
+                    $("#select_fechacita")[0].value = datos[0].fecha;
+
+                    $("#select_horaini").val(datos[0].horaini);
+                    $('#select_horaini').change();
+
+                    $("#select_horafin").val(datos[0].horafin);
+                    $('#select_horafin').change();
+
+                    $("#select_minini").val(datos[0].minini);
+                    $('#select_minini').change();
+
+                    $("#select_minfin").val(datos[0].minfin);
+                    $('#select_minfin').change();
+
+                    $("#select_tiempofin").val(datos[0].tiempofin);
+                    $('#select_tiempofin').change();
+
+                    $("#select_tiempoini").val(datos[0].tiemponi);
+                    $('#select_tiempoini').change();
+
+                    document.getElementsByName("nota")[0].value = datos[0].nota;
+
+                } else {
+                    id_cita[0].value = 0;
+                }
+            }
+
+
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadatospago' ?>=" + dato.id_trabajo,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                    id_pago[0].value = datos[0].id_payment;
+                    $("#select_pago").val(datos[0].id_valpayment);
+                    $('#select_pago').change();
+
+                    document.getElementsByName("notapayment")[0].value = datos[0].nota;
+
+                } else {
+                    id_pago[0].value = 0;
+                }
+            }
+
+
+        });
+
+
+        fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + dato.id_trabajo)
+            .then(response => response.json())
+            .then(data => {
+                const dashboard = document.getElementById('cargarimagenes');
+                dashboard.innerHTML = "";
+                if (data.status == 200) {
+                    data.data.forEach(item => {
+                        const estado = item.ruta
+                            .toLowerCase(); // Convertir en minúscula para buscar imagen
+                        const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar=' ?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                        dashboard.innerHTML += card;
+                    });
+                }
+            });
+
+        let inputs = document.querySelectorAll(
+            "#formcitajob input,#formcitajob textarea, #formcitajob select,#formpagojob input,#formpagojob textarea, #formpagojob select"
+        );
+        inputs.forEach(input => input.disabled = true);
+
+    });
+
+    $(document).on('click', '#eliminimg', function(e) {
+        event.preventDefault();
+        $(".loadersacn")[0].style.display = "";
+        $.ajax({
+            type: "GET",
+            url: e.currentTarget.href,
+            success: function(response) {
+                var res = jQuery.parseJSON(response);
+                if (res.status == 200) {
+                    $(".loadersacn").fadeOut("slow");
+                    fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" +
+                            idservicio_imagen[0].value)
+                        .then(response => response.json())
+                        .then(data => {
+                            const dashboard = document.getElementById('cargarimagenes');
+                            dashboard.innerHTML = "";
+                            if (data.status == 200) {
+                                data.data.forEach(item => {
+                                    const estado = item.ruta
+                                        .toLowerCase(); // Convertir en minúscula para buscar imagen
+                                    const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar=' ?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                                    dashboard.innerHTML += card;
+                                });
+                            }
+                        });
+
+                } else {
+
+                }
+            }
+
+
+        });
+    });
+
+    function cargaformularioreporteservicio(expandirformulario) {
+        gridcat[0].style.display = "none";
+        regresar_service[0].style.display = "";
+        if (expandirformulario == 1) {
+            $('#btncollapseOne').trigger('click');
+        }
+
+        document.querySelector('.FormularioAjax2').reset();
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+        const tabla = document.getElementById('miTablapartes');
+         const   inputs = tabla.querySelectorAll('input');
+
+            inputs.forEach(input => {
+                input.value = '';
+            });
+        cargargridreporteservicios(idjob_reporteservicio[0].value);
+         id_reporteservicio[0].value = 0;
+    }
+
+     function cargargridreporteservicios(idtrabajo) {
+        $(".loadersacn")[0].style.display = "";
+        gridcat[0].style.display = "none";
+        formCompany[0].style.display = "none";
+
+        gridreporteservicio[0].style.display = "";
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagridreporteservicio' ?>=" + idtrabajo,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                }
+                $('#myTablereporteservicio').DataTable({
+                    // layout: {
+                    //             topStart: {
+                    //                 buttons: [ {
+                    //                     extend: 'excel',
+                    //                     text: 'Descargar archivo excel'
+                    //                 }
+                    //             ]
+                    //             }
+                    //         },
+                    data: datos,
+                    // language: {
+                    //     "url": "<?php echo APP_URL ?>config/es-MX.json"
+                    // },
+                    //searching: false, 
+                    destroy: true,
+                    responsive: true,
+                    columnDefs: [{
+                        orderable: false,
+                        render: DataTable.render.select(),
+                        targets: 0
+                    }, ],
+                    columns: [
+                        // {
+                        //     className: "text-center",
+                        //     data: null,
+                        // },
+                        {
+                            data: 'id_reporteservicio',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_trabajo',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valortipocable',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valappliance',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valbrand',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valorfactorfalla',
+                            visible: false,
+                        },
+                        {
+                            data: 'datopartes',
+                            visible: false,
+                        },
+                        {
+                            width: "15%",
+                            title: 'Appliance',
+                            className: "text-center",
+                            data: 'appliance',
+                        },
+                        {
+                            width: "15%",
+                            title: 'brand',
+                            data: 'brand',
+
+                        },
+                        {
+                            width: "15%",
+                            title: 'Model',
+                            className: "text-center",
+                            data: 'model',
+                        },
+                        
+                        {
+                            width: "15%",
+                            title: 'Serial',
+                            className: "text-center",
+                            data: 'serial',
+                        }, 
+                        {
+                            width: "10%",
+                            className: "text-center",
+                            title: 'Problem Detail',
+                            data: 'problemdetail',
+                            render: function(data, type, row, meta) {
+                                cadena =
+                                    '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
+                                    'title="' +
+                                    data + '">' +
+                                    '<i class="fas fa-info-circle"></i></button></td>';
+                                    
+                                return cadena;
+                            }
+
+                        }, 
+                        {
+                            width: "10%",
+                            title: 'Labor cost',
+                            data: 'laborcost',
+                            render: $.fn.dataTable.render.number(',', '.', 2)
+
+                        }, 
+                         {
+                            width: "15%",
+                            title: 'Type of Power Cord',
+                            className: "text-center",
+                            data: 'tipocable',
+                        }, 
+                         {
+                            width: "15%",
+                            title: 'Potential factors',
+                            className: "text-center",
+                            data: 'falla',
+                        }, 
+                        {
+
+                            className: "text-center",
+                            title: 'Actions',
+                            data: 'id_reporteservicio',
+                            render: function(data, type, row, meta) {
+                                 cadena = '<td><div style="width: 105px;">' +
+                                    '<div ><div style="float: left;margin-right: 2px;"><a id="editreporteservicio" title="Edit" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
+                                    meta.row + '">' +
+                                    '<i class="fas fa-diagnoses"></i></a></div> ';
+                                  
+                                cadena = cadena + '<div style="float: left;">';
+                                cadena = cadena +
+                                    '<form name="accionreporteservicio" class="Formularioreporteservicio" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
+                                    '<input type="hidden" name="eliminarreporteservicio" value="eliminar">' +
+                                    '<input type="hidden" name="id_reporteservicio" value="' +
+                                    data + '">' +
+                                    '<button type="submit" title="Eliminate" class="button is-acciones is-rounded is-small">' +
+                                    '<i class="far fa-trash-alt"></i>' +
+                                    '</button>' +
+                                    '</form>'; 
+                                cadena = cadena + '</div>';
+                                return cadena + '</div></td>';
+
+                            }
+
+                        },
+
+                    ],
+                    // order: [
+                    //     [0, 'asc']
+                    // ],
+                    //paging: false,
+                    scrollCollapse: true,
+                    scrollX: false,
+                    scrollY: 400,
+                    select: {
+                        style: 'multi',
+                        selector: 'td:first-child'
+                    },
+                    "createdRow": function(row, data, dataIndex) {
+                        if (data.u_estado == 0) {
+                            $(row).addClass('redClass');
+                        }
+                        if (data.u_bloqueado == 1) {
+                            $(row).addClass('bloqueado');
+                        }
+                    },
+                });
+
+
+
+
+                $('[data-toggle="tooltip"]').tooltip();
+
+                document.querySelectorAll(".tooltip-btn").forEach((btn) => {
+                    btn.addEventListener("mouseenter", () => {
+                        btn.setAttribute("data-show", "true");
+                    });
+
+                    btn.addEventListener("mouseleave", () => {
+                        btn.removeAttribute("data-show");
+                    });
+                });
+
+            }
+
+
+        });
+    }
+
+    function quedarenpantalla(alerta) {
+        if (alerta.classform == ".FormularioAjax3") {
+            id_cita[0].value = alerta.idgenerado;
+        } else {
+            id_pago[0].value = alerta.idgenerado;
+        }
+
+        var inputImage = document.getElementById("archivos");
+        inputImage.value = '';
+
+        fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + idservicio_imagen[0].value)
+            .then(response => response.json())
+            .then(data => {
+                const dashboard = document.getElementById('cargarimagenes');
+                dashboard.innerHTML = "";
+                if (data.status == 200) {
+                    data.data.forEach(item => {
+                        const estado = item.ruta
+                            .toLowerCase(); // Convertir en minúscula para buscar imagen
+                        const card = `<div class="text-center mb-3">
+                         <a href=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
+                            <img src=" <?php echo APP_URL . 'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                        </a>
+                        <br>
+                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar=' ?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>`;
+
+                        dashboard.innerHTML += card;
+                    });
+                }
+            });
+
+
+    }
+
+    
+
+     $(document).on('click', '#editreporteservicio', function(e) {
+
+        event.preventDefault();
+        $('#btncollapseOne').trigger('click');
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTablereporteservicio").DataTable().data()[row];
+        document.getElementsByName("formreporteservicio")[0].reset();
+
+         let inputs = document.querySelectorAll(
+            "#formreporteservicio input,#formreporteservicio textarea, #formreporteservicio select");
+        inputs.forEach(input => input.disabled = true);
+
+
+        id_reporteservicio[0].value = dato.id_reporteservicio;
+        idjob_reporteservicio[0].value = dato.id_trabajo; 
+
+        document.getElementsByName("modelreporte")[0].value = dato.model;
+        document.getElementsByName("serialreporte")[0].value = dato.serial;
+        document.getElementsByName("problemdetailreporte")[0].value = dato.problemdetail;
+        document.getElementsByName("laborcosto")[0].value = dato.laborcost;
+        document.getElementsByName("otrocable")[0].value = dato.otrotipocable;
+        document.getElementsByName("otrofactor")[0].value = dato.otrofactorfalla;
+
+        $("#cmb_tipocable").val(dato.id_valortipocable);
+        $('#cmb_tipocable').change();
+
+        $("#cmb_appliancereporte").val(dato.id_valappliance);
+        $('#cmb_appliancereporte').change();
+
+        $("#cmb_brandreporte").val(dato.id_valbrand);
+        $('#cmb_brandreporte').change(); 
+
+        $("#cmb_factores").val(dato.id_valorfactorfalla);
+        $('#cmb_factores').change(); 
+
+        $("#cmb_requiereparte").val(dato.requierepartes);
+        $('#cmb_requiereparte').change();
+
+        $("#cmb_reparado").val(dato.completoreparacion);
+        $('#cmb_reparado').change();
+
+            jsondatos =JSON.parse(dato.datopartes);
+
+          const tbody = document.querySelector('#miTablapartes tbody');
+            tbody.innerHTML = ''; // Limpiar tabla
+
+            jsondatos.forEach(item => {
+                const fila = document.createElement('tr');
+
+                fila.innerHTML = `
+                    <td><input class="input" type="number" name="cantidad[]" value="${item.cantidad || ''}"></td>
+                    <td><input class="input" type="input" name="nombre[]" value="${item.nombre || 0}"></td>
+                    <td><input class="input" type="input" name="numero[]"   value="${item.numero || 0}"></td>
+                    <td><input class="input" type="input" name="precio[]" step="0.01" value="${item.precio || 0}"></td>
+                    <td><button class="button is-info is-rounded" type="button" onclick="eliminarFila(this)"><i class="fas fa-trash"></i></button></td>
+                `;
+ 
+                                                      
+
+                tbody.appendChild(fila);
+            });
+    });
+
+    $(document).on('click', '#editservicios', function(e) {
+
+        event.preventDefault();
+        $('#btncollapseOne').trigger('click');
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTableservicio").DataTable().data()[row];
+        document.getElementsByName("formdiagnostico")[0].reset();
+
+
+        id_servicio[0].value = dato.id_servicio;
+        idjob_service[0].value = dato.id_trabajo;
+
+
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadiagnostico' ?>=" + dato.id_servicio,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                    id_diagnostico[0].value = datos[0].id_diagnostico;
+
+                    document.getElementsByName("diagnostico")[0].value = datos[0].nota;
+                    document.getElementsByName("laborfee")[0].value = datos[0].laborfee;
+                    document.getElementsByName("serial")[0].value = datos[0].serial;
+
+                } else {
+                    id_diagnostico[0].value = 0;
+                }
+            }
+
+
+        });
+
+        document.getElementsByName("model")[0].value = dato.model;
+        document.getElementsByName("problemdetail")[0].value = dato.problemdetail;
+
+        $("#select_service").val(dato.id_valservice);
+        $('#select_service').change();
+
+        $("#select_appliance").val(dato.id_valappliance);
+        $('#select_appliance').change();
+
+        $("#select_brand").val(dato.id_valbrand);
+        $('#select_brand').change();
+
+        let inputs = document.querySelectorAll(
+            "#formdatosservicio input,#formdatosservicio textarea, #formdatosservicio select");
+        inputs.forEach(input => input.disabled = true);
+
+
+        $("#titulomodaldiagnostico")[0].innerHTML = ' Diagnosis for service';
+        // para mostrar modal
+        $("#modaldiagnostico").modal({
+            backdrop: "static",
+            keyboard: false
+        });
+
+
+    });
+
+    function quedarenmodaldiagnostico(alerta) {
+        id_diagnostico[0].value = alerta.id_diagnostico;
+
+    }
+
+    $(document).on('click', '#agregarpartes', function(e) {
+
+        event.preventDefault();
+        id_parte[0].value = 0;
+        $(".loadersacn")[0].style.display = "";
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTableservicio").DataTable().data()[row];
+
+
+        id_servicio_parte[0].value = dato.id_servicio;
+        $("#titulomodalpartes")[0].innerHTML = 'Add parts to the service';
+
+        // para mostrar modal
+        $("#modalpartes").modal({
+            backdrop: "static",
+            keyboard: false
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + dato.id_servicio,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                    cargargridpartes(datos);
+
+                } else {
+                    cargargridpartes(datos);
+                }
+            }
+
+
+        });
+
+    });
+
+    $(document).on('click', '#editparte', function(e) {
+
+        event.preventDefault();
+        $('#btncollapseOne').trigger('click');
+        var row = e.currentTarget.attributes['valor'].value;
+        var dato = $("#myTablepartes").DataTable().data()[row];
+
+
+        id_servicio_parte[0].value = dato.id_servicio;
+        id_parte[0].value = dato.id_parte;
+
+
+
+        document.getElementsByName("cantidad")[0].value = dato.cantidad;
+        document.getElementsByName("serialparte")[0].value = dato.serial;
+        document.getElementsByName("costo")[0].value = dato.costo;
+
+        $("#select_part").val(dato.id_valorparte);
+        $('#select_part').change();
+
+
+
+    });
+
+
+
+
+    function quedarenmodalparte(alerta) {
+
+        document.getElementsByName("formpartes")[0].reset();
+        $('.form-select').prop("selectedIndex", 0);
+        $('.form-select').change();
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + id_servicio_parte[0].value,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                    cargargridpartes(datos);
+                    // para mostrar modal
+
+                } else {
+                    cargargridpartes(datos);
+                }
+            }
+
+
+        });
+
+    }
+
+
+
+    function cargargridpartes(datos) {
+
+        $('#myTablepartes').DataTable({
+            data: datos,
+            destroy: true,
+            responsive: true,
+            columns: [{
+                    data: 'id_parte',
+                    visible: false,
+                },
+                {
+                    data: 'id_servicio',
+                    visible: false,
+                },
+                {
+                    data: 'id_valorparte',
+                    visible: false,
+                },
+                {
+                    title: 'Part name',
+                    className: "text-center",
+                    data: 'nombre',
+
+                },
+                {
+                    title: 'Qty',
+                    className: "text-center",
+                    data: 'cantidad',
+
+                },
+                {
+                    title: 'Serial #',
+                    className: "text-center",
+                    data: 'serial',
+
+                },
+                {
+                    title: 'Amount',
+                    className: "text-center",
+                    data: 'costo',
+                    render: $.fn.dataTable.render.number(',', '.', 2)
+
+                },
+                {
+
+                    className: "text-center",
+                    title: 'Actions',
+                    data: 'id_parte',
+                    render: function(data, type, row, meta) {
+                        cadena =
+                            '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editparte" title="Edit part" href="#" class="button is-services is-rounded is-small" valor="' +
+                            meta.row + '">' +
+                            '<i class="far fa-edit"></i></a></div> ';
+
+                        cadena = cadena + '<td>' +
+                            '<div style="float: left;">';
+                        cadena = cadena + '<div>';
+                        cadena = cadena +
+                            '<form name="accionpartes" class="FormularioAccionespartes" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
+                            '<input type="hidden" name="modulo_serviceparte" value="eliminar">' +
+                            '<input type="hidden" name="id_servicioparte" value="' +
+                            data + '">' +
+                            '<button type="submit" title="Eliminate" class="button is-acciones is-rounded is-small">' +
+                            '<i class="far fa-trash-alt"></i>' +
+                            '</button>' +
+                            '</form>';
+
+                        cadena = cadena + '</div>';
+                        cadena = cadena + '</div></td>';
+                        return cadena;
+
+                    }
+
+                },
+
+            ],
+            // order: [
+            //     [0, 'desc']
+            // ],
+            //paging: false,
+
+        });
+
+        cargarfunciones();
+
+    }
+
+
+
+    function cargargridservicios(idtrabajo) {
+        $(".loadersacn")[0].style.display = "";
+        gridcat[0].style.display = "none";
+        formCompany[0].style.display = "none";
+
+        gridservicio[0].style.display = "";
+
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagridservicio' ?>=" + idtrabajo,
+            success: function(response) {
+                $(".loadersacn").fadeOut("slow");
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
+
+                var datos = [];
+
+                if (res.status == 200) {
+                    datos = res.data;
+                }
+                $('#myTableservicio').DataTable({
+                    // layout: {
+                    //             topStart: {
+                    //                 buttons: [ {
+                    //                     extend: 'excel',
+                    //                     text: 'Descargar archivo excel'
+                    //                 }
+                    //             ]
+                    //             }
+                    //         },
+                    data: datos,
+                    // language: {
+                    //     "url": "<?php echo APP_URL ?>config/es-MX.json"
+                    // },
+                    //searching: false, 
+                    destroy: true,
+                    responsive: true,
+                    columnDefs: [{
+                        orderable: false,
+                        render: DataTable.render.select(),
+                        targets: 0
+                    }, ],
+                    columns: [
+                        // {
+                        //     className: "text-center",
+                        //     data: null,
+                        // },
+                        {
+                            data: 'id_servicio',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_trabajo',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valservice',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valappliance',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valbrand',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_valsymptom',
+                            visible: false,
+                        },
+                        {
+                            width: "15%",
+                            title: 'Service',
+                            className: "text-center",
+                            data: 'tiposervicio',
+                        },
+                        {
+                            width: "15%",
+                            title: 'Appliance',
+                            className: "text-center",
+                            data: 'appliance',
+                        },
+                        {
+                            width: "15%",
+                            title: 'brand',
+                            data: 'brand',
+
+                        },
+                        {
+                            width: "15%",
+                            title: 'Model',
+                            className: "text-center",
+                            data: 'model',
+                        },
+                        {
+                            width: "15%",
+                            title: 'Symptom',
+                            className: "text-center",
+                            data: 'symptom',
+                        },
+
+                        {
+                            width: "10%",
+                            className: "text-center",
+                            title: 'Problem Detail',
+                            data: 'problemdetail',
+                            render: function(data, type, row, meta) {
+                                cadena =
+                                    '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
+                                    'title="' +
+                                    data + '">' +
+                                    '<i class="fas fa-info-circle"></i></button></td>';
+                                return cadena;
+                            }
+
+                        },
+                        {
+                            width: "10%",
+                            title: 'Service Fee',
+                            data: 'servicefee',
+                            render: $.fn.dataTable.render.number(',', '.', 2)
+
+                        },
+                        {
+                            width: "10%",
+                            title: 'Covered',
+                            data: 'covered',
+                            render: $.fn.dataTable.render.number(',', '.', 2)
+                        },
+                        {
+
+                            className: "text-center",
+                            title: 'Actions',
+                            data: 'id_servicio',
+                            render: function(data, type, row, meta) {
+                                cadena = '<td><div style="width: 105px;">' +
+                                    '<div ><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Diagnosis" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
+                                    meta.row + '">' +
+                                    '<i class="fas fa-diagnoses"></i></a></div> ' +
+                                    '<div><div style="margin-right: 2px;"><a id="agregarpartes" title="Add Parts" href="#" class="button is-partes is-rounded is-small" valor="' +
+                                    meta.row + '">' +
+                                    '<i class="fas fa-toolbox"></i></a></div> ';
+
+                                return cadena + '</div></td>';
+
+                            }
+
+                        },
+
+                    ],
+                    // order: [
+                    //     [0, 'asc']
+                    // ],
+                    //paging: false,
+                    scrollCollapse: true,
+                    scrollX: false,
+                    scrollY: 400,
+                    select: {
+                        style: 'multi',
+                        selector: 'td:first-child'
+                    },
+                    "createdRow": function(row, data, dataIndex) {
+                        if (data.u_estado == 0) {
+                            $(row).addClass('redClass');
+                        }
+                        if (data.u_bloqueado == 1) {
+                            $(row).addClass('bloqueado');
+                        }
+                    },
+                });
+
+
+
+
+                $('[data-toggle="tooltip"]').tooltip();
+
+                document.querySelectorAll(".tooltip-btn").forEach((btn) => {
+                    btn.addEventListener("mouseenter", () => {
+                        btn.setAttribute("data-show", "true");
+                    });
+
+                    btn.addEventListener("mouseleave", () => {
+                        btn.removeAttribute("data-show");
+                    });
+                });
+
+            }
+
+
+        });
+    }
+
+    $(document).on('click', '#verdiagnostico', function(e) {
+
     event.preventDefault();
-    pantallaprincipal();
-
-});
-
-regresar[0].addEventListener("click", (event) => {
-    event.preventDefault();
-    pantallaprincipal();
-});
-
-
-$(document).on('click', '#modificar', function(e) {
-
-    event.preventDefault();
-    $("#titulo")[0].innerText = "Job details";
     var row = e.currentTarget.attributes['valor'].value;
     var dato = $("#myTable").DataTable().data()[row];
-    gridcat[0].style.display = "none";
-    formCompany[0].style.display = "";
-
-    idjob[0].value = dato.id_trabajo;
-
-    document.getElementsByName("fullname")[0].value = dato.full_name;
-    document.getElementsByName("city")[0].value = dato.city;
-    document.getElementsByName("direccion")[0].value = dato.address;
-    document.getElementsByName("codigozip")[0].value = dato.codigozip;
-    document.getElementsByName("email")[0].value = dato.email;
-    document.getElementsByName("phone")[0].value = dato.phone;
-    document.getElementsByName("telefono")[0].value = dato.phone_movil;
-    document.getElementsByName("companyname")[0].value = dato.company_name;
-    document.getElementsByName("contactinfo")[0].value = dato.contact_info;
-    document.getElementsByName("contactphone")[0].value = dato.contact_phone;
-    document.getElementsByName("contactmail")[0].value = dato.contact_email;
-    document.getElementsByName("nte")[0].value = dato.valor_nte;
-    document.getElementsByName("fee")[0].value = dato.customer_fee;
-
-    $("#select_company").val(dato.id_company);
-    $('#select_company').change();
-
-    $("#select_state").val(dato.estadocliente);
-    $('#select_state').change();
-
-    $("#select_tecnico").val(dato.id_tecnico);
-    $('#select_tecnico').change();
-
-    let inputs = document.querySelectorAll("#formtrabajo input,#formtrabajo textarea, #formtrabajo select");
-    inputs.forEach(input => input.disabled = true);
-
-
-
-
-});
-
-
-$(document).on('click', '#movimientos', function(e) {
-
-    event.preventDefault();
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTable").DataTable().data()[row];
-    idjob_movimiento[0].value = dato.id_trabajo;
-
-    $("#titulomodal")[0].innerHTML = ' Job Reference: ' + dato.num_referencia;
     //para ocultar
     //$("#modalvalidaciones").modal("hide");
 
     $.ajax({
-        type: "GET",
-        url: "<?php  echo APP_URL.'ajax/managejobAjax.php' ?>",
-        data: "obtenermovimientosjob=" + dato.id_trabajo,
-        success: function(response) {
+        type: "POST",
+        url: "<?php echo APP_URL . 'ajax/invoiceAjax.php' ?>",
+        data: "generarreporteservicio=" + dato.id_trabajo,
+        xhrFields: {
+            responseType: 'blob' // Importante para manejar archivos binarios
+        },
+        success: function(data) {
 
-            var res = jQuery.parseJSON(response);
-            if (res.status == 200) {
+            // Crear una URL para el blob y abrirla en una nueva pestaña
+            var blob = new Blob([data], {
+                type: 'application/pdf'
+            });
+            var url = window.URL.createObjectURL(blob);
+            window.open(url);
 
-                cargargridmovimientos(res.data);
-
-
-                // para mostrar modal
-                $("#modalmovimiento").modal({
-                    backdrop: "static",
-                    keyboard: false
-                });
-
-            }
 
         }
     })
@@ -922,1008 +2320,224 @@ $(document).on('click', '#movimientos', function(e) {
 
 });
 
+    function cargargrid() {
+        $(".loadersacn")[0].style.display = "";
+        $("#titulo")[0].innerText = "job list";
 
-
-function cargargridmovimiento_save(alerta) {
-    $.ajax({
-        type: "GET",
-        url: "<?php  echo APP_URL.'ajax/managejobAjax.php' ?>",
-        data: "obtenermovimientosjob=" + idjob_movimiento[0].value,
-        success: function(response) {
-
-            var res = jQuery.parseJSON(response);
-            if (res.status == 200) {
-
-                cargargridmovimientos(res.data);
-
-            }
-
-        }
-    })
-    document.querySelector('.FormularioAjax5').reset();
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-
-}
-
-function cargargridmovimientos(datos) {
-
-    $('#griddmovimiento').DataTable({
-        data: datos,
-        destroy: true,
-        responsive: true,
-        columns: [{
-                data: 'id_movimiento',
-                visible: false,
-            },
-            {
-                data: 'id_trabajo',
-                visible: false,
-            },
-            {
-                title: 'Job state',
-                className: "text-center",
-                data: 'estadojob',
-
-            },
-            {
-                className: "text-center",
-                title: 'Reason',
-                data: 'nota',
-                render: function(data, type, row, meta) {
-                    cadena =
-                        '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
-                        'title="' +
-                        data + '">' +
-                        '<i class="fas fa-info-circle"></i></button></td>';
-                    return cadena;
-                }
-
-            },
-            {
-                width: "20%",
-                title: 'Date',
-                data: 'fecha_creacion',
-
-
-            },
-            {
-                title: 'User',
-                className: "text-center",
-                data: 'usuario',
-
-            },
-
-        ],
-        order: [
-            [0, 'desc']
-        ],
-        //paging: false,
-
-    });
-
-}
-
-
-$(document).on('click', '#servicios', function(e) {
-
-    event.preventDefault();
-    regresar_service[0].style.display = "";
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTable").DataTable().data()[row];
-
-    $("#titulo")[0].innerText = "Reference Number: " + dato.num_referencia;
-
-
-    gridcat[0].style.display = "none";
-
-    id_servicio[0].value = 0;
-    idjob_service[0].value = dato.id_trabajo;
-
-    cargargridservicios(dato.id_trabajo)
-
-});
-
-$(document).on('click', '#cita', function(e) {
-
-    event.preventDefault();
-    $('#btncollapsecita').trigger('click');
-    regresar_service[0].style.display = "";
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTable").DataTable().data()[row];
-    accordioncita.style.display = "";
-
-    $("#titulo")[0].innerText = "Add to job " + "-> Reference Number: " + dato
-        .num_referencia;
-
-
-    gridcat[0].style.display = "none";
-
-
-    idjob_cita[0].value = dato.id_trabajo;
-    idjob_pago[0].value = dato.id_trabajo;
-    idservicio_imagen[0].value = dato.id_trabajo;
-
-    $(".loadersacn")[0].style.display = "";
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadatoscita' ?>=" + dato.id_trabajo,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-                id_cita[0].value = datos[0].id_cita;
-                $("#select_fechacita")[0].value = datos[0].fecha;
-
-                $("#select_horaini").val(datos[0].horaini);
-                $('#select_horaini').change();
-
-                $("#select_horafin").val(datos[0].horafin);
-                $('#select_horafin').change();
-
-                $("#select_minini").val(datos[0].minini);
-                $('#select_minini').change();
-
-                $("#select_minfin").val(datos[0].minfin);
-                $('#select_minfin').change();
-
-                $("#select_tiempofin").val(datos[0].tiempofin);
-                $('#select_tiempofin').change();
-
-                $("#select_tiempoini").val(datos[0].tiemponi);
-                $('#select_tiempoini').change();
-
-                document.getElementsByName("nota")[0].value = datos[0].nota;
-
-            } else {
-                id_cita[0].value = 0;
-            }
-        }
-
-
-    });
-
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadatospago' ?>=" + dato.id_trabajo,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-                id_pago[0].value = datos[0].id_payment;
-                $("#select_pago").val(datos[0].id_valpayment);
-                $('#select_pago').change();
-
-                document.getElementsByName("notapayment")[0].value = datos[0].nota;
-
-            } else {
-                id_pago[0].value = 0;
-            }
-        }
-
-
-    });
-
-
-    fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + dato.id_trabajo)
-        .then(response => response.json())
-        .then(data => {
-            const dashboard = document.getElementById('cargarimagenes');
-            dashboard.innerHTML = "";
-            if (data.status == 200) {
-                data.data.forEach(item => {
-                    const estado = item.ruta
-                        .toLowerCase(); // Convertir en minúscula para buscar imagen
-                    const card = `<div class="text-center mb-3">
-                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
-                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
-                        </a>
-                        <br>
-                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
-                        </div>`;
-
-                    dashboard.innerHTML += card;
-                });
-            }
-        });
-
-    let inputs = document.querySelectorAll(
-        "#formcitajob input,#formcitajob textarea, #formcitajob select,#formpagojob input,#formpagojob textarea, #formpagojob select"
-    );
-    inputs.forEach(input => input.disabled = true);
-
-});
-
-$(document).on('click', '#eliminimg', function(e) {
-    event.preventDefault();
-    $(".loadersacn")[0].style.display = "";
-    $.ajax({
-        type: "GET",
-        url: e.currentTarget.href,
-        success: function(response) {
-            var res = jQuery.parseJSON(response);
-            if (res.status == 200) {
+        gridcat[0].style.display = "";
+        formCompany[0].style.display = "none";
+        document.getElementsByName("formCompany")[0].reset();
+        $.ajax({
+            type: "GET",
+            url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagrid' ?>",
+            success: function(response) {
                 $(".loadersacn").fadeOut("slow");
-                fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" +
-                        idservicio_imagen[0].value)
-                    .then(response => response.json())
-                    .then(data => {
-                        const dashboard = document.getElementById('cargarimagenes');
-                        dashboard.innerHTML = "";
-                        if (data.status == 200) {
-                            data.data.forEach(item => {
-                                const estado = item.ruta
-                                    .toLowerCase(); // Convertir en minúscula para buscar imagen
-                                const card = `<div class="text-center mb-3">
-                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
-                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
-                        </a>
-                        <br>
-                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
-                        </div>`;
+                var res = jQuery.parseJSON(response);
+                var estilo = "";
 
-                                dashboard.innerHTML += card;
-                            });
+
+                $('#myTable').DataTable({
+                    // layout: {
+                    //             topStart: {
+                    //                 buttons: [ {
+                    //                     extend: 'excel',
+                    //                     text: 'Descargar archivo excel'
+                    //                 }
+                    //             ]
+                    //             }
+                    //         },
+                    data: res.data,
+                    // language: {
+                    //     "url": "<?php echo APP_URL ?>config/es-MX.json"
+                    // },
+                    //searching: false, 
+                    destroy: true,
+                    responsive: true,
+                    columnDefs: [{
+                        orderable: false,
+                        render: DataTable.render.select(),
+                        targets: 0
+                    }, ],
+                    columns: [
+                        // {
+                        //     className: "text-center",
+                        //     data: null,
+                        // },
+                        {
+                            data: 'id_trabajo',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_company',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_cliente',
+                            visible: false,
+                        },
+                        {
+                            data: 'id_tecnico',
+                            visible: false,
+                        },
+                        {
+                            width: "30%",
+                            title: 'Reference Number',
+                            className: "text-center",
+                            data: 'num_referencia',
+                        },
+                        {
+                            width: "30%",
+                            title: 'Company Name',
+                            className: "text-center",
+                            data: 'nombre',
+                        },
+                        {
+                            width: "20%",
+                            title: 'Company Status',
+                            data: 'estadocompany',
+
+                        },
+                        {
+                            width: "30%",
+                            title: 'Full Name',
+                            className: "text-center",
+                            data: 'full_name',
+                        },
+                        {
+                            width: "30%",
+                            title: 'City',
+                            className: "text-center",
+                            data: 'city',
+                        },
+
+                        {
+                            width: "30%",
+                            title: 'Phone',
+                            data: 'phone',
+
+                        },
+                        {
+                            width: "30%",
+                            title: 'Email',
+                            data: 'email',
+
+                        },
+                        {
+                            width: "30%",
+                            title: 'Jobs state',
+                            data: 'estadojob',
+
+                        },
+                        {
+                            width: "30%",
+                            title: 'Status',
+                            data: 'u_estado',
+                            render: function(data, type, row, meta) {
+                                if (row.u_estado == 1) {
+                                    return "Active";
+                                } else {
+                                    return "Inactive";
+                                }
+
+                            }
+
+                        },
+                        {
+                            className: "text-center",
+                            title: 'Actions',
+                            data: 'id_trabajo',
+                            render: function(data, type, row, meta) {
+                                cadena = "";
+                                if (row.estadojob == "Booked") {
+                                    cadena = '<td><div style=""><div>';
+                                    cadena = cadena +
+                                        '<form class="FormularioAjax" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
+                                        '<input type="hidden" name="modulo_job" value="aceptar">' +
+                                        '<input type="hidden" name="id_trabajo" value="' +
+                                        data + '">' +
+                                        '<button type="submit" title="Accept Job" class="button is-accept is-rounded is-small">' +
+                                        '<i class="fas fa-check-circle"></i>' +
+                                        '</button>' +
+                                        '</form>';
+                                    cadena = cadena + '</div></div></td>';
+                                } else {
+
+
+                                    cadena = '<td>' +
+                                        '<li class="nav-item dropdown">' +
+                                        '<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">' +
+                                        '<i class="fas fa-cog" style="font-size: x-large;"></i>' +
+                                        '</a>' +
+                                        '<div class="dropdown-menu">';
+                                    if (esadmin == 1) {
+                                        cadena = cadena +
+                                            '<div style="margin: 2px;"><a id="modificar" title="Job details" href="#" class="button is-info is-rounded is-small" valor="' +
+                                            meta.row + '">' +
+                                            '<i class="fas fa-sync fa-fw"></i></a></div> ';
+                                        cadena = cadena +
+                                            '<div style="margin: 2px;"><a id="servicios" title="Services" href="#" class="button is-services is-rounded is-small" valor="' +
+                                            meta.row + '">' +
+                                            '<i class="fas fa-tools"></i></a></div> ';
+                                            cadena = cadena +
+                                            '<div style="margin: 2px;"><a id="verdiagnostico" title="see diagnosis" href="#" class="button is-viewreportservice is-rounded is-small" valor="' +
+                                            meta.row + '">' +
+                                            '<i class="fab fa-wpforms"></i></a></div> ';
+                                    }
+
+
+
+                                    cadena = cadena +
+                                        '<div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
+                                        meta.row + '">' +
+                                        '<i class="fas fa-calendar-alt"></i></a></div> ';
+                                    cadena = cadena +
+                                        '<div style="margin: 2px;"><a id="diagnosticar" title="Diagnose" href="#" class="button is-info is-rounded is-small" valor="' +
+                                        meta.row + '">' +
+                                        '<i class="fas fa-user-check"></i></a></div> ';
+
+                                    cadena = cadena +
+                                        '<div style="margin: 2px;"><a id="movimientos" title="Status history" href="#" class="button is-history is-rounded is-small" valor="' +
+                                        meta.row + '">' +
+                                        '<i class="fas fa-history"></i></a></div> ';
+                                    '</div>' +
+                                    '</li></td>';
+
+                                }
+
+                                return cadena;
+
+                            }
+
+                        },
+                    ],
+                    order: [
+                        [1, 'asc']
+                    ],
+                    //paging: false,
+                    //scrollCollapse: true,
+                    scrollX: false,
+                    scrollY: 400,
+                    select: {
+                        style: 'multi',
+                        selector: 'td:first-child'
+                    },
+                    "createdRow": function(row, data, dataIndex) {
+                        if (data.u_estado == 0) {
+                            $(row).addClass('redClass');
                         }
-                    });
-
-            } else {
-
-            }
-        }
-
-
-    });
-});
-
-function cargaformularioservicio(expandirformulario) {
-    gridcat[0].style.display = "none";
-    regresar_service[0].style.display = "";
-    if (expandirformulario == 1) {
-        $('#btncollapseOne').trigger('click');
-    }
-
-    document.querySelector('.FormularioAjax2').reset();
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-    cargargridservicios(idjob_service[0].value)
-}
-
-function quedarenpantalla(alerta) {
-    if (alerta.classform == ".FormularioAjax3") {
-        id_cita[0].value = alerta.idgenerado;
-    } else {
-        id_pago[0].value = alerta.idgenerado;
-    }
-
-    var inputImage = document.getElementById("archivos");
-    inputImage.value = '';
-
-    fetch("<?php echo APP_URL . 'ajax/subirimagenAjax.php?cargarimagenes' ?>=" + idservicio_imagen[0].value)
-        .then(response => response.json())
-        .then(data => {
-            const dashboard = document.getElementById('cargarimagenes');
-            dashboard.innerHTML = "";
-            if (data.status == 200) {
-                data.data.forEach(item => {
-                    const estado = item.ruta
-                        .toLowerCase(); // Convertir en minúscula para buscar imagen
-                    const card = `<div class="text-center mb-3">
-                         <a href=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" data-lightbox="galeria">
-                            <img src=" <?php echo APP_URL .'subirimg/' ?>${item.nombre}" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
-                        </a>
-                        <br>
-                        <a id="eliminimg" href="<?php echo APP_URL . 'ajax/subirimagenAjax.php?eliminar='?>${item.id_imagen}&nombre=${item.nombre}" class="btn btn-danger btn-sm">Eliminar</a>
-                        </div>`;
-
-                    dashboard.innerHTML += card;
+                        if (data.u_bloqueado == 1) {
+                            $(row).addClass('bloqueado');
+                        }
+                    },
                 });
+
+
+
+
+
+
             }
         });
-
-
-}
-
-$(document).on('click', '#editservicios', function(e) {
-
-    event.preventDefault();
-    $('#btncollapseOne').trigger('click');
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTableservicio").DataTable().data()[row];
-    document.getElementsByName("formdiagnostico")[0].reset();
-
-
-    id_servicio[0].value = dato.id_servicio;
-    idjob_service[0].value = dato.id_trabajo;
-
-
-
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargadiagnostico' ?>=" + dato.id_servicio,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-                id_diagnostico[0].value = datos[0].id_diagnostico;
-
-                document.getElementsByName("diagnostico")[0].value = datos[0].nota;
-                document.getElementsByName("laborfee")[0].value = datos[0].laborfee;
-                document.getElementsByName("serial")[0].value = datos[0].serial;
-
-            } else {
-                id_diagnostico[0].value = 0;
-            }
-        }
-
-
-    });
-
-    document.getElementsByName("model")[0].value = dato.model;
-    document.getElementsByName("problemdetail")[0].value = dato.problemdetail;
-
-    $("#select_service").val(dato.id_valservice);
-    $('#select_service').change();
-
-    $("#select_appliance").val(dato.id_valappliance);
-    $('#select_appliance').change();
-
-    $("#select_brand").val(dato.id_valbrand);
-    $('#select_brand').change();
-
-    let inputs = document.querySelectorAll(
-        "#formdatosservicio input,#formdatosservicio textarea, #formdatosservicio select");
-    inputs.forEach(input => input.disabled = true);
-
-
-    $("#titulomodaldiagnostico")[0].innerHTML = ' Diagnosis for service';
-    // para mostrar modal
-    $("#modaldiagnostico").modal({
-        backdrop: "static",
-        keyboard: false
-    });
-
-
-});
-
-function quedarenmodaldiagnostico(alerta) {
-    id_diagnostico[0].value = alerta.id_diagnostico;
-
-}
-
-$(document).on('click', '#agregarpartes', function(e) {
-
-    event.preventDefault();
-    id_parte[0].value = 0;
-    $(".loadersacn")[0].style.display = "";
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTableservicio").DataTable().data()[row];
-
-
-    id_servicio_parte[0].value = dato.id_servicio;
-    $("#titulomodalpartes")[0].innerHTML = 'Add parts to the service';
-
-    // para mostrar modal
-    $("#modalpartes").modal({
-        backdrop: "static",
-        keyboard: false
-    });
-
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + dato.id_servicio,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-                cargargridpartes(datos);
-
-            } else {
-                cargargridpartes(datos);
-            }
-        }
-
-
-    });
-
-});
-
-$(document).on('click', '#editparte', function(e) {
-
-    event.preventDefault();
-    $('#btncollapseOne').trigger('click');
-    var row = e.currentTarget.attributes['valor'].value;
-    var dato = $("#myTablepartes").DataTable().data()[row];
-
-
-    id_servicio_parte[0].value = dato.id_servicio;
-    id_parte[0].value = dato.id_parte;
-
-
-
-    document.getElementsByName("cantidad")[0].value = dato.cantidad;
-    document.getElementsByName("serialparte")[0].value = dato.serial;
-    document.getElementsByName("costo")[0].value = dato.costo;
-
-    $("#select_part").val(dato.id_valorparte);
-    $('#select_part').change();
-
-
-
-});
-
-
-
-
-function quedarenmodalparte(alerta) {
-
-    document.getElementsByName("formpartes")[0].reset();
-    $('.form-select').prop("selectedIndex", 0);
-    $('.form-select').change();
-
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargarpartes' ?>=" + id_servicio_parte[0].value,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-                cargargridpartes(datos);
-                // para mostrar modal
-
-            } else {
-                cargargridpartes(datos);
-            }
-        }
-
-
-    });
-
-}
-
-
-
-function cargargridpartes(datos) {
-
-    $('#myTablepartes').DataTable({
-        data: datos,
-        destroy: true,
-        responsive: true,
-        columns: [{
-                data: 'id_parte',
-                visible: false,
-            },
-            {
-                data: 'id_servicio',
-                visible: false,
-            },
-            {
-                data: 'id_valorparte',
-                visible: false,
-            },
-            {
-                title: 'Part name',
-                className: "text-center",
-                data: 'nombre',
-
-            },
-            {
-                title: 'Qty',
-                className: "text-center",
-                data: 'cantidad',
-
-            },
-            {
-                title: 'Serial #',
-                className: "text-center",
-                data: 'serial',
-
-            },
-            {
-                title: 'Amount',
-                className: "text-center",
-                data: 'costo',
-                render: $.fn.dataTable.render.number(',', '.', 2)
-
-            },
-            {
-
-                className: "text-center",
-                title: 'Actions',
-                data: 'id_parte',
-                render: function(data, type, row, meta) {
-                    cadena =
-                        '<div style="width: 160px;"><div style="float: left;margin-right: 2px;"><a id="editparte" title="Edit part" href="#" class="button is-services is-rounded is-small" valor="' +
-                        meta.row + '">' +
-                        '<i class="far fa-edit"></i></a></div> ';
-
-                    cadena = cadena + '<td>' +
-                        '<div style="float: left;">';
-                    cadena = cadena + '<div>';
-                    cadena = cadena +
-                        '<form name="accionpartes" class="FormularioAccionespartes" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
-                        '<input type="hidden" name="modulo_serviceparte" value="eliminar">' +
-                        '<input type="hidden" name="id_servicioparte" value="' +
-                        data + '">' +
-                        '<button type="submit" title="Eliminate" class="button is-acciones is-rounded is-small">' +
-                        '<i class="far fa-trash-alt"></i>' +
-                        '</button>' +
-                        '</form>';
-
-                    cadena = cadena + '</div>';
-                    cadena = cadena + '</div></td>';
-                    return cadena;
-
-                }
-
-            },
-
-        ],
-        // order: [
-        //     [0, 'desc']
-        // ],
-        //paging: false,
-
-    });
-
-    cargarfunciones();
-
-}
-
-
-
-function cargargridservicios(idtrabajo) {
-    $(".loadersacn")[0].style.display = "";
-    gridcat[0].style.display = "none";
-    formCompany[0].style.display = "none";
-
-    gridservicio[0].style.display = "";
-
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagridservicio' ?>=" + idtrabajo,
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-            var datos = [];
-
-            if (res.status == 200) {
-                datos = res.data;
-            }
-            $('#myTableservicio').DataTable({
-                // layout: {
-                //             topStart: {
-                //                 buttons: [ {
-                //                     extend: 'excel',
-                //                     text: 'Descargar archivo excel'
-                //                 }
-                //             ]
-                //             }
-                //         },
-                data: datos,
-                // language: {
-                //     "url": "<?php echo APP_URL ?>config/es-MX.json"
-                // },
-                //searching: false, 
-                destroy: true,
-                responsive: true,
-                columnDefs: [{
-                    orderable: false,
-                    render: DataTable.render.select(),
-                    targets: 0
-                }, ],
-                columns: [
-                    // {
-                    //     className: "text-center",
-                    //     data: null,
-                    // },
-                    {
-                        data: 'id_servicio',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_trabajo',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_valservice',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_valappliance',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_valbrand',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_valsymptom',
-                        visible: false,
-                    },
-                    {
-                        width: "15%",
-                        title: 'Service',
-                        className: "text-center",
-                        data: 'tiposervicio',
-                    },
-                    {
-                        width: "15%",
-                        title: 'Appliance',
-                        className: "text-center",
-                        data: 'appliance',
-                    },
-                    {
-                        width: "15%",
-                        title: 'brand',
-                        data: 'brand',
-
-                    },
-                    {
-                        width: "15%",
-                        title: 'Model',
-                        className: "text-center",
-                        data: 'model',
-                    },
-                    {
-                        width: "15%",
-                        title: 'Symptom',
-                        className: "text-center",
-                        data: 'symptom',
-                    },
-
-                    {
-                        width: "10%",
-                        className: "text-center",
-                        title: 'Problem Detail',
-                        data: 'problemdetail',
-                        render: function(data, type, row, meta) {
-                            cadena =
-                                '<td ><button type="button" class="button is-eliminar is-rounded is-small" data-toggle="tooltip" data-placement="right"' +
-                                'title="' +
-                                data + '">' +
-                                '<i class="fas fa-info-circle"></i></button></td>';
-                            return cadena;
-                        }
-
-                    },
-                    {
-                        width: "10%",
-                        title: 'Service Fee',
-                        data: 'servicefee',
-                        render: $.fn.dataTable.render.number(',', '.', 2)
-
-                    },
-                    {
-                        width: "10%",
-                        title: 'Covered',
-                        data: 'covered',
-                        render: $.fn.dataTable.render.number(',', '.', 2)
-                    },
-                    {
-
-                        className: "text-center",
-                        title: 'Actions',
-                        data: 'id_servicio',
-                        render: function(data, type, row, meta) {
-                            cadena = '<td><div style="width: 105px;">' +
-                                '<div ><div style="float: left;margin-right: 2px;"><a id="editservicios" title="Diagnosis" href="#" class="button is-diagnosticar is-rounded is-small" valor="' +
-                                meta.row + '">' +
-                                '<i class="fas fa-diagnoses"></i></a></div> ' +
-                                '<div><div style="margin-right: 2px;"><a id="agregarpartes" title="Add Parts" href="#" class="button is-partes is-rounded is-small" valor="' +
-                                meta.row + '">' +
-                                '<i class="fas fa-toolbox"></i></a></div> ';
-
-                            return cadena + '</div></td>';
-
-                        }
-
-                    },
-
-                ],
-                // order: [
-                //     [0, 'asc']
-                // ],
-                //paging: false,
-                scrollCollapse: true,
-                scrollX: false,
-                scrollY: 400,
-                select: {
-                    style: 'multi',
-                    selector: 'td:first-child'
-                },
-                "createdRow": function(row, data, dataIndex) {
-                    if (data.u_estado == 0) {
-                        $(row).addClass('redClass');
-                    }
-                    if (data.u_bloqueado == 1) {
-                        $(row).addClass('bloqueado');
-                    }
-                },
-            });
-
-
-
-
-            $('[data-toggle="tooltip"]').tooltip();
-
-            document.querySelectorAll(".tooltip-btn").forEach((btn) => {
-                btn.addEventListener("mouseenter", () => {
-                    btn.setAttribute("data-show", "true");
-                });
-
-                btn.addEventListener("mouseleave", () => {
-                    btn.removeAttribute("data-show");
-                });
-            });
-
-        }
-
-
-    });
-}
-
-function cargargrid() {
-    $(".loadersacn")[0].style.display = "";
-    $("#titulo")[0].innerText = "job list";
-
-    gridcat[0].style.display = "";
-    formCompany[0].style.display = "none";
-    document.getElementsByName("formCompany")[0].reset();
-    $.ajax({
-        type: "GET",
-        url: "<?php echo APP_URL . 'ajax/managejobAjax.php?cargagrid' ?>",
-        success: function(response) {
-            $(".loadersacn").fadeOut("slow");
-            var res = jQuery.parseJSON(response);
-            var estilo = "";
-
-
-            $('#myTable').DataTable({
-                // layout: {
-                //             topStart: {
-                //                 buttons: [ {
-                //                     extend: 'excel',
-                //                     text: 'Descargar archivo excel'
-                //                 }
-                //             ]
-                //             }
-                //         },
-                data: res.data,
-                // language: {
-                //     "url": "<?php echo APP_URL ?>config/es-MX.json"
-                // },
-                //searching: false, 
-                destroy: true,
-                responsive: true,
-                columnDefs: [{
-                    orderable: false,
-                    render: DataTable.render.select(),
-                    targets: 0
-                }, ],
-                columns: [
-                    // {
-                    //     className: "text-center",
-                    //     data: null,
-                    // },
-                    {
-                        data: 'id_trabajo',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_company',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_cliente',
-                        visible: false,
-                    },
-                    {
-                        data: 'id_tecnico',
-                        visible: false,
-                    },
-                    {
-                        width: "30%",
-                        title: 'Reference Number',
-                        className: "text-center",
-                        data: 'num_referencia',
-                    },
-                    {
-                        width: "30%",
-                        title: 'Company Name',
-                        className: "text-center",
-                        data: 'nombre',
-                    },
-                    {
-                        width: "20%",
-                        title: 'Company Status',
-                        data: 'estadocompany',
-
-                    },
-                    {
-                        width: "30%",
-                        title: 'Full Name',
-                        className: "text-center",
-                        data: 'full_name',
-                    },
-                    {
-                        width: "30%",
-                        title: 'City',
-                        className: "text-center",
-                        data: 'city',
-                    },
-
-                    {
-                        width: "30%",
-                        title: 'Phone',
-                        data: 'phone',
-
-                    },
-                    {
-                        width: "30%",
-                        title: 'Email',
-                        data: 'email',
-
-                    },
-                    {
-                        width: "30%",
-                        title: 'Jobs state',
-                        data: 'estadojob',
-
-                    },
-                    {
-                        width: "30%",
-                        title: 'Status',
-                        data: 'u_estado',
-                        render: function(data, type, row, meta) {
-                            if (row.u_estado == 1) {
-                                return "Active";
-                            } else {
-                                return "Inactive";
-                            }
-
-                        }
-
-                    },
-                    {
-                        className: "text-center",
-                        title: 'Actions',
-                        data: 'id_trabajo',
-                        render: function(data, type, row, meta) {
-                            cadena = "";
-                            if (row.estadojob == "Booked") {
-                                cadena = '<td><div style=""><div>';
-                                cadena = cadena +
-                                    '<form class="FormularioAjax" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
-                                    '<input type="hidden" name="modulo_job" value="aceptar">' +
-                                    '<input type="hidden" name="id_trabajo" value="' +
-                                    data + '">' +
-                                    '<button type="submit" title="Accept Job" class="button is-accept is-rounded is-small">' +
-                                    '<i class="fas fa-check-circle"></i>' +
-                                    '</button>' +
-                                    '</form>';
-                                cadena = cadena + '</div></div></td>';
-                            } else {
-                                cadena = '<td>' +
-                                    '<li class="nav-item dropdown">' +
-                                    '<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">' +
-                                    '<i class="fas fa-cog" style="font-size: x-large;"></i>' +
-                                    '</a>' +
-                                    '<div class="dropdown-menu">';
-                                cadena = cadena +
-                                    '<div style="margin: 2px;"><a id="modificar" title="Job details" href="#" class="button is-info is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="fas fa-sync fa-fw"></i></a></div> ';
-
-                                cadena = cadena +
-                                    '<div style="margin: 2px;"><a id="servicios" title="Services" href="#" class="button is-services is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="fas fa-tools"></i></a></div> ';
-                                cadena = cadena +
-                                    '<div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="fas fa-calendar-alt"></i></a></div> ';
-
-                                cadena = cadena +
-                                    '<div style="margin: 2px;"><a id="movimientos" title="Status history" href="#" class="button is-history is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="fas fa-history"></i></a></div> ';
-
-
-                                // cadena = cadena +
-                                //     '<div style="">';
-                                // cadena = cadena + '<div>';
-                                // if (row.u_estado == 0) {
-
-
-                                //     cadena = cadena +
-                                //         '<form class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
-                                //         '<input type="hidden" name="modulo_job" value="activar">' +
-                                //         '<input type="hidden" name="id_trabajo" value="' +
-                                //         data + '">' +
-                                //         '<button type="submit" title="Activate" class="button is-acciones is-rounded is-small">' +
-                                //         '<i class="fas fa-check-circle"></i>' +
-                                //         '</button>' +
-                                //         '</form>';
-                                // } else {
-                                //     cadena = cadena +
-                                //         '<form class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/managejobAjax.php" method="POST" autocomplete="off" >' +
-                                //         '<input type="hidden" name="modulo_job" value="inactivar">' +
-                                //         '<input type="hidden" name="id_trabajo" value="' +
-                                //         data + '">' +
-                                //         '<button type="submit" title="Inactivate" class="button is-acciones is-rounded is-small">' +
-                                //         '<i class="fas fa-times-circle"></i>' +
-                                //         '</button>' +
-                                //         '</form>';
-                                // }
-                                // cadena = cadena + '</div>';
-                                // cadena = cadena + '</div>';
-                                '</div>' +
-                                '</li></td>';
-
-                            }
-
-                            return cadena;
-
-                        }
-
-                    },
-                ],
-                order: [
-                    [2, 'asc']
-                ],
-                //paging: false,
-                //scrollCollapse: true,
-                scrollX: false,
-                scrollY: 400,
-                select: {
-                    style: 'multi',
-                    selector: 'td:first-child'
-                },
-                "createdRow": function(row, data, dataIndex) {
-                    if (data.u_estado == 0) {
-                        $(row).addClass('redClass');
-                    }
-                    if (data.u_bloqueado == 1) {
-                        $(row).addClass('bloqueado');
-                    }
-                },
-            });
-
-
-
-
-
-
-        }
-    });
-}
-cargargrid();
+    }
+    cargargrid();
 </script>

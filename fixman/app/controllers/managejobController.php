@@ -72,6 +72,17 @@ class managejobController extends mainModel
 		return $datos;
 	}
 
+	public function listarreporteservicios()
+	{
+
+		$consulta_datos = "select * from \"SYSTEM\".OBTENER_REPORTESERVICE where id_trabajo =" . $_GET['cargagridreporteservicio'] . ";";
+
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
 	public function obtenerdatoscita()
 	{
 
@@ -107,6 +118,23 @@ class managejobController extends mainModel
 		return $datos;
 	}
 
+	//Funcion para guardar los datos del formulario
+	public function guardarreporteservicio($id_reporteservicio,$idjob_reporteservicio,$appliance,$brand,$model,$serial,$problem,$tipocable,$otrocable,$factor,$otrofactor,$laborcosto,$requiereparte,$reparado,$detalles_json)
+	{
+		if ($id_reporteservicio == "0") {
+			$sentencia = "select \"SYSTEM\".GUARDARREPORTESERVICIO('" . $idjob_reporteservicio . "','" . $appliance . "','" . $brand . "','" . $model . "','" . $serial . "','" . $problem . "','" . $tipocable . "','" . $otrocable . "','" . $factor . "','" . $otrofactor . "','" . $laborcosto . "','" . $requiereparte . "','" . $reparado . "','" . $detalles_json . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		} else {
+			$sentencia = "select \"SYSTEM\".ACTUALIZARREPORTESERVICIO('" . $id_reporteservicio . "','" . $idjob_reporteservicio . "','" . $appliance . "','" . $brand . "','" . $model . "','" . $serial . "','" . $problem . "','" . $tipocable . "','" . $otrocable . "','" . $factor . "','" . $otrofactor . "','" . $laborcosto . "','" . $requiereparte . "','" . $reparado . "','" . $detalles_json . "','" . $_SESSION['id'] . "');";
+			$sql = $this->actualizarDatos($sentencia);
+			$sql->execute();
+			$total = (int) $sql->fetchColumn();
+		}
+
+		return $total;
+	}
 
 
 	//Funcion para guardar los datos del formulario
@@ -179,6 +207,17 @@ class managejobController extends mainModel
 
 		$idcat = $_POST["id_servicioparte"];
 		$sentencia = "select \"SYSTEM\".ELIMINARPARTE('" . $idcat . "');";
+		$sql = $this->actualizarDatos($sentencia);
+		$sql->execute();
+
+		return $sql;
+	}
+
+	public function eliminarreporteservicio()
+	{
+
+		$idcat = $_POST["id_reporteservicio"];
+		$sentencia = "select \"SYSTEM\".ELIMINARREPORTESERVICIO('" . $idcat . "');";
 		$sql = $this->actualizarDatos($sentencia);
 		$sql->execute();
 

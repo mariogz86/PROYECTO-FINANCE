@@ -27,7 +27,7 @@ btn_exit.forEach(exitSystem => {
     });
 });
 
-    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes");
+    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio");
 
     formularios_ajax.forEach(formularios => {
     
@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -224,6 +224,12 @@ function alertas_ajax(alerta){
                           case "formservice":
                             cargaformularioservicio(1);
                           break;  
+                           case "formreporteservicio":
+                            cargaformularioreporteservicio(1);
+                          break;
+                          case "accionreporteservicio":
+                            cargaformularioreporteservicio(0);
+                          break;   
                           case "formcita":
                             quedarenpantalla(alerta);
                           break;    
@@ -254,7 +260,8 @@ function alertas_ajax(alerta){
                        
                           case ".FormularioAcciones":
                             cargaformularioservicio(0);
-                          break;                         
+                          break;
+                                                
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();

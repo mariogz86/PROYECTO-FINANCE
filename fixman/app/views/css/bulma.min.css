@@ -1136,6 +1136,18 @@ a.box:active {
     color: #000000
 }
 
+.button.is-viewreportservice {
+    background-color: #dd1a54;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-viewreportservice.is-hovered,.button.is-viewreportservice:hover {
+    background-color: #3aefa5;
+    border-color: transparent;
+    color: #000000
+}
+
 .button.is-acciones {
     background-color: #ef1111fa;
     border-color: transparent;

@@ -96,6 +96,27 @@ if (isset($_GET['cargagridservicio'])) {
 }
 
 
+if (isset($_GET['cargagridreporteservicio'])) {
+	//metodo del controlador
+	$result = $insformulario->listarreporteservicios();
+	//resultado que se envita al Metodo GET invocado
+	if ($result) {
+		$res = array(
+			'status' => 200,
+			'message' => 'Successful data upload',
+			'data' => $result
+		);
+		echo json_encode($res);
+	} else {
+		$res = array(
+			'status' => 404,
+			'message' =>  'No information found'
+		);
+		echo json_encode($res);
+	}
+}
+
+
 if (isset($_GET['cargadatoscita'])) {
 	//metodo del controlador
 	$result = $insformulario->obtenerdatoscita();
@@ -183,7 +204,67 @@ if (isset($_POST['modulo_movimiento'])) {
 	echo json_encode($alerta);
 }
 
+//Metodo POST para el registro a guardar en la pantalla
+if (isset($_POST['modulo_reporteservicio'])=="registrarreporteservicio") {
 
+
+
+			$id_reporteservicio=$_POST['id_reporteservicio'];
+			$idjob_reporteservicio=$_POST['idjob_reporteservicio'];
+			$appliance=$_POST['cmb_appliancereporte'];
+			$brand=$_POST['cmb_brandreporte'];
+			$model=$_POST['modelreporte'];
+			$serial=$_POST['serialreporte'];
+			$problem=$_POST['problemdetailreporte'];
+			$tipocable=$_POST['cmb_tipocable'];
+			$otrocable=$_POST['otrocable'];
+			$factor=$_POST['cmb_factores'];
+			$otrofactor=$_POST['otrofactor'];
+			$laborcosto=$_POST['laborcosto'];
+			$requiereparte=$_POST['cmb_requiereparte'];
+			$reparado=$_POST['cmb_reparado'];
+
+
+			// Recoger datos de la tabla (arrays)
+			$cantidad = $_POST['cantidad'];
+			$nombre = $_POST['nombre'];
+			$numero = $_POST['numero'];
+			$precios = $_POST['precio'];
+
+			// Armar arreglo para JSON
+			$detalles = [];
+
+			for ($i = 0; $i < count($cantidad); $i++) {
+				// Ignorar filas vacías
+				if (empty($cantidad[$i])) continue;
+
+				$detalles[] = [
+					
+					'cantidad' => (int) $cantidad[$i],
+					'nombre' => $nombre[$i],
+					'numero'   => (float) $numero[$i],
+					'precio'   => (float) $precios[$i]
+				];
+			}
+
+			// Convertir a JSON
+			$detalles_json = json_encode($detalles);
+
+	//se invoca el metodo de guardar del controlador
+	$result = $insformulario->guardarreporteservicio($id_reporteservicio,$idjob_reporteservicio,$appliance,$brand,$model,$serial,$problem,$tipocable,$otrocable,$factor,$otrofactor,$laborcosto,$requiereparte,$reparado,$detalles_json);
+	//resultado que se envia al metodo POST
+	if ($result > 0) {
+		$alerta = [
+			"classform" => ".FormularioAjax2",
+			"tipo" => "limpiar",
+			"titulo" => "Service",
+			"texto" => "The record was saved successfully",
+			"icono" => "success",
+			"id_diagnostico" => $result
+		];
+	}
+	echo json_encode($alerta);
+}
 
 
 //Metodo POST para el registro a guardar en la pantalla
@@ -261,5 +342,20 @@ if (isset($_POST['modulo_serviceparte'])) {
 	echo json_encode($alerta);
 }
 
+
+if (isset($_POST['eliminarreporteservicio'])) {
+	if ($_POST['eliminarreporteservicio'] == "eliminar") {
+
+		$result = $insformulario->eliminarreporteservicio();
+		$alerta = [
+			"classform" => ".Formularioreporteservicio",
+			"tipo" => "limpiar",
+			"titulo" => "Service",
+			"texto" => "The record was deleted successfully",
+			"icono" => "success"
+		];
+	}
+	echo json_encode($alerta);
+}
 
 

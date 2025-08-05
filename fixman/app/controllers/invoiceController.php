@@ -51,6 +51,15 @@ class invoiceController extends mainModel
         return $datos;
     }
 
+      public function obtenerreporteserviciosporidtrabajo($idtrabajo)
+    {
+        $consulta_datos = "select * from \"SYSTEM\".OBTENER_REPORTESERVICE where id_trabajo='" . $idtrabajo . "'";
+        $datos = $this->ejecutarConsulta($consulta_datos);
+        $datos = $datos->fetchAll();
+
+        return $datos;
+    }
+
     public function obtenerdiagnosticos($idtrabajo)
     {
         $consulta_datos = "select s.appliance,d.serial,d.laborfee,d.nota from \"SYSTEM\".obtener_service  s
