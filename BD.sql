@@ -540,3 +540,41 @@ ALTER TABLE "SYSTEM".catalogovalor
 
 	       --CREACION DE INDICES   
 	  create index trabajo_id on "SYSTEM".jobimagenes("trabajo_id"); 	
+	  
+	  
+	  
+/******************** segunda fase por ajustes ***********************************/
+
+	  
+	  	  CREATE TABLE "SYSTEM".reporteservicio (
+		"id_reporteservicio" serial PRIMARY KEY NOT NULL, 
+		"id_trabajo" INTEGER NOT NULL,		
+		"id_valappliance" INTEGER NULL,
+		"id_valbrand" INTEGER NULL,		
+		"model" VARCHAR(250) NULL,
+		"serial" VARCHAR(250) NULL,
+		"problemdetail" VARCHAR(2500) NOT NULL,	
+		"id_valortipocable" INTEGER NULL,		
+		"otrotipocable" VARCHAR(500)  NULL,
+		"id_valorfactorfalla" INTEGER NULL,
+		"otrofactorfalla" VARCHAR(500)  NULL,
+		"laborcost" DOUBLE PRECISION null,
+		"requierepartes" SMALLINT NULL,
+		"completoreparacion" SMALLINT NULL,	
+		"datopartes" JSONB NULL,
+		"fecha_creacion" DATE NOT NULL,	
+		"usuario_creacion" INTEGER NOT NULL,
+		"fecha_modifica" DATE NULL ,	
+		"usuario_modifica" INTEGER NULL
+	);
+	
+	--CREACION DE FOREING KEY 
+	   
+	   ALTER TABLE "SYSTEM".reporteservicio
+	   ADD CONSTRAINT fk_id_trabajo
+	   FOREIGN KEY (id_trabajo) 
+	   REFERENCES "SYSTEM".trabajo(id_trabajo); 
+	   
+	   --CREACION DE INDICES   
+	  create index reporteservicio_idtrabajo on "SYSTEM".reporteservicio("id_trabajo");    
+ 
