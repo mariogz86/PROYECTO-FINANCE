@@ -54,7 +54,9 @@ p {
                 <div class="column">
                     <div class="control">
                         <label>Descripción <?php echo CAMPO_OBLIGATORIO; ?></label>
-                        <input class="input" type="text" name="descripcion" maxlength="2000" required>
+                        <!-- <input class="input" type="text" name="descripcion" maxlength="2000" required> -->
+                         <textarea name="descripcion"  id="descripcion" class="input" style="height: 100px;"
+                                            required></textarea>
                     </div>
                 </div>
 

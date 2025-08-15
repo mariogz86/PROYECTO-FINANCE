@@ -70,6 +70,37 @@ $(document).on('click', '#factura', function(e) {
 
 });
 
+$(document).on('click', '#reporte', function(e) {
+
+    event.preventDefault();
+    var row = e.currentTarget.attributes['valor'].value;
+    var dato = $("#myTable").DataTable().data()[row];
+    //para ocultar
+    //$("#modalvalidaciones").modal("hide");
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo APP_URL . 'ajax/invoiceAjax.php' ?>",
+        data: "generarreporte=" + dato.id_trabajo,
+        xhrFields: {
+            responseType: 'blob' // Importante para manejar archivos binarios
+        },
+        success: function(data) {
+
+            // Crear una URL para el blob y abrirla en una nueva pestaña
+            var blob = new Blob([data], {
+                type: 'application/pdf'
+            });
+            var url = window.URL.createObjectURL(blob);
+            window.open(url);
+
+
+        }
+    })
+
+
+});
+
 $(document).on('click', '#enviarfactura', function(e) {
 
     event.preventDefault();
@@ -102,6 +133,42 @@ $(document).on('click', '#enviarfactura', function(e) {
 
 
 });
+
+$(document).on('click', '#enviarreporte', function(e) {
+
+    event.preventDefault();
+    var row = e.currentTarget.attributes['valor'].value;
+    var dato = $("#myTable").DataTable().data()[row];
+    //para ocultar
+    //$("#modalvalidaciones").modal("hide");
+    $(".loadersacn")[0].style.display = "";
+    $.ajax({
+        type: "POST",
+        url: "<?php echo APP_URL . 'ajax/invoiceAjax.php' ?>",
+        data: "enviarreporte=" + dato.id_trabajo,
+        success: function(data) {
+            var res = jQuery.parseJSON(data);
+            if (res.status == 200) {
+                $(".loadersacn").fadeOut("slow");
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Send E-mail',
+                    text: 'Mail sent successfully',
+                    confirmButtonText: 'Accept'
+                });
+
+            }
+
+
+
+        }
+    })
+
+
+});
+
+
+
 
 
 function cargargrid() {
@@ -252,6 +319,10 @@ function cargargrid() {
                                     '</a>' +
                                     '<div class="dropdown-menu">';
                                 cadena = cadena +
+                                    '<div style="margin: 2px;"><a id="reporte" title="Generate Report" href="#" class="button is-reporte is-rounded is-small" valor="' +
+                                    meta.row + '">' +
+                                    '<i class="fas fa-file-medical-alt"></i></a></div> ';
+                                      cadena = cadena +
                                     '<div style="margin: 2px;"><a id="factura" title="Generate Invoice" href="#" class="button is-factura is-rounded is-small" valor="' +
                                     meta.row + '">' +
                                     '<i class="fas fa-file-medical-alt"></i></a></div> ';
@@ -259,6 +330,10 @@ function cargargrid() {
                                     if($_SESSION['rol']=='Administrator'){
                                         echo "cadena = cadena +
                                         '<div style=\"margin: 2px;\"><a id=\"enviarfactura\" title=\"Send Invoice\" href=\"#\" class=\"button is-mail is-rounded is-small\" valor=\"' +
+                                        meta.row + '\">' +
+                                        '<i class=\"far fa-paper-plane\"></i></a></div> ';
+                                        cadena = cadena +
+                                        '<div style=\"margin: 2px;\"><a id=\"enviarreporte\" title=\"Send Report\" href=\"#\" class=\"button is-mailreport is-rounded is-small\" valor=\"' +
                                         meta.row + '\">' +
                                         '<i class=\"far fa-paper-plane\"></i></a></div> ';";
                                     }

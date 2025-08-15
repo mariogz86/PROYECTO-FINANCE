@@ -11874,6 +11874,18 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
     color: #000000
 }
 
+.button.is-reporte {
+    background-color: #17ac70;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-reporte.is-hovered,.button.is-reporte:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
 .button.is-mail {
     background-color: #1769ac;
     border-color: transparent;
@@ -11881,6 +11893,18 @@ a.has-text-danger-dark:focus,a.has-text-danger-dark:hover {
 }
 
 .button.is-mail.is-hovered,.button.is-mail:hover {
+    background-color: #ef923a;
+    border-color: transparent;
+    color: #000000
+}
+
+.button.is-mailreport {
+    background-color: #17ac70;
+    border-color: transparent;
+    color: #fff
+}
+
+.button.is-mailreport.is-hovered,.button.is-mailreport:hover {
     background-color: #ef923a;
     border-color: transparent;
     color: #000000

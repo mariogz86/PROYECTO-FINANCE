@@ -1,14 +1,61 @@
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (4, 'Appliance', 'codappliance', 'types of Appliance', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (5, 'Parts', 'codparts', 'Parts', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (6, 'Brand', 'codbrand', 'brand catalog', 1, '2025-02-20', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (2, 'Jobs', 'codjob', 'status of scheduled work', 1, '2025-02-08', 1, '2025-02-20', 1);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (7, 'Symptom', 'codsymptom', 'symptom types', 1, '2025-02-20', 1, '2025-02-20', 1);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (3, 'Service', 'codservice', 'types of services', 1, '2025-02-08', 1, '2025-02-20', 1);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (8, 'Payment', 'codpayment', 'type of payments', 1, '2025-02-24', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (1, 'State', 'codsatate', 'management of company states', 1, '2025-02-08', 1, '2025-03-30', 1);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (9, 'Type of Power Cord', 'tipocable', 'Type of Power Cord', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (10, 'Potential factors', 'factores', 'Potential factors', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (11, 'disclaimer', 'discminvoice', 'Terms:
+By paying the due balance on invoices provided, the Client hereby acknowledges that all requested service items for this
+date and/or any other dates listed above in the description section of the table, have been performed and have been tested
+showing successful satisfactory install/repair, unless otherwise stated on the invoice, in which labor service charges still apply if any repairs have been made. By accepting this invoice, the Client agrees to pay in full the amount listed in the
+-Warranty for parts and labor 30 days-', 1, '2025-08-15', 1, '2025-08-15', 1);
+INSERT INTO "SYSTEM".catalogo (id_catalogo, nombre, codigo, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (12, 'Disclaimer Report', 'discmreport', 'If any pre approved NTE has been authorized prior the visit, repairs would be completed if the repair cost is within the pre approved NTE. Otherwise, we will expect your approval in order for repairs to be completed.
 
-SACN-2025-05-0002
-SINPE-ADMIN-2025-05-0001
+Warranty is 30 days for parts and labor.
 
-select * from "SACNSYS".obtener_formulario
-
+By approving the repair cost you are accepting to pay in full the amount listed once repairs are completed. If repairs are not approved, you shall expect an invoice for $75.00 diagnostic fee only. ', 1, '2025-08-15', 1, '2025-08-15', 1);
 
 
-select * from "SACNSYS".OBTENERAAGRUPACION('0000254','E_AIF_IND_Anexo3_D.sav','HTCSI_SNFGr_IND_2021.xlsx') AS t(OGT0001 text, OGT0002 numeric,  OGT0003 numeric,    OGT0004 numeric);
+--
+-- TOC entry 3924 (class 0 OID 90248)
+-- Dependencies: 232
+-- Data for Name: catalogovalor; Type: TABLE DATA; Schema: SYSTEM; Owner: postgres
+--
 
-
-select * from "SACNSYS".OBTENER_VALORESBOLETA('0000254','HTCSI_SNFGr_IND_2021.xlsx','2021') where archivo='AIF_IND_Capitulo8.sav'
-
-select * from "SACNSYS".OBTENER_NOMBREEMPRESAIND('0000254','HTCSI_SNFGr_IND_2021.xlsx')
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (2, 1, 'New york', 'estado de new york', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (5, 2, 'Pending', 'Services Pending', 1, '2025-02-08', 1, '2025-02-08', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (6, 2, 'Accepted', 'Services Accepted', 1, '2025-02-08', 1, '2025-02-08', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (7, 2, 'Diagnosed', 'Services Diagnosed', 1, '2025-02-08', 1, '2025-02-08', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (9, 3, 'Diagnostic/Repair', 'Diagnostic/Repair', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (11, 4, 'Dryer (Electric)', 'Dryer (Electric)', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (12, 4, 'Dryer stackable electric', 'Dryer stackable electric', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (13, 4, 'Washer Stackable Electric', 'Washer Stackable Electric', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (14, 5, 'Washer Door Boot', 'Washer Door Boot', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (15, 5, 'Washer Drain Pump', 'Washer Drain Pump', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (16, 5, 'Door assembly (Out of Stock)', 'Door assembly (Out of Stock)', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (17, 5, 'Dispenser drawer', 'Dispenser drawer', 1, '2025-02-08', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (18, 2, 'complete', 'Jobs complete', 1, '2025-02-10', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (19, 2, 'Cancelled', 'Jobs Cancelled', 1, '2025-02-10', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (20, 2, 'Recall', 'Jobs recall', 1, '2025-02-10', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (21, 6, 'Bosch', 'Bosch', 1, '2025-02-20', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (22, 6, 'Other', 'Other', 1, '2025-02-20', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (23, 7, 'Other', 'Other', 1, '2025-02-20', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (4, 2, 'Booked', 'Services Booked', 1, '2025-02-08', 1, '2025-02-20', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (24, 8, 'Credit', 'Credit', 1, '2025-02-24', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (25, 8, 'Check/Invoice', 'Check/Invoice', 1, '2025-02-24', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (26, 8, 'Direct Deposit', 'Direct Deposit', 1, '2025-02-24', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (27, 8, 'SquareUp', 'SquareUp', 1, '2025-02-24', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (3, 1, 'Indiana', 'estado de indiana', 1, '2025-02-08', 1, '2025-03-04', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (28, 5, 'Agitor', 'Agitor', 1, '2025-03-10', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (8, 2, 'Completed Bookind Date', 'service Completed Bookind Date', 1, '2025-02-08', 1, '2025-03-14', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (1, 1, 'Texas', 'estado de texas', 1, '2025-02-08', 1, '2025-03-30', 1);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (29, 9, '3-Prong Power Cord', '3-Prong Power Cord', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (30, 9, '4-Prong Power Cord', '4-Prong Power Cord', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (31, 10, 'Normal wear and tear', 'Normal wear and tear', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (32, 10, 'Power Surge', 'Power Surge', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (33, 10, 'The unit is working fine', 'The unit is working fine', 1, '2025-08-04', 1, NULL, NULL);
+INSERT INTO "SYSTEM".catalogovalor (id_catalogovalor, id_catalogo, nombre, descripcion, u_estado, fecha_creacion, usuario_creacion, fecha_modifica, usuario_modifica) VALUES (34, 10, 'Tenant Caused', 'Tenant Caused', 1, '2025-08-04', 1, NULL, NULL);

@@ -9,6 +9,13 @@ if (isset($_POST['enviarfactura'])) {
     require_once '../phpmailer/src/SMTP.php';
     require_once '../phpmailer/src/Exception.php';
 }
+    
+    if (isset($_POST['enviarreporte'])) {
+    require_once '../phpmailer/src/PHPMailer.php';
+    require_once '../phpmailer/src/SMTP.php';
+    require_once '../phpmailer/src/Exception.php';
+}
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -36,6 +43,15 @@ class invoiceController extends mainModel
     public function obtenerjobporid($idtrabajo)
     {
         $consulta_datos = "select * from \"SYSTEM\".OBTENER_JOBS where id_trabajo='" . $idtrabajo . "'";
+        $datos = $this->ejecutarConsulta($consulta_datos);
+        $datos = $datos->fetchAll();
+
+        return $datos;
+    }
+
+     public function obtenerdisclaimer($codigo)
+    {
+        $consulta_datos = "select * from \"SYSTEM\".catalogo where codigo='" . $codigo . "'";
         $datos = $this->ejecutarConsulta($consulta_datos);
         $datos = $datos->fetchAll();
 

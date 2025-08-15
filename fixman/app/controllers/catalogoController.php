@@ -19,7 +19,7 @@
 			
 			$hoy = date("Y-m-d");
 			$nombre = $this->limpiarCadena($_POST["nombre"]);			
-			$descripcion = $this->limpiarCadena($_POST["descripcion"]);
+			$descripcion =  $_POST["descripcion"];
 
 			if ($_POST["idcatalogo"]=="0"){
 				$codigo = $_POST["codigo"];
