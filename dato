@@ -1,1 +1,14 @@
 
+SACN-2025-05-0002
+SINPE-ADMIN-2025-05-0001
+
+select * from "SACNSYS".obtener_formulario
+
+
+
+select * from "SACNSYS".OBTENERAAGRUPACION('0000254','E_AIF_IND_Anexo3_D.sav','HTCSI_SNFGr_IND_2021.xlsx') AS t(OGT0001 text, OGT0002 numeric,  OGT0003 numeric,    OGT0004 numeric);
+
+
+select * from "SACNSYS".OBTENER_VALORESBOLETA('0000254','HTCSI_SNFGr_IND_2021.xlsx','2021') where archivo='AIF_IND_Capitulo8.sav'
+
+select * from "SACNSYS".OBTENER_NOMBREEMPRESAIND('0000254','HTCSI_SNFGr_IND_2021.xlsx')
