@@ -110,13 +110,22 @@ class invoiceController extends mainModel
 			)
 		);
 		$phpmailer->isSMTP();
-		$phpmailer->Host       = 'smtp-relay.sendinblue.com';
-		$phpmailer->SMTPAuth   = true;
-		$phpmailer->Username   = '854a84002@smtp-brevo.com';  // Tu correo registrado en Sendinblue
-		$phpmailer->Password   = '7DJzMZct3NVwC8X1';  // API Key proporcionada por Sendinblue
-		$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$phpmailer->Port       = 587;
-		$phpmailer->SMTPDebug = APP_SMTPDebug;
+		 $phpmailer->Host       = 'smtp-relay.sendinblue.com';
+		 $phpmailer->SMTPAuth   = true;
+		 $phpmailer->Username   = '854a84002@smtp-brevo.com';  // Tu correo registrado en Sendinblue
+		 $phpmailer->Password   = '7DJzMZct3NVwC8X1';  // API Key proporcionada por Sendinblue
+		 $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		 $phpmailer->Port       = 587;
+		 $phpmailer->SMTPDebug = APP_SMTPDebug;
+		
+		
+		// $phpmailer->Host       = 'smtp.gmail.com';
+		 // $phpmailer->SMTPAuth   = true;
+		 // $phpmailer->Username   = 'magbgol@gmail.com';  // Tu correo registrado en Sendinblue
+		 // $phpmailer->Password   = 'bkjgpwksjtjjwfvu';  // API Key proporcionada por Sendinblue
+		 // $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		 // $phpmailer->Port       = 587;
+		 // $phpmailer->SMTPDebug = APP_SMTPDebug;
 
 	 
 

@@ -293,7 +293,81 @@ function limpiarcache() {
     sessionStorage.clear();
   }
   
+//PARA LA ACTIVACION DEL MENU SELECCIONADO  
+document.addEventListener('DOMContentLoaded', function () {
+    // Detectar clics en botones que abren submenús
+    const subMenuButtons = document.querySelectorAll('.btn-subMenu');
 
+    subMenuButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault(); // evitar navegación si es necesario
+
+            // Aquí podrías usar un atributo o ID único
+            const menuText = this.querySelector('.navLateral-body-cr')?.textContent.trim();
+
+            if (menuText) {
+                localStorage.setItem('menuSeleccionado', menuText);
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Detectar clics en subopciones
+    document.querySelectorAll('#navLateral a[id]').forEach(link => {
+        link.addEventListener('click', function () {
+            const subopcionId = this.id;
+            localStorage.setItem('subopcionActiva', subopcionId);
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuGuardado = localStorage.getItem('menuSeleccionado');
+
+    if (menuGuardado) {
+        const subMenuButtons = document.querySelectorAll('.btn-subMenu');
+
+        subMenuButtons.forEach(button => {
+            const menuText = button.querySelector('.navLateral-body-cr')?.textContent.trim();
+
+            if (menuText === menuGuardado) {
+                // Aquí agregas clases para "abrir" el submenú
+                const subMenu = button.parentElement.querySelector('.sub-menu-options');
+                if (subMenu) {
+                    subMenu.style.display = 'block'; // o `.classList.add('open')` si usas clases
+                }
+
+                button.classList.add('btn-subMenu-show'); // si quieres resaltar el botón
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const subopcionActiva = localStorage.getItem('subopcionActiva');
+
+    if (subopcionActiva) {
+        const elementoActivo = document.getElementById(subopcionActiva);
+
+        if (elementoActivo) {
+            // Aplicamos clase 'active'
+            elementoActivo.classList.add('activarsubopcion');
+
+            // También puedes abrir el submenú automáticamente si está dentro de uno
+            // const subMenu = elementoActivo.closest('.sub-menu-options');
+            // if (subMenu) {
+            //     subMenu.style.display = 'block'; // o usa classList.add('open')
+            // }
+
+            // // Si quieres resaltar también el menú principal padre
+            // const menuBtn = subMenu?.previousElementSibling;
+            // if (menuBtn?.classList.contains('btn-subMenu')) {
+            //     menuBtn.classList.add('active');
+            // }
+        }
+    }
+});
 
 cargarfunciones();
 

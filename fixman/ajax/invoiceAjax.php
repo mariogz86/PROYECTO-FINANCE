@@ -1461,10 +1461,10 @@ if (isset($_POST['enviarreporte'])) {
     // // Definir fuente para el título
     $pdf->SetFont('helvetica', 'B', 12);
     $pdf->SetXY(88, 18); // Ajustar posición del texto
-    $pdf->Cell(0, 10, 'Invoice Information', 0, 1, '');
+    $pdf->Cell(0, 10, 'Report Fixman', 0, 1, '');
     $pdf->SetFont('helvetica', 'B', 10);
     $pdf->SetXY(93, 25); // Ajustar posición del texto
-    $pdf->Cell(0, 10, $trabajo[0]["num_referencia"], 0, 1, '');
+    $pdf->Cell(0, 8, substr($trabajo[0]["num_referencia"], 4) , 0, 1, '');
     $fecha = date('d-m-Y');
 
     $pdf->SetXY(96, 30); // Ajustar posición del texto

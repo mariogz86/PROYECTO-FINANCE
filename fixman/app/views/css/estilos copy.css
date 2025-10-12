@@ -304,7 +304,6 @@ body,html{
 .menu-principal li a div.navLateral-body-cl{
     text-align: center;
     font-size: 20px;
-    color: black;
 }
 .btn-subMenu span.fa-chevron-down{
     position: absolute;
@@ -327,11 +326,11 @@ body,html{
 .sub-menu-options li a{ border-left: 4px solid transparent; }
 .sub-menu-options li a:hover{ border-left: 4px solid #3F51B5; }
 .btn-subMenu-show{
-      background-color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .btn-subMenu-show .navLateral-body-cl,
 .btn-subMenu-show .navLateral-body-cr{
-    color: #010101;
+    color: #3F51B5;
 }
 .btn-subMenu-show + .sub-menu-options{
     height: auto;
@@ -343,17 +342,11 @@ body,html{
     transform: rotate(180deg);
 }
 
-.activarsubopcion{
-       color: #ffffff !important;
-       background-color: #7363ff !important;
-}
-
-
 /*=============Estilos contenido pagina*/
 .pageContent{
     width: calc(100% - 300px);
     background-color: #fff;
-    transition: all .3s ease-in-out; 
+    transition: all .3s ease-in-out;
 }
 .pageContent-change{
     width: 100%;

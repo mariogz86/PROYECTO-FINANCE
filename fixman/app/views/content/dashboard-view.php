@@ -57,12 +57,14 @@
 
    </div>
 
-
+ 
 
    <script type="text/javascript" src="<?php echo APP_URL; ?>app/views/js/loader.js"></script>
    <script src="<?php echo APP_URL; ?>app/views/js/chart.js"></script>
 
    <script>
+    localStorage.removeItem('subopcionActiva');
+    localStorage.removeItem('menuSeleccionado');
 fetch("<?php echo APP_URL . 'ajax/dashboardAjax.php?cargarestadostrabajo' ?>")
     .then(response => response.json())
     .then(data => {

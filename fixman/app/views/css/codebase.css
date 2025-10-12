@@ -12421,7 +12421,9 @@ a.bg-gray-lighter:focus, a.bg-gray-lighter:hover {
 }
 
 .text-colortitulo3 {  
-  color: #004982;
+  color:#cfad5b; 
+  -webkit-text-stroke: 2px black; /* Borde negro de 2px */
+  text-stroke: 2px black; /* (Opcional) versión estándar */
   
 }
 

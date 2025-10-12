@@ -52,7 +52,7 @@
 				if ($rows['id_menupadre']=='0'){
 					$menu.='<li class="full-width divider-menuprincipal-h"></li>';
 						$menu.='<li class="full-width">
-						<a href="#" class="full-width btn-subMenu">
+						<a id='.$rows['id_menupadre'].' href="#" class="full-width btn-subMenu btn-subMenu-show">
 							<div class="navLateral-body-cl">
 							'.$this->CambiarCaracter($rows['icono'],"\\","").'
 							</div>
@@ -83,7 +83,7 @@
 					$menu.='<li class="full-width divider-menu-h"></li>'; 
 					 
 						$menu.='<li class="full-width">						
-					<a href="'.APP_URL."index.php?views=".$rowssubmenu['nombrevista'].'" class="full-width">
+					<a id='.$rowssubmenu['nombrevista'].' href="'.APP_URL."index.php?views=".$rowssubmenu['nombrevista'].'" class="full-width">
 							<div class="navLateral-body-cl">
 							'.$this->CambiarCaracter($rowssubmenu['icono'],"\\","").'
 							</div>

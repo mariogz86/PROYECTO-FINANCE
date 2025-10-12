@@ -20,7 +20,7 @@
 <link href="<?php echo APP_URL; ?>app/views/css/lightbox.min.css" rel="stylesheet">
 
 
-
+<script src="<?php echo APP_URL; ?>app/views/js/index.global.min.js" ></script>
 <script src="<?php echo APP_URL; ?>app/views/js/jquery-3.7.1.js"></script>
 <!-- <script src="<?php echo APP_URL; ?>app/views/js/popper.min.js" ></script>
 <script src="<?php echo APP_URL; ?>app/views/js/bootstrap.min.js"></script> -->
@@ -55,6 +55,7 @@
 <script src="<?php echo APP_URL; ?>app/views/js/jquery.easing.min.js"></script>
 
 <script src="<?php echo APP_URL; ?>app/views/js/select2.min.js" ></script>
+
 <div class="loadersacn" style="display: none;" ><div class="loadersacntexto">*** Wait a moment please ***</div></div>
 
 	
