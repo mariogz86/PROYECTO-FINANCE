@@ -152,9 +152,9 @@
                              </p>
                              <!-- Íconos SVG dorados -->
                              <div class="icons-row">
-                                 <img src="app/views/img/refri2.png" style="height: 250px;" alt="">
-                                 <img src="app/views/img/cocina2.png" style="height: 250px;" alt="">
-                                 <img src="app/views/img/lavadora2.png" style="height: 220px;" alt="">
+                                 <img src="app/views/img/refri1.png" style="height: 250px;" alt="">
+                                 <img src="app/views/img/cocina1.png" style="height: 250px;" alt="">
+                                 <img src="app/views/img/lavadora1.png" style="height: 220px;" alt="">
 
                              </div>
 
