@@ -351,9 +351,10 @@ body,html{
 
 /*=============Estilos contenido pagina*/
 .pageContent{
-    width: calc(100% - 300px);
-    background-color: #fff;
-    transition: all .3s ease-in-out; 
+      width: calc(100% - 300px);
+    /* background-color: #286eed73; */
+    background-color: #ffffff73;
+    transition: all .3s ease-in-out;
 }
 .pageContent-change{
     width: 100%;
