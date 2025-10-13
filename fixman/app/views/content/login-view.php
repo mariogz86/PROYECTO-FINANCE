@@ -1,316 +1,205 @@
- <html lang="en" class="no-focus">
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixman Login</title> 
+    <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('app/views/img/fondo4.jpg');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(3px);
+            min-height: 100vh;
+        }
 
-     <meta name="description"
-         content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-     <meta name="author" content="pixelcave">
-     <meta name="robots" content="noindex, nofollow">
-     <meta property="og:title" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework">
-     <meta property="og:site_name" content="Codebase">
-     <meta property="og:description"
-         content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-     <meta property="og:type" content="website">
-     <meta property="og:url" content="">
-     <meta property="og:image" content="">
-     <link rel="stylesheet" id="css-main" href="app/views/css/codebase.css">
-     <style>
-         .overlay {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background: rgba(10, 20, 30, 0.75);
-         }
+        .bg-blur {
+                background-color: rgb(81 91 101 / 39%);
+            border-radius: 12px;
+        }
 
-         .content-wrapper {
-             position: relative;
-             z-index: 2;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             height: 100vh;
-             color: white;
-         }
+        .text-colortitulo3 {
+            color: #d4af37;
+            /* dorado */
+        }
 
-         .brand-section {
-             text-align: left;
-             padding: 30px;
-             color: #d4af37;
-         }
+        .icons-row img {
+            margin: 0 10px;
+        }
 
+        @media (max-width: 767.98px) {
+            .left-section {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
 
+<body class="d-flex align-items-center justify-content-center">
 
-         .icons-row {
-             display: flex;
-             align-items: center;
-             margin-top: 25px;
-             gap: 35px;
-         }
+    <div class="container py-5">
+        <div class="row shadow-lg bg-blur p-4 align-items-center justify-content-center">
 
-         .icons-row svg {
-             width: 60px;
-             height: 60px;
-             fill: #d4af37;
-             transition: transform 0.3s ease;
-         }
+            <!-- Sección izquierda: Título + íconos -->
+            <div class="text-center col-12 col-md-6 left-section mb-4 mb-md-0">
+                <p class="fs-1 fw-bold text-colortitulo3" style="font-family: 'Futura Md BT', sans-serif;">FIXMAN</p>
+                <p class="fs-1 fw-bold text-colortitulo3" style="font-family: 'Futura Md BT', sans-serif;">APPLIANCES</p>
+                <p class="fs-1 fw-bold text-white" style="font-family: 'Futura Md BT', sans-serif;">REPAIR SERVICES</p>
 
-         .icons-row svg:hover {
-             transform: scale(1.15);
-         }
+                <!-- Íconos -->
+                <div class="icons-row mt-4">
+                    <img src="app/views/img/refri1.png" style="height: 250px;" alt="Refrigerator">
+                    <img src="app/views/img/cocina1.png" style="height: 250px;" alt="Stove">
+                    <img src="app/views/img/lavadora1.png" style="height: 250px;" alt="Washing Machine">
+                </div>
 
+                <p class="font-italic text-white mt-5">
+                    Copyright &copy; <span class="js-year-copy">2025</span>
+                </p>
+            </div>
 
-
-         @media (max-width: 992px) {
-             .content-wrapper {
-                 flex-direction: column;
-             }
-
-             .brand-section {
-                 text-align: center;
-             }
-
-             .icons-row {
-                 justify-content: center;
-             }
-         }
-
-         .mi-caja {
-             background-color: #fcfcfcff;
-             /* Color de fondo (azul) */
-             border-radius: 15px;
-             /* Esquinas redondeadas */
-             padding: 20px;
-             /* Espaciado interno */
-             color: white;
-             /* Color del texto */
-             width: 500px;
-             /* Ancho del div */
-             text-align: center;
-             /* Centrar texto */
-         }
-
-         .mibody {
-             background-image:  url('app/views/img/fondo4.jpg');
-             /* Ruta o URL de tu imagen */
-             background-size: cover;
-             /* Hace que la imagen cubra toda la pantalla */
-             background-position: center;
-             /* Centra la imagen */
-             background-repeat: no-repeat;
-             /* Evita que la imagen se repita */
-             background-attachment: fixed;
-             /* Fija el fondo al hacer scroll */
-             margin: 0;
-             /* Elimina márgenes del body */
-             height: 100vh;
-             /* Asegura que el body ocupe toda la pantalla */
-         }
-     </style>
- </head>
-
- <body>
-     <div class="loadersacn" style="display: none;">
-         <div class="loadersacntexto">*** Wait a moment please ***</div>
-     </div>
+            <!-- Sección derecha: Login -->
+            <div class="col-12 col-md-5">
+                <div class="card p-4 shadow-sm border-0">
+                    <div class="text-center mb-3">
+                        <i class="bi bi-person-circle" style="font-size: 4rem; color: cornflowerblue;"></i>
+                        <h5 class="mt-2">Credentials</h5>
+                    </div>
+                    <form name="formlogin" class="box2 login" action="" method="POST" autocomplete="off"> 
+                        <?php
+                        if (isset($_POST['login_usuario']) && isset($_POST['login_clave'])) {
+                            $insLogin->iniciarSesionControlador();
+                        } else {
 
 
+                            if (isset($_POST['clave_anterior']) && isset($_POST['clave_nueva'])) {
+                                $insLogin->cambiarclave();
+                            } else {
+                                $_SESSION['cambioclave'] = "0";
+                            }
+                        }
+                        ?>
+                        <?php if ($_SESSION['cambioclave'] == "0") { ?> 
+                            <div class="field">
+                                <label class="label"><i class="fas fa-user-secret"></i> &nbsp; User</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="login_usuario" maxlength="20" required>
+                                </div>
+                            </div>
 
-     <div id="page-container" class="main-content-boxed">
-         <main id="main-container">
+                            <div class="field">
+                                <label class="label"><i class="fas fa-key"></i> &nbsp; Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" name="login_clave" maxlength="100"
+                                        required>
+                                </div>
+                            </div>
 
-             <!-- <div class="bg-image" style="background-image: url('public/assets/img/photos/photo<?php echo date("d");  ?>@2x.jpg');"> -->
-             <!-- <div class="bg-image" style="background-image: url('app/views/img/fondo4.jpg');"> -->
-                <div class="mibody">
+                            <p class="has-text-centered mb-4 mt-3">
+                                <button type="submit" class="button is-info is-rounded" id="btnlogin">
+                                    Start
+                                    session</button>
+                            </p>
 
-                 <!-- <div class="bg-image" style="background-image: url('app/views/img/fondosacn.png');"> -->
+                            <p class="has-text-centered">
+                                <a name="linkreset" class="link-effect font-w700" href="">
+                                    <i class="si si-key"></i>
+                                    <span class="title is-5 has-text-centered text-primary-dark">If you forget your
+                                        password
+                                        Click
+                                        here...</span>
+                                </a>
+                            </p>
+                        <?php } else if ($_SESSION['cambioclave'] == "1") { ?>
+                            <h5 class="title is-5 has-text-centered">Enter your details below: </h5>
+                            <div class="field">
+                                <label class="label"><i class="fas fa-key"></i> &nbsp; Old Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" name="clave_anterior" maxlength="100"
+                                        required>
+                                </div>
+                            </div>
 
+                            <div class="field">
+                                <label class="label"><i class="fas fa-key"></i> &nbsp; New Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" name="clave_nueva" maxlength="100"
+                                        required>
+                                </div>
+                            </div>
 
-                 <div class="row mx-0 ">
+                            <p class="has-text-centered mb-4 mt-3">
+                                <button type="submit" class="button is-info is-rounded" id="btnlogin">Save</button>
+                            </p>
+                        <?php } else { ?>
+                            <p class="has-text-centered">
+                                <a name="linklogin" class="link-effect font-w700" href="">
+                                    <i class="si si-user"></i>
+                                    <span class="title is-5 has-text-centered text-primary-dark">Start
+                                        session</span>
+                                </a>
+                            </p>
 
-                     <div class="has-text-centered hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-start">
-
-
-                         <div class="titulosistema invisible" data-toggle="appear">
-                             <br>
-                             <br>
-                             <p class="font-size-70 font-w700 has-text-centered text-colortitulo3"
-                                 style="font-family: futura Md BT;">
-                                 &nbsp;&nbsp;FIXMAN
-                             </p>
-
-                             <p class="font-size-70 font-w700 has-text-centered text-colortitulo3"
-                                 style="font-family: futura Md BT;">
-                                 APPLIANCES
-                             </p>
-                             <p class="font-size-70 font-w700 has-text-centered text-colortitulo3"
-                                 style="font-family: futura Md BT;color: white;">
-                                 REPAIR SERVICES
-                             </p>
-                             <!-- Íconos SVG dorados -->
-                             <div class="icons-row">
-                                 <img src="app/views/img/refri1.png" style="height: 250px;" alt="">
-                                 <img src="app/views/img/cocina1.png" style="height: 250px;" alt="">
-                                 <img src="app/views/img/lavadora1.png" style="height: 220px;" alt="">
-
-                             </div>
-
-                             <p class="font-italic " style="padding-top: 5%;">
-                                 Copyright &copy; <span class="js-year-copy">2025</span>
-                             </p>
-                         </div>
-                     </div>
-                     <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center invisible"
-                         data-toggle="appear" data-class="animated fadeInRight">
-                         <div class="content mi-caja">
-                             <!-- Header -->
-
-                             <!-- Formulario login -->
-                             <form name="formlogin" class="box2 login" action="" method="POST" autocomplete="off">
-                                 <p class="has-text-centered">
-                                     <i class="fas fa-user-circle fa-5x" style="color: cornflowerblue;"></i>
-                                 </p>
-
-
-                                 <?php
-                                    if (isset($_POST['login_usuario']) && isset($_POST['login_clave'])) {
-                                        $insLogin->iniciarSesionControlador();
-                                    } else {
-
-
-                                        if (isset($_POST['clave_anterior']) && isset($_POST['clave_nueva'])) {
-                                            $insLogin->cambiarclave();
-                                        } else {
-                                            $_SESSION['cambioclave'] = "0";
-                                        }
-                                    }
-                                    ?>
-                                 <?php if ($_SESSION['cambioclave'] == "0") { ?>
-                                     <h5 class="title is-5 has-text-centered">Credentials </h5>
-                                     <div class="field">
-                                         <label class="label"><i class="fas fa-user-secret"></i> &nbsp; User</label>
-                                         <div class="control">
-                                             <input class="input" type="text" name="login_usuario" maxlength="20" required>
-                                         </div>
-                                     </div>
-
-                                     <div class="field">
-                                         <label class="label"><i class="fas fa-key"></i> &nbsp; Password</label>
-                                         <div class="control">
-                                             <input class="input" type="password" name="login_clave" maxlength="100"
-                                                 required>
-                                         </div>
-                                     </div>
-
-                                     <p class="has-text-centered mb-4 mt-3">
-                                         <button type="submit" class="button is-info is-rounded" id="btnlogin">
-                                             Start
-                                             session</button>
-                                     </p>
-
-                                     <p class="has-text-centered">
-                                         <a name="linkreset" class="link-effect font-w700" href="">
-                                             <i class="si si-key"></i>
-                                             <span class="title is-5 has-text-centered text-primary-dark">If you forget your
-                                                 password
-                                                 Click
-                                                 here...</span>
-                                         </a>
-                                     </p>
-                                 <?php } else if ($_SESSION['cambioclave'] == "1") { ?>
-                                     <h5 class="title is-5 has-text-centered">Enter your details below: </h5>
-                                     <div class="field">
-                                         <label class="label"><i class="fas fa-key"></i> &nbsp; Old Password</label>
-                                         <div class="control">
-                                             <input class="input" type="password" name="clave_anterior" maxlength="100"
-                                                 required>
-                                         </div>
-                                     </div>
-
-                                     <div class="field">
-                                         <label class="label"><i class="fas fa-key"></i> &nbsp; New Password</label>
-                                         <div class="control">
-                                             <input class="input" type="password" name="clave_nueva" maxlength="100"
-                                                 required>
-                                         </div>
-                                     </div>
-
-                                     <p class="has-text-centered mb-4 mt-3">
-                                         <button type="submit" class="button is-info is-rounded" id="btnlogin">Save</button>
-                                     </p>
-                                 <?php } else { ?>
-                                     <p class="has-text-centered">
-                                         <a name="linklogin" class="link-effect font-w700" href="">
-                                             <i class="si si-user"></i>
-                                             <span class="title is-5 has-text-centered text-primary-dark">Start
-                                                 session</span>
-                                         </a>
-                                     </p>
-
-                                 <?php }  ?>
+                        <?php }  ?>
 
 
-                             </form>
+                    </form>
 
-                             <!-- Formulario resetear contraseña -->
-                             <form name="formreset" class="box login" action="" method="POST" autocomplete="off"
-                                 style="display:none">
-                                 <p class="has-text-centered">
-                                     <i class="fas fa-user-circle fa-5x"></i>
-                                 </p>
-                                 <h5 class="title is-5 has-text-centered"> Reset Password</h5>
+                    <!-- Formulario resetear contraseña -->
+                    <form name="formreset" class="box login" action="" method="POST" autocomplete="off"
+                        style="display:none">
+                      
+                        <h5 class="title is-5 has-text-centered"> Reset Password</h5>
 
-                                 <?php
-                                    if (isset($_POST['usuario_email'])) {
-                                        $insLogin->resetearcontraseña();
-                                    }
-                                    ?>
-                                 <div id="mensaje">
+                        <?php
+                        if (isset($_POST['usuario_email'])) {
+                            $insLogin->resetearcontraseña();
+                        }
+                        ?>
+                        <div id="mensaje">
 
-                                 </div>
+                        </div>
 
-                                 <div class="field">
-                                     <label class="label"><i class="fas fa-envelope"></i> &nbsp; mail</label>
-                                     <div class="control">
-                                         <input class="input" type="email" name="usuario_email" maxlength="70" required>
-                                     </div>
-                                 </div>
+                        <div class="field">
+                            <label class="label"><i class="fas fa-envelope"></i> &nbsp; mail</label>
+                            <div class="control">
+                                <input class="input" type="email" name="usuario_email" maxlength="70" required>
+                            </div>
+                        </div>
 
 
 
-                                 <p class="has-text-centered mb-4 mt-3">
-                                     <button type="submit" class="button is-info is-rounded"
-                                         id="btnreset">Reset</button>
-                                 </p>
+                        <p class="has-text-centered mb-4 mt-3">
+                            <button type="submit" class="button is-info is-rounded"
+                                id="btnreset">Reset</button>
+                        </p>
 
-                                 <p class="has-text-centered">
-                                     <a name="linklogin" class="link-effect font-w700" href="">
-                                         <i class="si si-user"></i>
-                                         <span class="title is-5 has-text-centered text-primary-dark">Start
-                                             session</span>
-                                     </a>
-                                 </p>
+                        <p class="has-text-centered">
+                            <a name="linklogin" class="link-effect font-w700" href="">
+                                <i class="si si-user"></i>
+                                <span class="title is-5 has-text-centered text-primary-dark">Start
+                                    session</span>
+                            </a>
+                        </p>
 
-                             </form>
+                    </form>
+                </div>
+            </div>
 
+        </div>
+    </div>
 
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </main>
-     </div>
+    <!-- Bootstrap JS + Icons -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="<?php echo APP_URL; ?>app/views/js/bootstrap.bundle.min.js"></script> 
+    <link rel="stylesheet" href="<?php echo APP_URL; ?>app/views/css/bootstrap-icons.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" /> -->
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+</body>
 
-     <script src="app/views/js/jquery.appear.min.js"></script>
-     <script src="app/views/js/codebase.js"></script>
-
- </body>
-
- </html>
-
+</html>
 
  <script>
     
