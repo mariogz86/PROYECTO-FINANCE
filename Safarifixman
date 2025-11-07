@@ -1,0 +1,191 @@
+Perfecto 👀, esa imagen ayuda mucho — y el detalle que en Android funciona pero en iPhone no, nos da una pista muy clara.
+
+El mensaje:
+
+> “Safari no puede abrir la página porque se interrumpió la conexión de red.”
+
+
+
+no significa que el internet esté caído, sino que Safari (iOS) rechazó o cortó la conexión HTTPS con tu túnel de ngrok.
+Esto puede pasar por una de estas causas típicas 👇
+
+
+---
+
+⚠️ Causas más probables (y cómo resolverlas)
+
+1️⃣ Ngrok cambió el dominio o el túnel expiró
+
+Ngrok genera URLs temporales.
+
+Si el túnel se cerró o el link cambió, los dispositivos que siguen usando el enlace anterior (como tu iPhone) verán exactamente ese error.
+🔧 Solución: vuelve a iniciar ngrok con el mismo comando:
+
+ngrok http 80
+
+y revisa si la URL nueva cambió (por ejemplo, antes era systemfixman.ngrok.app y ahora es abc123.ngrok.app).
+
+
+
+---
+
+2️⃣ Certificado SSL no reconocido por Safari (iOS es más estricto que Android)
+
+Aunque ngrok usa HTTPS, Safari tiene reglas de seguridad más estrictas.
+
+Si la sesión HTTPS tuvo un fallo temporal o no puede validar el certificado, Safari corta la conexión (Android a veces no lo hace).
+
+
+🔧 Soluciones posibles:
+
+Cierra completamente Safari (desde multitarea) y vuelve a abrirlo.
+
+Limpia caché y cookies de Safari (Ajustes > Safari > Borrar historial y datos de sitios web).
+
+Prueba ingresar directamente escribiendo la URL completa (https://systemfixman.ngrok.app/fixman/) en una pestaña nueva.
+
+Si tienes una red Wi-Fi con filtrado o proxy, intenta con datos móviles (LTE) o viceversa.
+
+
+
+---
+
+3️⃣ Tu aplicación hace una redirección HTTP → HTTPS o a localhost
+
+Algunas apps PHP redirigen a rutas absolutas, por ejemplo:
+
+header("Location: http://localhost/fixman/home.php");
+
+Eso funciona en tu PC o Android (que ignora parte del error), pero en iPhone no puede resolver “localhost” dentro del túnel de ngrok.
+
+
+🔧 Solución:
+En tu código PHP, cambia esas redirecciones a rutas relativas:
+
+header("Location: home.php");
+
+o bien:
+
+header("Location: /fixman/home.php");
+
+Así la redirección usará la misma URL base (https://systemfixman.ngrok.app).
+
+
+---
+
+4️⃣ Ngrok free plan o túnel inestable
+
+En el plan gratuito, ngrok puede reiniciar el túnel si hay poco tráfico o si pasa un tiempo sin actividad.
+
+Al reconectarse, algunos navegadores (especialmente Safari) no recuperan bien la sesión.
+
+
+🔧 Solución: reinicia el túnel con:
+
+ngrok http 80 --region=us
+
+y evita que el túnel quede inactivo (mantén tráfico o usa un plan de ngrok “stable”).
+
+
+---
+
+🧭 Cómo probarlo rápido
+
+1. Reinicia ngrok y copia el nuevo enlace.
+
+
+2. Abre ese enlace directamente en Safari en el iPhone (no desde un marcador anterior).
+
+
+3. Intenta iniciar sesión otra vez.
+
+
+4. Si aún falla, dime si tu login hace alguna redirección en PHP (puedo revisar ese código contigo).
+
+
+
+
+---
+
+¿Querés que me muestres el fragmento de código PHP que usás al hacer login (el que hace el header("Location: ...") o el echo "<script>window.location='...')?
+Con eso te digo exactamente qué parte está causando que Safari corte la conexión.
+
+Excelente 👌, gracias por mostrar el código — justo ahí está la clave del problema en iPhone.
+
+Tu bloque:
+
+if(headers_sent()){
+    echo "<script> window.location.href='".APP_URL."index.php?views=dashboard'; </script>";
+}else{ 
+    header("Location: ".APP_URL."index.php?views=dashboard"); 
+}
+
+es perfectamente válido en la mayoría de navegadores, pero en Safari (iPhone) puede fallar dependiendo del valor de APP_URL.
+
+
+---
+
+⚠️ El problema más probable
+
+En tu caso, Safari corta la conexión porque la redirección que hace PHP o JavaScript apunta a una URL que no coincide exactamente con el dominio HTTPS del túnel de ngrok.
+
+Por ejemplo:
+
+Si APP_URL está definida como
+
+define('APP_URL', 'http://localhost/fixman/');
+
+o incluso
+
+define('APP_URL', 'http://127.0.0.1/fixman/');
+
+entonces Safari intenta cargar una dirección interna (localhost) dentro del túnel HTTPS https://systemfixman.ngrok.app, y eso rompe la conexión.
+En Android, Chrome a veces lo “tolera”, pero en iPhone Safari lo bloquea por seguridad.
+
+
+
+---
+
+✅ Solución
+
+Asegúrate de que tu constante APP_URL se adapte dinámicamente al dominio actual, por ejemplo así:
+
+define('APP_URL', (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . "/fixman/");
+
+Así, si estás en:
+
+https://systemfixman.ngrok.app/fixman/
+→ PHP redirige correctamente a
+https://systemfixman.ngrok.app/fixman/index.php?views=dashboard
+
+
+Y si trabajas localmente (por ejemplo http://localhost/fixman/), también funciona sin cambiar nada.
+
+
+---
+
+💡 Otra mejora recomendada
+
+En lugar de hacer dos tipos de redirección (PHP y JavaScript), podés simplificarlo así:
+
+header("Location: " . APP_URL . "index.php?views=dashboard");
+exit();
+
+Esto evita que se envíen cabeceras parciales o scripts antes del header() (que puede causar el headers_sent()).
+
+
+---
+
+🔍 Resumen
+
+Problema	Causa	Solución
+
+“Safari no puede abrir la página”	APP_URL apunta a localhost o http://	Usar dominio dinámico basado en $_SERVER['HTTP_HOST']
+Funciona en Android pero no en iPhone	Safari bloquea redirección insegura o cruzada	Forzar https:// y dominio actual
+Se usa headers_sent() + script	Redirección doble que confunde Safari	Usar solo header() con exit()
+
+
+
+---
+
+¿Querés que te ayude a mostrar exactamente cómo quedaría tu bloque completo con APP_URL corregida y el header() optimizado? Te puedo dejar el fragmento listo para copiar y pegar.
