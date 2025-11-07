@@ -245,7 +245,8 @@ if (isset($_POST['modulo_Opcion'])) {
 				"tipo" => "limpiar",
 				"titulo" => "Company",
 				"texto" => "The record was saved successfully",
-				"icono" => "success"
+				"icono" => "success",
+				"idjob" => $result
 			];
 		} else {
 			$alerta = [
@@ -253,7 +254,8 @@ if (isset($_POST['modulo_Opcion'])) {
 				"tipo" => "limpiar",
 				"titulo" => "Company",
 				"texto" => "The registry was updated successfully",
-				"icono" => "success"
+				"icono" => "success",
+				"idjob" =>$_POST["idjob"]
 			];
 		}
 	} else {

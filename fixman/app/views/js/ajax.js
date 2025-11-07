@@ -27,7 +27,7 @@ btn_exit.forEach(exitSystem => {
     });
 });
 
-    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio");
+    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob");
 
     formularios_ajax.forEach(formularios => {
     
@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -247,7 +247,11 @@ function alertas_ajax(alerta){
                           break;   
                           case "accionpartes":
                             quedarenmodalparte(alerta);
-                          break;         
+                          break;   
+                          case "FormularioAjaxjob":
+                            cargajob(alerta.idjob);
+                          break;   
+                          
                         default:
                             document.querySelector(".FormularioAjax").reset();
                             cargargrid();

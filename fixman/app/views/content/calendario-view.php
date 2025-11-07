@@ -23,13 +23,13 @@
 }
 /* Color de fondo de las celdas de los días */
 .fc-daygrid-day {
-  background-color: #f3f04dff; /* color claro por defecto, cámbialo */
+  background-color: #a8a896ff; /* color claro por defecto, cámbialo */
   color: #333; /* texto de los días */
 }
 
 /* Color de texto de los números de día */
 .fc-daygrid-day-number {
-  color: #007bff; /* azul Bootstrap */
+  color: #060606ff; /* azul Bootstrap */
   font-weight: bold;
 }
  </style>

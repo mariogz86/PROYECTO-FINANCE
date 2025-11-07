@@ -26,8 +26,8 @@ if (isset($_GET['cargagrid'])) {
 
 
     ];
-
-    foreach ($result as $row) {
+    if($result){
+        foreach ($result as $row) {
         // Determinar color según estado
         $color = isset($colores[$row['estado']]) ? $colores[$row['estado']] : '#95a5a6';
         $partes = explode("-", $row['num_referencia']);
@@ -44,6 +44,11 @@ if (isset($_GET['cargagrid'])) {
             'allDay' => true
         ];
     }
+
+    }else{
+        $events=[];
+    }
+    
 
     echo json_encode($events);
 

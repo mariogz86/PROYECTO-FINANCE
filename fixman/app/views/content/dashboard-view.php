@@ -50,7 +50,7 @@
        </div>
 
        <div class="columns is-flex is-justify-content-center" style="opacity: 60%;">
-           <img src="app/views/img/logo.png" alt="">
+           <img src="app/views/img/logo1.png" alt="">
        </div>
 
 

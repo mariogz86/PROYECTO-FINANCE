@@ -14,7 +14,14 @@ error_reporting(0);
     }
 
 ?>
-
+ <style>
+	 .fondo {
+            background-image: url('app/views/img/Fondoprincipal.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+ </style> 
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,7 +54,7 @@ error_reporting(0);
            
             require_once "./app/views/inc/navlateraldin.php";
     ?>
-        <section class="full-width pageContent scroll" id="pageContent">
+        <section class="fondo full-width pageContent scroll" id="pageContent">
             <?php
                 require "./app/views/inc/navbar.php";
 
