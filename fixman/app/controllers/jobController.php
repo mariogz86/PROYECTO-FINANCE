@@ -28,6 +28,27 @@ class jobController extends mainModel
 		return $datos;
 	}
 
+		//Funcion para cambiar de estado al rol 
+		public function eliminarjob($idcat){ 
+ 
+				$sentencia ="select \"SYSTEM\".ELIMINAR_TRABAJO('".$idcat."');";
+				$sql=$this->actualizarDatos($sentencia);
+				$sql->execute(); 
+
+		 return $sql;
+		}
+
+	public function obtenertrabajo($id)
+	{
+
+		$consulta_datos = "select * from \"SYSTEM\".OBTENER_JOBS where id_trabajo =" .$id . ";";
+
+		$datos = $this->ejecutarConsulta($consulta_datos);
+		$datos = $datos->fetchAll();
+
+		return $datos;
+	}
+
 		//funcion para cargar los formularios 
 		public function listardashboard()
 		{
@@ -68,6 +89,8 @@ class jobController extends mainModel
 
 		return $datos;
 	}
+
+	
 
 	public function obtenerdatospago()
 	{

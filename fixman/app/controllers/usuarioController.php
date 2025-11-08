@@ -52,7 +52,8 @@ class usuarioController extends mainModel
 		$usuario_apellido = $this->limpiarCadena($_POST["usuario_apellido"]);
 		$usuario_usuario = $this->limpiarCadena($_POST["usuario_usuario"]);
 		$usuario_email = $this->limpiarCadena($_POST["usuario_email"]);
-		$clave = $this->generatePassword(8);
+		//$clave = $this->generatePassword(8);
+		$clave = $this->limpiarCadena($_POST["clave"]);
 		$cmb_rol = $_POST["cmb_rol"];
 
 		$clavenueva = password_hash($clave, PASSWORD_BCRYPT, ["cost" => 10]);

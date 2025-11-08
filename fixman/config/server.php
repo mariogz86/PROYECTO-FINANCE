@@ -6,6 +6,13 @@
 	 const DB_USER="postgres";
 	 const DB_PASS="2022.Gol";
 
+// 	 const DB_SERVER = "4.tcp.ngrok.io";
+// const DB_PUERTO = "17668";
+
+// const DB_NAME = "FINANCE";
+// const DB_USER = "postgres";
+// const DB_PASS = "2022.Gol";
+
 
 	// const DB_SERVER="NANCIMI";
 	//  const DB_NAME="SACN";

@@ -239,29 +239,33 @@ if (isset($_POST['modulo_Opcion'])) {
 	$result = $insformulario->guardar();
 	//resultado que se envia al metodo POST
 	if ($result > 0) {
+		$trabajo = $insformulario->obtenertrabajo($result);
 		if ($_POST["idjob"] == "0") {
+			
 			$alerta = [
-				"classform" => ".FormularioAjax",
+				"classform" => ".FormularioAjaxjob",
 				"tipo" => "limpiar",
 				"titulo" => "Company",
 				"texto" => "The record was saved successfully",
 				"icono" => "success",
+				"datotrabajo" => $trabajo,
 				"idjob" => $result
 			];
 		} else {
 			$alerta = [
-				"classform" => ".FormularioAjax",
+				"classform" => ".FormularioAjaxjob",
 				"tipo" => "limpiar",
 				"titulo" => "Company",
 				"texto" => "The registry was updated successfully",
 				"icono" => "success",
+				"datotrabajo" => $trabajo,
 				"idjob" =>$_POST["idjob"]
 			];
 		}
 	} else {
 		if ($_POST["idjob"] == "0") {
 			$alerta = [
-				"classform" => ".FormularioAjax",
+				"classform" => ".FormularioAjaxjob",
 				"tipo" => "simple",
 				"titulo" => "Error",
 				"texto" => "The record could not be saved, please try again",
@@ -269,7 +273,7 @@ if (isset($_POST['modulo_Opcion'])) {
 			];
 		} else {
 			$alerta = [
-				"classform" => ".FormularioAjax",
+				"classform" => ".FormularioAjaxjob",
 				"tipo" => "simple",
 				"titulo" => "Error",
 				"texto" => "The record could not be updated, please try again",
@@ -291,7 +295,7 @@ if (isset($_POST['modulo_job'])) {
 
 		$result = $insformulario->cambiarestado(0);
 		$alerta = [
-			"classform" => ".FormularioAjax",
+			"classform" => ".FormularioEliminar",
 			"tipo" => "limpiar",
 			"titulo" => "Deactivate registration",
 			"texto" => "The registration was successfully deactivated",
@@ -304,10 +308,22 @@ if (isset($_POST['modulo_job'])) {
 
 		$result = $insformulario->cambiarestado(1);
 		$alerta = [
-			"classform" => ".FormularioAjax",
+			"classform" => ".FormularioEliminar",
 			"tipo" => "limpiar",
 			"titulo" => "Activate registration",
 			"texto" => "Registration was successfully activated",
+			"icono" => "success"
+		];
+	}
+
+	if ($_POST['modulo_job'] == "eliminar") {
+
+		$result = $insformulario->eliminarjob($_POST['id_trabajo']);
+		$alerta = [
+			"classform" => ".FormularioEliminar",
+			"tipo" => "limpiar",
+			"titulo" => "Delete registration",
+			"texto" => "Registration was successfully deleted",
 			"icono" => "success"
 		];
 	}

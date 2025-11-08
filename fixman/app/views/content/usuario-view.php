@@ -94,6 +94,12 @@ p {
                         </select>
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="control">
+                        <label>Contraseña <?php echo CAMPO_OBLIGATORIO; ?></label>
+                        <input class="input" type="text"  name="clave" maxlength="70" required>
+                    </div>
+                </div>
             </div>
             <div class="columns">
 

@@ -253,7 +253,7 @@ $insrol = new FuncionesController();
                         class="fas fa-arrow-alt-circle-left"></i> &nbsp; Go back</button>
 
                 <button type="button" class="btn btn-light  next-step">
-                    Siguiente <i class="bi bi-arrow-right-circle ms-1"></i>
+                    Next <i class="bi bi-arrow-right-circle ms-1"></i>
                 </button>
             </div>
         </div>
@@ -414,10 +414,10 @@ $insrol = new FuncionesController();
             </div>
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary prev-step">
-                    <i class="bi bi-arrow-left-circle me-1"></i> Atrás
+                    <i class="bi bi-arrow-left-circle me-1"></i> Back
                 </button>
                 <button type="button" class="btn btn-light next-step">
-                    Siguiente <i class="bi bi-arrow-right-circle ms-1"></i>
+                    Next <i class="bi bi-arrow-right-circle ms-1"></i>
                 </button>
             </div>
         </div>
@@ -575,10 +575,10 @@ $insrol = new FuncionesController();
             </form>
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary prev-step">
-                    <i class="bi bi-arrow-left-circle me-1"></i> Atrás
+                    <i class="bi bi-arrow-left-circle me-1"></i> Back
                 </button>
                 <button type="button" class="btn btn-light next-step">
-                    Siguiente <i class="bi bi-arrow-right-circle ms-1"></i>
+                    Next <i class="bi bi-arrow-right-circle ms-1"></i>
                 </button>
             </div>
         </div>
@@ -637,10 +637,10 @@ $insrol = new FuncionesController();
 
             <div class="d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary prev-step">
-                    <i class="bi bi-arrow-left-circle me-1"></i> Atrás
+                    <i class="bi bi-arrow-left-circle me-1"></i> Back
                 </button>
                 <button name="terminar" type="submit" class="btn btn-success">
-                    <i class="bi bi-check-circle me-1"></i> Salir
+                    <i class="bi bi-check-circle me-1"></i> go out
                 </button>
             </div>
         </div>
@@ -755,9 +755,23 @@ $insrol = new FuncionesController();
     document.querySelectorAll('.next-step').forEach(btn => {
         btn.addEventListener('click', () => {
             //if (validateStep(currentStep)) 
-            showStep(currentStep + 1);
+            if (currentStep == 1) {
+                if (idjob[0].value == 0) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "JOB",
+                        text: "Please enter job details",
+                        confirmButtonText: 'Accept'
+                    });
+                } else {
+                    showStep(currentStep + 1);
+                }
+            } else {
+                showStep(currentStep + 1);
+            }
 
-            
+
+
         });
     });
 
@@ -768,7 +782,7 @@ $insrol = new FuncionesController();
         });
     });
 
- 
+
 
 
     function pantallaprincipal() {
@@ -987,14 +1001,24 @@ $insrol = new FuncionesController();
 
     });
 
-    function cargajob(idjob) {
-        idjob[0].value = idjob;
+    function cargajob(idjobreg, trabajo = "") {
+        idjob[0].value = idjobreg;
+
 
         var table = $("#myTable").DataTable();
         // Buscar la fila cuyo campo 'idtrabajo' coincida con el valor buscado
         var dato = table.rows().data().toArray().find(function(row) {
-            return row.id_trabajo === parseInt(idjob);
+            return row.id_trabajo === parseInt(idjobreg);
         });
+
+        if (dato == undefined) {
+            dato = trabajo[0];
+        }
+        idjob_service[0].value = dato.id_trabajo;
+
+        idjob_cita[0].value = dato.id_trabajo;
+        idjob_pago[0].value = dato.id_trabajo;
+
         document.getElementsByName("fullname")[0].value = dato.full_name;
         document.getElementsByName("city")[0].value = dato.city;
         document.getElementsByName("direccion")[0].value = dato.address;
@@ -1019,10 +1043,10 @@ $insrol = new FuncionesController();
         $('#select_tecnico').change();
 
         document.querySelector('.FormularioAjax2').reset();
-        cargargridservicios(idjob);
+        cargargridservicios(idjobreg);
         $.ajax({
             type: "GET",
-            url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatoscita' ?>=" + idjob,
+            url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatoscita' ?>=" + idjobreg,
             success: function(response) {
                 $(".loadersacn").fadeOut("slow");
                 var res = jQuery.parseJSON(response);
@@ -1065,7 +1089,7 @@ $insrol = new FuncionesController();
 
         $.ajax({
             type: "GET",
-            url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatospago' ?>=" + idjob,
+            url: "<?php echo APP_URL . 'ajax/jobAjax.php?cargadatospago' ?>=" + idjobreg,
             success: function(response) {
                 $(".loadersacn").fadeOut("slow");
                 var res = jQuery.parseJSON(response);
@@ -1501,23 +1525,24 @@ $insrol = new FuncionesController();
                                     meta.row + '">' +
                                     '<i class="fas fa-sync fa-fw"></i></a></div> ';
 
-                                cadena = cadena +
-                                    '<div style="margin: 2px;"><a id="servicios" title="Services" href="#" class="button is-services is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="fas fa-tools"></i></a></div> ';
-                                cadena = cadena +
-                                    '<div><div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
-                                    meta.row + '">' +
-                                    '<i class="far fa-calendar-alt"></i></a></div> ';
+                                // cadena = cadena +
+                                //     '<div style="margin: 2px;"><a id="servicios" title="Services" href="#" class="button is-services is-rounded is-small" valor="' +
+                                //     meta.row + '">' +
+                                //     '<i class="fas fa-tools"></i></a></div> ';
+                                // cadena = cadena +
+                                //     '<div><div style="margin: 2px;"><a id="cita" title="Appointment schedule and Payment information" href="#" class="button is-cita is-rounded is-small" valor="' +
+                                //     meta.row + '">' +
+                                //     '<i class="far fa-calendar-alt"></i></a></div> ';
 
                                 cadena = cadena +
                                     '<div style="">';
                                 cadena = cadena + '<div>';
+                                
                                 if (row.u_estado == 0) {
 
 
                                     cadena = cadena +
-                                        '<form class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/jobAjax.php" method="POST" autocomplete="off" >' +
+                                        '<form class="FormularioEliminar" action="<?php echo APP_URL ?>ajax/jobAjax.php" method="POST" autocomplete="off" >' +
                                         '<input type="hidden" name="modulo_job" value="activar">' +
                                         '<input type="hidden" name="id_trabajo" value="' +
                                         data + '">' +
@@ -1527,7 +1552,7 @@ $insrol = new FuncionesController();
                                         '</form>';
                                 } else {
                                     cadena = cadena +
-                                        '<form class="FormularioAcciones" action="<?php echo APP_URL ?>ajax/jobAjax.php" method="POST" autocomplete="off" >' +
+                                        '<form class="FormularioEliminar" action="<?php echo APP_URL ?>ajax/jobAjax.php" method="POST" autocomplete="off" >' +
                                         '<input type="hidden" name="modulo_job" value="inactivar">' +
                                         '<input type="hidden" name="id_trabajo" value="' +
                                         data + '">' +
@@ -1536,7 +1561,17 @@ $insrol = new FuncionesController();
                                         '</button>' +
                                         '</form>';
                                 }
+                                
                                 cadena = cadena + '</div>';
+                                cadena = cadena +
+                                    '<div><form class="FormularioEliminar" action="<?php echo APP_URL ?>ajax/jobAjax.php" method="POST" autocomplete="off" >' +
+                                    '<input type="hidden" name="modulo_job" value="eliminar">' +
+                                    '<input type="hidden" name="id_trabajo" value="' +
+                                    data + '">' +
+                                    '<button type="submit" title="Delete Job" class="button is-acciones is-rounded is-small">' +
+                                    '<i class="fas fa-trash-alt"></i>' +
+                                    '</button>' +
+                                    '</form></div>';
                                 cadena = cadena + '</div>';
                                 '</div>' +
                                 '</li></td>';

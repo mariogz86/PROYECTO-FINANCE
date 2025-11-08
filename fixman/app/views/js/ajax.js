@@ -27,7 +27,7 @@ btn_exit.forEach(exitSystem => {
     });
 });
 
-    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob");
+    var formularios_ajax=document.querySelectorAll(".FormularioAjax, .FormularioEliminar, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob");
 
     formularios_ajax.forEach(formularios => {
     
@@ -99,7 +99,7 @@ btn_exit.forEach(exitSystem => {
     });
     function cargarfunciones(){
 
-        $(document).on('submit', '.FormularioAjax, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob', function (e) {
+        $(document).on('submit', '.FormularioAjax, .FormularioEliminar, .FormularioAjax2, .FormularioAjax3, .FormularioAjax4, .FormularioAjax5, .FormularioAjax6, .FormularioAjax7, .FormularioAcciones, .FormularioAccionespartes, .Formularioreporteservicio, .FormularioAjaxjob', function (e) {
             e.preventDefault();
     
             Swal.fire({
@@ -248,8 +248,8 @@ function alertas_ajax(alerta){
                           case "accionpartes":
                             quedarenmodalparte(alerta);
                           break;   
-                          case "FormularioAjaxjob":
-                            cargajob(alerta.idjob);
+                          case "formCompany":
+                            cargajob(alerta.idjob,alerta.datotrabajo);
                           break;   
                           
                         default:
@@ -264,6 +264,10 @@ function alertas_ajax(alerta){
                        
                           case ".FormularioAcciones":
                             cargaformularioservicio(0);
+                          break;
+
+                           case ".FormularioEliminar":
+                            cargargrid();
                           break;
                                                 
                         default:
