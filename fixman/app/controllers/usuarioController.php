@@ -77,7 +77,7 @@ class usuarioController extends mainModel
 
 			$this->usuariocreado($usuario_nombre, $usuario_apellido, $usuario_usuario, $clave,$usuario_email);
 		} else {
-			$sentencia = "select \"SYSTEM\".ACTUALIZAR_USUARIO('" . $_POST["idusuario"] . "','" . $usuario_nombre . "','" . $usuario_apellido . "','" . $usuario_usuario . "','" . $usuario_email . "','" . $clave . "','" . $cmb_rol . "','" . $fechavencimiento . "','" . $_SESSION['id'] . "');";
+			$sentencia = "select \"SYSTEM\".ACTUALIZAR_USUARIO('" . $_POST["idusuario"] . "','" . $usuario_nombre . "','" . $usuario_apellido . "','" . $usuario_usuario . "','" . $usuario_email . "','" . $clavenueva . "','" . $cmb_rol . "','" . $fechavencimiento . "','" . $_SESSION['id'] . "');";
 			$sql = $this->actualizarDatos($sentencia);
 			$sql->execute();
 			$total = (int) $sql->fetchColumn();
